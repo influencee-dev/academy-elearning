@@ -74,4 +74,6 @@ spl_autoload_register(
 	}
 );
 
+register_activation_hook( AEL_FILE, array( 'AEL_Plugin', 'activate' ) );
+
 AEL_Plugin::instance()->boot();

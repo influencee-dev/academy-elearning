@@ -42,6 +42,18 @@ final class AEL_Plugin {
 	public function boot(): void {
 		add_action( 'init', array( $this, 'load_textdomain' ), 0 );
 		add_action( 'plugins_loaded', array( $this, 'loaded' ), 20 );
+		AEL_Settings::instance()->boot();
+	}
+
+	/**
+	 * All'attivazione, chi attiva il plugin riceve la capacità dell'agenzia.
+	 * Il cliente non la ha mai, a meno che non sia lui ad attivare il plugin.
+	 */
+	public static function activate(): void {
+		$user_id = get_current_user_id();
+		if ( $user_id ) {
+			AEL_Settings::grant_cap( $user_id );
+		}
 	}
 
 	/**
@@ -61,5 +73,13 @@ final class AEL_Plugin {
 		 * @param AEL_Plugin $plugin Istanza della base.
 		 */
 		do_action( 'ael_loaded', $this );
+
+		// Solo i moduli accesi caricano i loro file.
+		AEL_Modules::instance()->load_active();
+
+		/**
+		 * Scatta quando tutti i moduli accesi sono stati caricati.
+		 */
+		do_action( 'ael_modules_loaded' );
 	}
 }
