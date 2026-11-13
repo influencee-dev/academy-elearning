@@ -6,7 +6,7 @@ Questo file contiene le regole fisse del progetto. Rileggilo all'inizio di ogni 
 
 Un plugin WordPress che trasforma un sito in una piattaforma di corsi online (academy). Si installa su un WordPress dedicato, su un sottodominio del tipo `academy.[dominio]`.
 
-Il plugin è **uno solo** e serve più academy (la nostra e quelle dei clienti, la prima è Specialty). Ogni academy lo configura dalle impostazioni e lo veste con un proprio tema. Il codice del plugin non contiene mai nulla di specifico di una singola academy.
+Il plugin è **uno solo** e serve più academy (la nostra e quelle dei clienti, la prima è Specialty). Noi (l'agenzia) lo configuriamo in WordPress prima della consegna, accendendo le funzioni previste dal pacchetto di quel cliente, e lo vestiamo con un tema proprio dell'academy. Il cliente riceve l'academy finita: non decide quali funzioni attivare. Il codice del plugin non contiene mai nulla di specifico di una singola academy.
 
 Documenti di riferimento, nella cartella `docs/`:
 
@@ -20,6 +20,7 @@ Se qualcosa non è scritto nel documento master, **non inventarlo**: proponi un'
 | Tema | Decisione |
 |---|---|
 | Struttura | Un solo plugin completo fin dalla prima versione, con interruttori per ogni funzione |
+| Chi decide le funzioni | Lo decidiamo noi (agenzia) prima della consegna, da una pagina di WordPress riservata all'agenzia (capacità dedicata `ael_manage_modules`, non concessa al ruolo amministratore del cliente). Il cliente non vede né cambia gli interruttori |
 | Acquisto del singolo corso | WooCommerce |
 | Abbonamento mensile | Gestito direttamente su Stripe (Checkout + Customer Portal + webhook), senza estensioni WooCommerce |
 | Accesso utenti | Utenti WordPress con email e password; accesso con link via email solo come opzione aggiuntiva, con interruttore |
@@ -35,7 +36,7 @@ Sono le più importanti del progetto. Valgono per ogni riga di codice.
 
 1. **Ogni funzione ha la sua cartella.** Ogni modulo vive in `modules/<nome-modulo>/` con i suoi file. Nessun modulo modifica i file della base o di un altro modulo.
 2. **I moduli si agganciano alla base, non la modificano.** La base espone hook (`do_action` / `apply_filters`) nei punti chiave; i moduli li usano. Se a un modulo serve un aggancio che non c'è, si aggiunge l'hook alla base, non la logica del modulo.
-3. **Ogni modulo ha il suo interruttore.** Un modulo spento non carica nulla (niente hook, niente asset, niente voci di menu). Un modulo nuovo arriva sempre spento.
+3. **Ogni modulo ha il suo interruttore.** Un modulo spento non carica nulla (niente hook, niente asset, niente voci di menu). Un modulo nuovo arriva sempre spento. Gli interruttori li gestisce solo l'agenzia, con la capacità `ael_manage_modules`: la pagina di configurazione e le sue voci di menu non compaiono a chi non ce l'ha. Le opzioni del core (pagine docente, anteprime gratuite, sorgenti video) seguono la stessa regola.
 4. **I dati si aggiungono, non si cancellano.** Le migrazioni creano tabelle e colonne nuove; non eliminano, non rinominano e non cambiano il tipo di quelle esistenti. Spegnere un modulo non cancella i suoi dati. La disinstallazione cancella i dati solo se l'amministratore lo sceglie esplicitamente nelle impostazioni.
 5. **Ogni modifica passa da una prova.** Si lavora su un ramo dedicato, si prova sul WordPress locale, si aggiorna la versione e il changelog, poi si unisce al ramo principale.
 
@@ -53,7 +54,7 @@ academy-elearning/
 │   ├── class-content.php        ← CPT e tassonomie: corsi, lezioni, docenti
 │   ├── class-catalog.php        ← catalogo, scheda corso, pulsante di azione
 │   ├── class-account.php        ← area "I miei corsi", progressi
-│   ├── class-settings.php       ← pagina impostazioni e interruttori
+│   ├── class-settings.php       ← impostazioni del cliente; pagina interruttori riservata all'agenzia
 │   └── class-rest.php           ← endpoint REST del core
 ├── modules/
 │   ├── single-purchase/         ← acquisto singolo con WooCommerce

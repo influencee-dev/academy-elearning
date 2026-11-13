@@ -8,13 +8,13 @@ Costruiamo un solo plugin WordPress che trasforma un sito in una piattaforma di 
 
 Il plugin fa quattro cose: gestisce i contenuti (docenti, corsi, moduli, lezioni video), li mostra in un catalogo pubblico, gestisce l’accesso a pagamento (acquisto del singolo corso e abbonamento mensile) e calcola in automatico la quota che spetta a ogni docente sulle vendite dei suoi corsi.
 
-La prima versione nasce completa di tutte le funzioni già decise, abbonamento compreso. Ogni academy accende solo quelle che le servono attraverso degli interruttori. Le funzioni future (quiz, webinar, community, chatbot) si aggiungeranno come moduli separati, senza toccare ciò che è già online. Per i pagamenti ci appoggiamo a WooCommerce per l’acquisto dei singoli corsi e direttamente a Stripe per l’abbonamento.
+La prima versione nasce completa di tutte le funzioni già decise, abbonamento compreso. Noi accendiamo, prima della consegna, solo quelle previste dal pacchetto di ciascun cliente, attraverso degli interruttori riservati all’agenzia. Le funzioni future (quiz, webinar, community, chatbot) si aggiungeranno come moduli separati, senza toccare ciò che è già online. Per i pagamenti ci appoggiamo a WooCommerce per l’acquisto dei singoli corsi e direttamente a Stripe per l’abbonamento.
 
 ## 1. Il principio: un motore, tante academy
 
 L’idea nasce da un’esigenza ricorrente: più realtà (la nostra academy e quelle dei clienti) hanno bisogno della stessa cosa, cioè un posto dove caricare corsi, venderli e farli seguire. Invece di costruire un sito ogni volta, costruiamo un prodotto che si installa e si configura.
 
-Ogni installazione decide dalle impostazioni, senza toccare il codice, quali funzioni accendere, chi sono i docenti e con quale percentuale, e che aspetto ha la piattaforma. Quando correggiamo un errore o aggiungiamo una funzione, la novità arriva a tutte le academy con un semplice aggiornamento.
+Ogni installazione si configura da WordPress, senza toccare il codice: noi decidiamo prima della consegna quali funzioni accendere, il cliente gestisce corsi, docenti e percentuali, e l’aspetto sta nel tema. Quando correggiamo un errore o aggiungiamo una funzione, la novità arriva a tutte le academy con un semplice aggiornamento.
 
 ## 2. Architettura tecnica
 
@@ -52,7 +52,8 @@ Prima del lancio vanno lette con attenzione le regole di YouTube sull’uso del 
 
 | Ruolo | Cosa fa |
 |---|---|
-| Amministratore | Carica e organizza i corsi, gestisce docenti, prezzi, percentuali, interruttori e impostazioni, consulta vendite e quote |
+| Agenzia | Configura le funzioni incluse nel pacchetto (gli interruttori) prima della consegna ed è l’unica a poterle cambiare |
+| Amministratore | Titolare dell’academy: carica e organizza i corsi, gestisce docenti, prezzi, percentuali e impostazioni, consulta vendite e quote. Non vede gli interruttori |
 | Docente | È l’autore dei corsi (un esperto o un creator). Può avere una pagina pubblica con tutti i suoi corsi e, se lo attiviamo, un pannello in sola lettura con le sue vendite e la sua quota |
 | Studente | Si registra, acquista un corso o si abbona, segue le lezioni e ritrova i suoi corsi nell’area personale |
 
@@ -91,7 +92,7 @@ Entrambe le modalità sono presenti nel plugin fin dalla prima versione; ogni ac
 
 ## 7. Gli interruttori
 
-Ogni funzione del plugin ha un interruttore nelle impostazioni. Il plugin è uno solo e completo; ogni academy lo modella accendendo e spegnendo.
+Ogni funzione del plugin ha un interruttore, in una pagina di WordPress riservata all’agenzia. Il plugin è uno solo e completo; noi lo modelliamo per ogni cliente prima della consegna, accendendo e spegnendo. Il cliente riceve l’academy già configurata e non può cambiare le funzioni.
 
 | Interruttore | Cosa fa quando è acceso |
 |---|---|
@@ -137,7 +138,7 @@ Sull’abbonamento oggi non è prevista nessuna ripartizione. Se in futuro dentr
 
 ## 10. Il pannello di amministrazione
 
-Il plugin aggiunge a WordPress una sezione con cinque aree. **Corsi**: creazione, moduli, lezioni, prezzi, raccolte. **Docenti**: anagrafica, pagina pubblica, percentuale. **Studenti**: elenco iscritti, corsi acquistati, stato dell’abbonamento, progressi. **Vendite e quote**: registro vendite, riepilogo per docente, esportazione. **Impostazioni**: interruttori, percentuale predefinita, testi ed email automatiche.
+Il plugin aggiunge a WordPress una sezione con cinque aree. **Corsi**: creazione, moduli, lezioni, prezzi, raccolte. **Docenti**: anagrafica, pagina pubblica, percentuale. **Studenti**: elenco iscritti, corsi acquistati, stato dell’abbonamento, progressi. **Vendite e quote**: registro vendite, riepilogo per docente, esportazione. **Impostazioni**: percentuale predefinita, testi ed email automatiche.
 
 ## 11. Personalizzazione per ogni academy
 
@@ -159,7 +160,7 @@ Le funzioni nuove si aggiungono senza toccare ciò che è già online. Il plugin
 
 **I moduli si agganciano alla base senza modificarla.** La base offre dei punti di aggancio (in WordPress si chiamano hook), come «fine lezione» o «corso completato». Il quiz si aggancia a «fine lezione» e mostra le sue domande; la lezione non viene toccata. Se il quiz si spegne, tutto torna com’era.
 
-**Ogni modulo ha il suo interruttore.** La funzione nuova arriva spenta e si accende solo sulle academy dove serve.
+**Ogni modulo ha il suo interruttore.** La funzione nuova arriva spenta e la accendiamo noi, solo sulle academy dove serve.
 
 **I dati si aggiungono, non si cancellano.** Quando un modulo ha bisogno di nuove informazioni, per esempio le risposte ai quiz, crea tabelle o campi nuovi senza modificare o eliminare quelli esistenti. Corsi, acquisti, abbonamenti e quote restano intatti a ogni aggiornamento.
 
@@ -188,6 +189,7 @@ Queste sono le scelte già prese e valide per tutte le academy.
 | Tema | Decisione |
 |---|---|
 | Struttura del plugin | Un solo plugin, completo fin dalla prima versione, con interruttori per accendere le funzioni in ogni academy |
+| Chi decide le funzioni | Lo decidiamo noi prima della consegna, da una pagina di WordPress riservata all’agenzia. Il cliente riceve l’academy finita e non può accendere o spegnere funzioni |
 | Sviluppo | Su Claude Code, in un unico repository GitHub con CLAUDE.md |
 | Acquisto del singolo corso | WooCommerce |
 | Abbonamento | Gestito direttamente su Stripe |
