@@ -1,0 +1,42 @@
+Piattaforma di e-learning. Ok. Ti faccio un'altra domanda.
+@38:53 - Manuel Arlotti
+Con alcuni influencer, con come andremo a collaborare? ci faranno loro dei corsi sì anche questo deve fare quello di stamattina anche lui fa i corsi mi ha detto giorgia che ora farli fare dell'academy va bene vabbè chi se ne frega fanno loro ok però anche lì dobbiamo operare una piattaforma per mettere i corsi dei learning ma che corsi devono fare loro io non l capito gli influencer faranno dei corsi per gli influencer ok che promuoveranno direttamente loro ok e se saranno di vario tipo ad esempio uno parla di copywriting e di scrittura uno il marito di elisa d'ospina vabbè non la conosce è un attore vuole parlare di edizione quindi bene eccetera
+speaking e roba del genere un altro parlerà di marketing influencer territoriale ok quindi però io mi son detto siccome dobbiamo farlo per special che dobbiamo farlo per noi ne facciamo uno e lo sdoppiamo esattamente esattamente quindi considerando che queste piattaforme di learning andranno su un sottodominio academy.influency academy.specialty ok vivranno all'interno di un wordpress ok quindi senza diventare scemi apriamo un progettino apre un progettino dentro prod in cui iniziamo a chiedere con
+sviluppare una piattaforma di learning all'interno di wordpress ok ok in particolare questo strumento deve essere un plugin che noi carichiamo dentro wordpress e per magia c'è tutto l'arsenale per caricare dei video quindi noi non dobbiamo fare un sito noi dobbiamo fare un plugin esatto che nel senso poi si espande diventa un sito è un sito esatto un plugin un tema questo ce lo dice claude cos'è meglio fare però basta che noi lo dobbiamo caricare in ogni modulo e poi per ognuno di questi ovviamente customizzarlo a seconda del sito dov'è perché a specialty non è che lo possiamo fare alfuzia certo diciamo che la parte visual
+facciamo dopo cosa deve fare il plugin il plugin deve avere un gestore dei contenuti per gestare dei contenuti si intende possibilità di caricare video tramite upload link di youtube link di vimeo non so che cazzo eccetera lo sto dicendo così registriamo il gestore dei contenuti e quindi devo avere la possibilità di gestire anche manualmente questi contenuti metterli in playlist ad esempio voglio fare i corsi di pippo franco influencer e sono tutti stato di lui oppure posso fare i corsi tutti di filomena palumbo faccio un esempio il plugin deve deve gestire quindi non solo i contenuti ma anche i relativi pagamenti
+Quindi ci deve essere un modulo all'interno e-commerce, deciderà Claude se creare un customizzato, quindi lo creiamo noi, o utilizzare direttamente WooCommerce.
+@43:14 - Marika Malaspina
+WooCommerce è la piattaforma di acquisto all'interno di WordPress. Per gestire i pagamenti.
+@43:23 - Manuel Arlotti
+Come sono fatti i pagamenti? I pagamenti possono essere una tantum per la pista del singolo corso, formula abbonamento, in caso più per speciality, pago un abbonamento al mese, entro in tutto e basta.
+@43:43 - Marika Malaspina
+Quindi il plugin mi deve prevedere il fatto di poter mettere un costo al singolo corso o un costo su abbonamento mensile.
+Ma il costo di abbonamento mensile è anche per influenzi? No. Pagano solo una tantum? Pagano al corso.
+@44:00 - Manuel Arlotti
+Perché la seconda parte di questo plugin è la previsione delle fee, perché se un utente acquista un corso da 29,90€ per esempio, di quei 29,90€ un 40-50% lo devo dare all'influencer che ha creato il video.
+Quindi devo avere un sistema che mi monitora le vendite, monitorando le vendite mi splitta direttamente la fee che è destinata all'influencer, questo solo per l'influencer.
+Ok, questo è solo un conteggio che fa lui, poi noi facciamo il resto.
+@44:47 - Marika Malaspina
+Ma a questo punto quindi, scusami, conviene fare una landing di atterraggio?
+@45:00 - Manuel Arlotti
+E poi una per Influency, una per specialty Cosa c'è dentro La piattaforma e-learning E poi un form Di compilazione dei dati Della persona E di pagamento No Perché Perché devi Pensa agli Udemy Udemy Udemy è una piattaforma Di learning Comosissima Ok Compro il singolo corso Perché io prima Mi devo iscrivere E poi cosa pago Pagherò il corso Che voglio vedere Che voglio comprare Quindi tu dici Li mettiamo direttamente Tutti fuori È un catalogo Ok Come se fosse Un catalogo di scarpe No?
+Immaginalo così Però al posto della scarpa C'è il corso C'è il corso E per l'abbonamento Invece l'abbonamento come dici te l'abbonamento come dici te pago prima accedo a tutto è quello dove lo metti allora se tu metti il catalogo il catalogo avviene dopo è un catalogo senza prezzi no ho capito no ok ok no ci sono però per far c'è nel senso come fai coesistere abbonamento e cataloghi nella stessa pagina non coesistono perché quando io acquisto un abbonamento mi scrivo pago e dentro dentro un portale sempre con quello di username e password esatto dove dentro c'è tutto c'è un catalogo di video che non vado a comprare ma c'è un catalogo che ce l'ho già esatto ok e questa è l'opzione special di abbonamento l'opzione influenzi e entro senza user name e password
+Clicco un video, l'acquisto e ce l'ho. Esatto, dal momento dell'acquisto mi va nella pagina del singolo corso, perché ovviamente è diviso magari in più video, moduli, eccetera, e me lo faccio tutto.
+@47:14 - Marika Malaspina
+Quindi in realtà è solo special ti che andrebbe splittato, nel senso devo avere un'opzione catalogo da una parte e al posto di prendere solo un singolo video, compra direttamente l'abbonamento a 30 euro al mese.
+ACTION ITEM: Create shared e-learning project chat w/ Claude; then fork for Specialty (subscription) - WATCH
+Esatto.
+@47:36 - Manuel Arlotti
+Quindi, tranquillamente, senza fretta, però almeno imbassiamo una chat di Claude, condivisa, che possiamo vedere tutti, eccetera. Questo progetto, la chiamiamo e-learning, progetti e-learning, non lo so.
+Ok.
+@47:58 - Marika Malaspina
+Dagli pure...
+@47:59 - Manuel Arlotti
+Grazie. guardati Udemy ad esempio [...]
+@50:00 - Marika Malaspina
+il titolo sottotitolo da chi è tenuto descrizione vive viva e vive viva e qua puoi scegliere tra subscription che però non vale per noi perché come ti dicevo prima non è che possiamo fare un abbonamento però per special tc in realtà special tc ok va individual quindi by now e va check out una volta pagato questo pa si sblocca tutto io lo posso guardare tutto ok però dell'abbonamento sarebbe in realtà come quello dell'abbonamento è tipo un test e possiamo farlo così iscriviti di c'è nel senso per la sottoscrizione direttamente all'e learning intero e poi in teoria come se li mandasse a un'altra pagina quindi
+con i link sbloccati, con i video sbloccati giusto?
+@51:05 - Manuel Arlotti
+quindi per invece per special ti com'è e come abbiamo visto adesso ti iscrivi, una volta che ti sei iscritto paghi la mensilità tipo Netflix continui e accedi a praticamente a tutto il deve fare che dopo il pagamento è tutto sbloccato con l'accesso è tutto sbloccato è tutto sbloccato ti dicevi prima per special ti hai ragione perché da loro intanto sarà solo il learning poi diventerà una piattaforma con di roba, quiz vogliono mettere ad esempio webinar chat chatbot mi ricordo lì cosa che era esatto, quella poi si svilupperà però inizio da questo [...]
+
+NOTA: le decisioni prese dopo questa call (plugin unico e completo con interruttori, abbonamento su Stripe, accesso con email e password, video su YouTube) sono nel documento master docs/academy-elearning-flusso.md, che prevale su questa trascrizione.
