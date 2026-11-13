@@ -54,6 +54,7 @@ final class AEL_Plugin {
 		if ( $user_id ) {
 			AEL_Settings::grant_cap( $user_id );
 		}
+		AEL_Installer::run_pending();
 	}
 
 	/**
@@ -76,6 +77,10 @@ final class AEL_Plugin {
 
 		// Solo i moduli accesi caricano i loro file.
 		AEL_Modules::instance()->load_active();
+
+		// Migrazioni in sospeso (anche quelle dei moduli appena caricati).
+		// Dopo un aggiornamento via zip l'attivazione non scatta: parte da qui.
+		AEL_Installer::run_pending();
 
 		/**
 		 * Scatta quando tutti i moduli accesi sono stati caricati.

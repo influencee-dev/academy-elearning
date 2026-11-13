@@ -271,6 +271,51 @@ final class AEL_Settings {
 
 				<?php submit_button( __( 'Salva configurazione', 'academy-elearning' ) ); ?>
 			</form>
+
+			<h2><?php echo esc_html__( 'Stato del database', 'academy-elearning' ); ?></h2>
+			<?php
+			$migration_error = get_option( AEL_Installer::OPTION_ERROR, '' );
+			$done_migrations = get_option( AEL_Installer::OPTION_DONE, array() );
+			?>
+			<?php if ( '' !== $migration_error ) : ?>
+				<div class="notice notice-error inline"><p>
+					<?php
+					echo esc_html(
+						sprintf(
+							/* translators: %s: ID della migrazione */
+							__( 'La migrazione "%s" non è riuscita. Le successive non sono state eseguite.', 'academy-elearning' ),
+							(string) $migration_error
+						)
+					);
+					?>
+				</p></div>
+			<?php endif; ?>
+			<p>
+				<?php
+				echo esc_html(
+					sprintf(
+						/* translators: 1: versione del plugin all'ultima migrazione, 2: numero di migrazioni eseguite */
+						__( 'Versione dati: %1$s. Migrazioni eseguite: %2$d.', 'academy-elearning' ),
+						(string) get_option( AEL_Installer::OPTION_VERSION, '-' ),
+						is_array( $done_migrations ) ? count( $done_migrations ) : 0
+					)
+				);
+				?>
+			</p>
+			<table class="widefat striped" style="max-width:500px">
+				<thead><tr>
+					<th><?php echo esc_html__( 'Tabella', 'academy-elearning' ); ?></th>
+					<th style="width:90px"><?php echo esc_html__( 'Stato', 'academy-elearning' ); ?></th>
+				</tr></thead>
+				<tbody>
+				<?php foreach ( AEL_Installer::table_status() as $table_name => $exists ) : ?>
+					<tr>
+						<td><code><?php echo esc_html( $table_name ); ?></code></td>
+						<td><?php echo $exists ? esc_html__( 'presente', 'academy-elearning' ) : '<strong style="color:#b32d2e">' . esc_html__( 'manca', 'academy-elearning' ) . '</strong>'; ?></td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
 		</div>
 		<?php
 	}
