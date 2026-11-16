@@ -54,6 +54,7 @@ academy-elearning/
 │   ├── class-content.php        ← CPT e tassonomie: corsi, lezioni, docenti
 │   ├── class-catalog.php        ← catalogo, scheda corso, pulsante di azione
 │   ├── class-teacher-profile.php ← scheda pubblica personalizzabile del docente
+│   ├── class-payments.php       ← contratto dei pagamenti (eventi per i moduli)
 │   ├── class-stats.php          ← numeri per studenti e panoramica
 │   ├── class-progress.php       ← progressi e tempo di visione
 │   ├── class-pages.php          ← pagine di sistema (Catalogo, Accedi, I miei corsi)
