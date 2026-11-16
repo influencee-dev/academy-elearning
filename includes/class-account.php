@@ -63,6 +63,14 @@ final class AEL_Account {
 	}
 
 	/**
+	 * Permesso di modificare i corsi (ce l'hanno il titolare e i creator autori).
+	 */
+	private static function author_cap(): string {
+		$object = get_post_type_object( AEL_Content::COURSE );
+		return $object ? (string) $object->cap->edit_posts : 'edit_ael_courses';
+	}
+
+	/**
 	 * L'utente è uno studente (non gestisce l'academy e non scrive contenuti)?
 	 *
 	 * @param WP_User|int $user Utente.
@@ -71,6 +79,7 @@ final class AEL_Account {
 		$user_id = $user instanceof WP_User ? (int) $user->ID : (int) $user;
 		return $user_id > 0
 			&& ! user_can( $user_id, 'edit_posts' )
+			&& ! user_can( $user_id, self::author_cap() )
 			&& ! user_can( $user_id, AEL_Content::CAP )
 			&& ! user_can( $user_id, AEL_Settings::CAP );
 	}

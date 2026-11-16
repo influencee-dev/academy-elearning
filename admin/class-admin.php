@@ -60,7 +60,13 @@ final class AEL_Admin {
 		add_menu_page(
 			__( 'Academy', 'academy-elearning' ),
 			__( 'Academy', 'academy-elearning' ),
-			AEL_Content::CAP,
+			/**
+			 * Permesso richiesto per vedere il menu "Academy". Di base quello del
+			 * titolare; un modulo (creator autori) può abbassarlo per i suoi utenti.
+			 *
+			 * @param string $cap Permesso.
+			 */
+			(string) apply_filters( 'ael_admin_menu_cap', AEL_Content::CAP ),
 			self::MENU,
 			array( $this, 'render_overview' ),
 			'dashicons-welcome-learn-more',

@@ -104,10 +104,13 @@ final class AEL_Admin_Content {
 		);
 		$teacher  = (int) $this->meta( $post->ID, 'teacher_id' );
 		$level    = (string) $this->meta( $post->ID, 'level' );
+		// Docente e abbonamento li decide il titolare: un creator non li vede né li cambia.
+		$manager  = current_user_can( AEL_Content::CAP );
 		?>
 		<table class="form-table" role="presentation"><tbody>
 			<tr><th><label for="ael_subtitle"><?php echo esc_html__( 'Sottotitolo', 'academy-elearning' ); ?></label></th>
 				<td><input type="text" class="large-text" id="ael_subtitle" name="ael_subtitle" value="<?php echo esc_attr( (string) $this->meta( $post->ID, 'subtitle' ) ); ?>"></td></tr>
+			<?php if ( $manager ) : ?>
 			<tr><th><label for="ael_teacher_id"><?php echo esc_html__( 'Docente', 'academy-elearning' ); ?></label></th>
 				<td>
 					<select id="ael_teacher_id" name="ael_teacher_id">
@@ -120,6 +123,7 @@ final class AEL_Admin_Content {
 						<p class="description"><?php echo esc_html__( 'Non ci sono ancora docenti: creane uno da Academy → Docenti.', 'academy-elearning' ); ?></p>
 					<?php endif; ?>
 				</td></tr>
+			<?php endif; ?>
 			<tr><th><label for="ael_level"><?php echo esc_html__( 'Livello', 'academy-elearning' ); ?></label></th>
 				<td><select id="ael_level" name="ael_level">
 					<?php foreach ( $levels as $value => $label ) : ?>
@@ -134,9 +138,11 @@ final class AEL_Admin_Content {
 			<tr><th><label for="ael_preview_video"><?php echo esc_html__( 'Video di anteprima', 'academy-elearning' ); ?></label></th>
 				<td><input type="url" class="large-text" id="ael_preview_video" name="ael_preview_video" value="<?php echo esc_attr( (string) $this->meta( $post->ID, 'preview_video' ) ); ?>">
 					<p class="description"><?php echo esc_html__( 'Indirizzo del video mostrato a tutti nella scheda del corso.', 'academy-elearning' ); ?></p></td></tr>
-			<tr><th><?php echo esc_html__( 'Abbonamento', 'academy-elearning' ); ?></th>
+			<?php if ( $manager ) : ?>
+		<tr><th><?php echo esc_html__( 'Abbonamento', 'academy-elearning' ); ?></th>
 				<td><label><input type="checkbox" name="ael_excluded_from_subscription" value="1" <?php checked( (int) $this->meta( $post->ID, 'excluded_from_subscription' ), 1 ); ?>>
 					<?php echo esc_html__( 'Escludi questo corso dall\'abbonamento (si compra solo a parte)', 'academy-elearning' ); ?></label></td></tr>
+		<?php endif; ?>
 		</tbody></table>
 		<?php
 	}
@@ -208,6 +214,10 @@ final class AEL_Admin_Content {
 	 * @param WP_Post $post Docente.
 	 */
 	public function box_teacher( WP_Post $post ): void {
+		if ( ! current_user_can( AEL_Content::CAP ) ) {
+			echo '<p class="description">' . esc_html__( 'Il collegamento all\'account lo gestisce il titolare dell\'academy.', 'academy-elearning' ) . '</p>';
+			return;
+		}
 		wp_nonce_field( self::NONCE_ACTION, self::NONCE_FIELD, false );
 
 		$users   = get_users(
@@ -277,7 +287,7 @@ final class AEL_Admin_Content {
 			)
 		);
 		$out   = array();
-		foreach ( $posts as $p ) {
+		foreach ( AEL_Content::editable( $posts ) as $p ) {
 			$out[ (int) $p->ID ] = get_the_title( $p );
 		}
 		return $out;
@@ -302,7 +312,7 @@ final class AEL_Admin_Content {
 			)
 		);
 		$out   = array();
-		foreach ( $posts as $p ) {
+		foreach ( AEL_Content::editable( $posts ) as $p ) {
 			$course              = $p->post_parent ? get_the_title( (int) $p->post_parent ) : __( '(senza corso)', 'academy-elearning' );
 			$out[ (int) $p->ID ] = $course . ' › ' . get_the_title( $p );
 		}
@@ -336,14 +346,16 @@ final class AEL_Admin_Content {
 		if ( ! in_array( $type, array( AEL_Content::MODULE, AEL_Content::LESSON ), true ) ) {
 			return $data;
 		}
-		if ( ! $this->request_is_valid() || ! current_user_can( AEL_Content::CAP ) ) {
+		$type_object = get_post_type_object( $type );
+		if ( ! $this->request_is_valid() || ! $type_object || ! current_user_can( $type_object->cap->edit_posts ) ) {
 			return $data;
 		}
 
 		if ( isset( $_POST['ael_parent_id'] ) ) {
 			$parent   = absint( wp_unslash( $_POST['ael_parent_id'] ) );
 			$expected = AEL_Content::MODULE === $type ? AEL_Content::COURSE : AEL_Content::MODULE;
-			if ( 0 === $parent || get_post_type( $parent ) === $expected ) {
+			// Si può collocare solo dentro a un corso o modulo che si può modificare.
+			if ( 0 === $parent || ( get_post_type( $parent ) === $expected && current_user_can( 'edit_post', $parent ) ) ) {
 				$data['post_parent'] = $parent;
 			}
 		}
@@ -363,7 +375,8 @@ final class AEL_Admin_Content {
 		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_id ) ) {
 			return;
 		}
-		if ( ! $this->request_is_valid() || ! current_user_can( 'edit_post', $post_id ) ) {
+		// Si salva solo il contenuto aperto nel modulo (non quelli toccati da altri salvataggi nella stessa richiesta).
+		if ( ! AEL_Content::is_form_post( $post_id ) || ! $this->request_is_valid() || ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
@@ -378,8 +391,11 @@ final class AEL_Admin_Content {
 				$this->save_lesson( $post_id, $post );
 				break;
 			case AEL_Content::TEACHER:
-				$user_id = isset( $_POST['ael_user_id'] ) ? absint( wp_unslash( $_POST['ael_user_id'] ) ) : 0;
-				update_post_meta( $post_id, '_ael_user_id', ( $user_id && get_userdata( $user_id ) ) ? $user_id : 0 );
+				// Il collegamento all'utente lo cambia solo il titolare.
+				if ( current_user_can( AEL_Content::CAP ) ) {
+					$user_id = isset( $_POST['ael_user_id'] ) ? absint( wp_unslash( $_POST['ael_user_id'] ) ) : 0;
+					update_post_meta( $post_id, '_ael_user_id', ( $user_id && get_userdata( $user_id ) ) ? $user_id : 0 );
+				}
 				break;
 			case AEL_Content::COLLECTION:
 				$this->save_collection( $post_id );
@@ -397,13 +413,19 @@ final class AEL_Admin_Content {
 		update_post_meta( $post_id, '_ael_learn', isset( $_POST['ael_learn'] ) ? sanitize_textarea_field( wp_unslash( $_POST['ael_learn'] ) ) : '' );
 		update_post_meta( $post_id, '_ael_audience', isset( $_POST['ael_audience'] ) ? sanitize_textarea_field( wp_unslash( $_POST['ael_audience'] ) ) : '' );
 		update_post_meta( $post_id, '_ael_preview_video', isset( $_POST['ael_preview_video'] ) ? esc_url_raw( wp_unslash( $_POST['ael_preview_video'] ) ) : '' );
-		update_post_meta( $post_id, '_ael_excluded_from_subscription', empty( $_POST['ael_excluded_from_subscription'] ) ? 0 : 1 );
+		// Abbonamento e docente li decide il titolare.
+		$manager = current_user_can( AEL_Content::CAP );
+		if ( $manager ) {
+			update_post_meta( $post_id, '_ael_excluded_from_subscription', empty( $_POST['ael_excluded_from_subscription'] ) ? 0 : 1 );
+		}
 
 		$level = isset( $_POST['ael_level'] ) ? sanitize_key( wp_unslash( $_POST['ael_level'] ) ) : '';
 		update_post_meta( $post_id, '_ael_level', in_array( $level, array( 'principiante', 'intermedio', 'avanzato' ), true ) ? $level : '' );
 
-		$teacher = isset( $_POST['ael_teacher_id'] ) ? absint( wp_unslash( $_POST['ael_teacher_id'] ) ) : 0;
-		update_post_meta( $post_id, '_ael_teacher_id', ( $teacher && AEL_Content::TEACHER === get_post_type( $teacher ) ) ? $teacher : 0 );
+		if ( $manager ) {
+			$teacher = isset( $_POST['ael_teacher_id'] ) ? absint( wp_unslash( $_POST['ael_teacher_id'] ) ) : 0;
+			update_post_meta( $post_id, '_ael_teacher_id', ( $teacher && AEL_Content::TEACHER === get_post_type( $teacher ) ) ? $teacher : 0 );
+		}
 	}
 
 	/**

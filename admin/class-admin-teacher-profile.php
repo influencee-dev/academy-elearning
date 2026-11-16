@@ -142,6 +142,7 @@ final class AEL_Admin_Teacher_Profile {
 			return;
 		}
 		if ( ! AEL_Teacher_Profile::enabled()
+			|| ! AEL_Content::is_form_post( $post_id )
 			|| ! isset( $_POST[ self::NONCE_FIELD ] )
 			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ self::NONCE_FIELD ] ) ), self::NONCE_ACTION )
 			|| ! current_user_can( 'edit_post', $post_id ) ) {

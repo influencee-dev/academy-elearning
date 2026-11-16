@@ -53,6 +53,7 @@ academy-elearning/
 │   ├── class-access.php         ← UNICA logica che decide chi vede cosa
 │   ├── class-content.php        ← CPT e tassonomie: corsi, lezioni, docenti
 │   ├── class-catalog.php        ← catalogo, scheda corso, pulsante di azione
+│   ├── class-teacher-profile.php ← scheda pubblica personalizzabile del docente
 │   ├── class-stats.php          ← numeri per studenti e panoramica
 │   ├── class-progress.php       ← progressi e tempo di visione
 │   ├── class-pages.php          ← pagine di sistema (Catalogo, Accedi, I miei corsi)
@@ -68,7 +69,8 @@ academy-elearning/
 │   ├── teacher-revenue/         ← quote docenti e registro vendite
 │   ├── teacher-panel/           ← pannello docente in sola lettura
 │   ├── attribution/             ← provenienza degli acquisti
-│   └── magic-link/              ← accesso con link via email (opzionale)
+│   ├── magic-link/              ← accesso con link via email (opzionale)
+│   └── teacher-authoring/       ← i creator creano i propri corsi, senza vedere quelli altrui
 ├── admin/                       ← pagine di amministrazione del core
 ├── templates/                   ← template sovrascrivibili dal tema
 ├── assets/

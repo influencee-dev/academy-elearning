@@ -62,28 +62,92 @@ final class AEL_Content {
 		add_action( 'init', array( $this, 'register' ), 5 );
 		add_action( 'init', array( $this, 'maybe_flush_rewrite' ), 99 );
 		add_action( 'ael_settings_saved', array( $this, 'request_flush' ) );
+		// Priorità 20: dopo che la capacità del titolare è stata calcolata (anche da wp-config).
+		add_filter( 'user_has_cap', array( $this, 'grant_content_caps' ), 20 );
 	}
 
 	/**
-	 * Tutti i permessi dei contenuti puntano a un'unica capacità, così basta
-	 * dare quella al titolare. Solo la lettura resta aperta.
+	 * Ogni tipo di contenuto ha i suoi permessi (edit_ael_courses, publish_ael_courses...).
+	 * Così WordPress sa distinguere "i miei" da "quelli degli altri" e un modulo
+	 * (creator autori) può dare ad alcuni utenti solo una parte dei permessi.
+	 * Chi ha la capacità del titolare (ael_manage_academy) li ha tutti: vedi grant_content_caps().
 	 *
-	 * @return array<string, string>
+	 * @param string $singular Nome al singolare, per esempio "ael_course".
+	 * @param string $plural   Nome al plurale, per esempio "ael_courses".
+	 * @return array{capability_type: array<int, string>, map_meta_cap: bool}
 	 */
-	private function caps(): array {
-		$cap = self::CAP;
+	private function cap_type( string $singular, string $plural ): array {
 		return array(
-			'edit_posts'           => $cap,
-			'edit_others_posts'      => $cap,
-			'delete_posts'           => $cap,
-			'publish_posts'          => $cap,
-			'read_private_posts'     => $cap,
-			'delete_private_posts'   => $cap,
-			'delete_published_posts' => $cap,
-			'delete_others_posts'    => $cap,
-			'edit_private_posts'     => $cap,
-			'edit_published_posts'   => $cap,
-			'create_posts'           => $cap,
+			'capability_type' => array( $singular, $plural ),
+			'map_meta_cap'    => true,
+		);
+	}
+
+	/**
+	 * Tutti i permessi dei tipi di contenuto, per nome.
+	 *
+	 * @return string[]
+	 */
+	public static function content_caps(): array {
+		static $caps = null;
+		if ( null === $caps ) {
+			$names = array();
+			foreach ( array( self::COURSE, self::MODULE, self::LESSON, self::TEACHER, self::COLLECTION ) as $type ) {
+				$object = get_post_type_object( $type );
+				if ( ! $object ) {
+					return array();
+				}
+				foreach ( (array) $object->cap as $name ) {
+					$names[ (string) $name ] = true;
+				}
+			}
+			$caps = array_keys( $names );
+		}
+		return $caps;
+	}
+
+	/**
+	 * Chi ha la capacità del titolare ha anche tutti i permessi sui contenuti.
+	 *
+	 * @param array $allcaps Permessi dell'utente.
+	 * @return array
+	 */
+	public function grant_content_caps( $allcaps ) {
+		if ( ! empty( $allcaps[ self::CAP ] ) ) {
+			foreach ( self::content_caps() as $name ) {
+				$allcaps[ $name ] = true;
+			}
+		}
+		return $allcaps;
+	}
+
+	/**
+	 * Il contenuto è quello aperto nel modulo di modifica di questa richiesta?
+	 * Serve a non salvare i campi su altri contenuti toccati nella stessa richiesta
+	 * (per esempio quando pubblicando un corso si pubblicano anche le sue lezioni).
+	 *
+	 * @param int $post_id Contenuto.
+	 */
+	public static function is_form_post( int $post_id ): bool {
+		// Solo il confronto dell'ID: la verifica del nonce la fa chi salva.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return isset( $_POST['post_ID'] ) && absint( wp_unslash( $_POST['post_ID'] ) ) === $post_id;
+	}
+
+	/**
+	 * Filtra una lista di contenuti lasciando solo quelli che l'utente può modificare.
+	 *
+	 * @param WP_Post[] $posts Contenuti.
+	 * @return WP_Post[]
+	 */
+	public static function editable( array $posts ): array {
+		return array_values(
+			array_filter(
+				$posts,
+				static function ( $post ): bool {
+					return $post instanceof WP_Post && current_user_can( 'edit_post', $post->ID );
+				}
+			)
 		);
 	}
 
@@ -124,8 +188,6 @@ final class AEL_Content {
 			'show_ui'         => true,
 			'show_in_rest'    => false,
 			'show_in_menu'    => 'ael-academy',
-			'map_meta_cap'    => true,
-			'capabilities'    => $this->caps(),
 			'delete_with_user' => false,
 		);
 
@@ -133,6 +195,7 @@ final class AEL_Content {
 			self::COURSE,
 			array_merge(
 				$common,
+					$this->cap_type( 'ael_course', 'ael_courses' ),
 				array(
 					'labels'      => $this->labels( __( 'Corso', 'academy-elearning' ), __( 'Corsi', 'academy-elearning' ), false ),
 					'public'      => true,
@@ -148,6 +211,7 @@ final class AEL_Content {
 			self::MODULE,
 			array_merge(
 				$common,
+					$this->cap_type( 'ael_module', 'ael_modules' ),
 				array(
 					'labels'   => $this->labels( __( 'Modulo', 'academy-elearning' ), __( 'Moduli', 'academy-elearning' ), false ),
 					'public'   => false,
@@ -163,6 +227,7 @@ final class AEL_Content {
 			self::LESSON,
 			array_merge(
 				$common,
+					$this->cap_type( 'ael_lesson', 'ael_lessons' ),
 				array(
 					'labels'              => $this->labels( __( 'Lezione', 'academy-elearning' ), __( 'Lezioni', 'academy-elearning' ), true ),
 					'public'              => false,
@@ -182,6 +247,7 @@ final class AEL_Content {
 			self::TEACHER,
 			array_merge(
 				$common,
+					$this->cap_type( 'ael_teacher', 'ael_teachers' ),
 				array(
 					'labels'             => $this->labels( __( 'Docente', 'academy-elearning' ), __( 'Docenti', 'academy-elearning' ), false ),
 					'public'             => $teacher_pages,
@@ -196,6 +262,7 @@ final class AEL_Content {
 			self::COLLECTION,
 			array_merge(
 				$common,
+					$this->cap_type( 'ael_collection', 'ael_collections' ),
 				array(
 					'labels'   => $this->labels( __( 'Raccolta', 'academy-elearning' ), __( 'Raccolte', 'academy-elearning' ), true ),
 					'public'   => true,
@@ -223,7 +290,7 @@ final class AEL_Content {
 					'manage_terms' => self::CAP,
 					'edit_terms'   => self::CAP,
 					'delete_terms' => self::CAP,
-					'assign_terms' => self::CAP,
+					'assign_terms' => 'edit_ael_courses',
 				),
 			)
 		);
