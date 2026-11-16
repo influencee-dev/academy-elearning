@@ -48,6 +48,7 @@ final class AEL_Admin {
 		add_action( 'admin_menu', array( $this, 'register_menu' ), 9 );
 		AEL_Admin_Content::instance()->boot();
 		AEL_Admin_Program::instance()->boot();
+		AEL_Admin_Access_Debug::instance()->boot();
 	}
 
 	/**
