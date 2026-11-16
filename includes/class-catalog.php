@@ -120,25 +120,7 @@ final class AEL_Catalog {
 	 * l'ha rinominata, e non la ricrea se è nel cestino.
 	 */
 	public static function create_pages(): bool {
-		$page_id = (int) get_option( self::PAGE_OPTION );
-		if ( $page_id && 'page' === get_post_type( $page_id ) ) {
-			return true;
-		}
-		$new_id = wp_insert_post(
-			array(
-				'post_type'    => 'page',
-				'post_status'  => 'publish',
-				'post_title'   => 'Catalogo',
-				'post_name'    => 'catalogo',
-				'post_content' => '[ael_catalog]',
-			),
-			true
-		);
-		if ( is_wp_error( $new_id ) ) {
-			return false;
-		}
-		update_option( self::PAGE_OPTION, (int) $new_id );
-		return true;
+		return AEL_Pages::ensure( 'catalog' );
 	}
 
 	/* ------------------------------------------------------------------ */

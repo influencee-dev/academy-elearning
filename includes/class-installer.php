@@ -64,6 +64,7 @@ final class AEL_Installer {
 			'core-003-watch-time' => array( __CLASS__, 'create_watch_time' ),
 			'core-004-roles'      => array( 'AEL_Content', 'setup_roles' ),
 			'core-005-pages'      => array( 'AEL_Catalog', 'setup_pages' ),
+			'core-006-pages'      => array( 'AEL_Pages', 'setup' ),
 		);
 
 		/**

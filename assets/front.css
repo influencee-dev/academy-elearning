@@ -348,3 +348,71 @@
 	border-color: var(--ael-accent);
 	color: var(--ael-accent-contrast);
 }
+
+/* Accesso e area personale */
+.ael-login-box {
+	max-width: 420px;
+	margin-inline: auto;
+}
+
+.ael-login-box form p {
+	margin: 0 0 16px;
+}
+
+.ael-login-box label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 600;
+}
+
+.ael-login-box label[for="rememberme"],
+.ael-login-box .login-remember label {
+	display: inline;
+	font-weight: 400;
+}
+
+.ael-login-box input[type="text"],
+.ael-login-box input[type="password"] {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	font: inherit;
+}
+
+.ael-login-box input[type="submit"] {
+	display: inline-block;
+	padding: 12px 20px;
+	border: 2px solid var(--ael-accent);
+	border-radius: var(--ael-radius);
+	background: var(--ael-accent);
+	color: var(--ael-accent-contrast);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.ael-error {
+	padding: 12px 16px;
+	border: 1px solid #b91c1c;
+	border-radius: var(--ael-radius);
+	background: #fef2f2;
+	color: #991b1b;
+}
+
+.ael-greeting {
+	color: var(--ael-muted);
+}
+
+.ael-progress {
+	height: 8px;
+	border-radius: 999px;
+	background: var(--ael-border);
+	overflow: hidden;
+}
+
+.ael-progress-bar {
+	display: block;
+	height: 100%;
+	background: var(--ael-accent);
+}
