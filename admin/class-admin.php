@@ -49,6 +49,7 @@ final class AEL_Admin {
 		AEL_Admin_Content::instance()->boot();
 		AEL_Admin_Program::instance()->boot();
 		AEL_Admin_Students::instance()->boot();
+		AEL_Admin_Teacher_Profile::instance()->boot();
 		AEL_Admin_Access_Debug::instance()->boot();
 	}
 

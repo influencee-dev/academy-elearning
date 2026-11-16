@@ -200,6 +200,33 @@ final class AEL_Catalog {
 	}
 
 	/**
+	 * Scheda "creator" di un corso: docente, foto, frase, link e colore.
+	 * Null se la personalizzazione è spenta o il corso non ha un docente
+	 * pubblicato: in quel caso le pagine tornano a mostrare solo il nome.
+	 *
+	 * @param int $course_id Corso.
+	 * @return array{teacher: WP_Post, name: string, url: string, photo: string, profile: array, style: string}|null
+	 */
+	public static function creator_for_course( int $course_id ): ?array {
+		if ( ! AEL_Teacher_Profile::enabled() ) {
+			return null;
+		}
+		$teacher = self::teacher_of( $course_id );
+		if ( ! $teacher ) {
+			return null;
+		}
+		$profile = AEL_Teacher_Profile::get( $teacher->ID );
+		return array(
+			'teacher' => $teacher,
+			'name'    => get_the_title( $teacher ),
+			'url'     => self::teacher_url( $teacher ),
+			'photo'   => get_the_post_thumbnail( $teacher, 'thumbnail' ),
+			'profile' => $profile,
+			'style'   => $profile['style'],
+		);
+	}
+
+	/**
 	 * Programma pubblicato del corso: moduli e lezioni in ordine.
 	 *
 	 * Mostra solo contenuti pubblicati, a chiunque. Per ogni lezione indica se
@@ -465,6 +492,7 @@ final class AEL_Catalog {
 				'is_visitor'   => ! $user_id,
 				'login_url'    => wp_login_url( (string) get_permalink( $course ) ),
 				'duration'     => self::format_minutes( $program['minutes'] ),
+				'creator'      => self::creator_for_course( $course->ID ),
 			)
 		);
 	}
@@ -497,6 +525,8 @@ final class AEL_Catalog {
 				'content' => $content,
 				'courses' => $query->posts,
 				'cards'   => $this->cards( $query->posts ),
+				'profile' => AEL_Teacher_Profile::get( $teacher->ID ),
+				'photo'   => get_the_post_thumbnail( $teacher, 'medium' ),
 			)
 		);
 	}
@@ -575,8 +605,10 @@ final class AEL_Catalog {
 			$teacher = self::teacher_of( $course->ID );
 			$level   = (string) get_post_meta( $course->ID, '_ael_level', true );
 			$terms   = get_the_terms( $course->ID, AEL_Content::CATEGORY );
+			$creator = self::creator_for_course( $course->ID );
 
 			$cards[] = array(
+				'accent_style' => $creator ? $creator['style'] : '',
 				'course'       => $course,
 				'url'          => (string) get_permalink( $course ),
 				'title'        => get_the_title( $course ),

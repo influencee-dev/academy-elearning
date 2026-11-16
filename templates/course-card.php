@@ -4,7 +4,7 @@
  * `academy-elearning/course-card.php` nel tema.
  *
  * Variabili: $card (url, title, subtitle, thumbnail, teacher_name, level_label,
- * lessons, duration, categories, owned, course).
+ * lessons, duration, categories, owned, course, accent_style).
  *
  * @package AcademyElearning
  */
@@ -25,7 +25,7 @@ $meta = array_filter(
 	'strlen'
 );
 ?>
-<article class="ael-card">
+<article class="ael-card"<?php echo '' !== $card['accent_style'] ? ' style="' . esc_attr( $card['accent_style'] ) . '"' : ''; ?>>
 	<a class="ael-card-media" href="<?php echo esc_url( $card['url'] ); ?>" tabindex="-1" aria-hidden="true">
 		<?php if ( '' !== $card['thumbnail'] ) : ?>
 			<?php echo wp_kses_post( $card['thumbnail'] ); ?>

@@ -77,6 +77,7 @@ final class AEL_Settings {
 			'ael_default_settings',
 			array(
 				'teacher_pages'            => 1,
+				'teacher_profiles'         => 1,
 				'free_previews'            => 1,
 				'video_sources'            => array( 'youtube', 'vimeo' ),
 				'delete_data_on_uninstall' => 0,
@@ -257,6 +258,10 @@ final class AEL_Settings {
 						<label><input type="checkbox" name="teacher_pages" value="1" <?php checked( (int) self::get( 'teacher_pages', 1 ), 1 ); ?>>
 						<?php echo esc_html__( 'Ogni docente ha una pagina pubblica con i suoi corsi', 'academy-elearning' ); ?></label>
 					</td></tr>
+					<tr><th scope="row"><?php echo esc_html__( 'Schede docente personalizzabili', 'academy-elearning' ); ?></th><td>
+						<label><input type="checkbox" name="teacher_profiles" value="1" <?php checked( (int) self::get( 'teacher_profiles', 1 ), 1 ); ?>>
+						<?php echo esc_html__( 'Ogni docente ha frase di presentazione, copertina, colore e link, e compare come "creator" nelle pagine dei suoi corsi', 'academy-elearning' ); ?></label>
+					</td></tr>
 					<tr><th scope="row"><?php echo esc_html__( 'Anteprime gratuite', 'academy-elearning' ); ?></th><td>
 						<label><input type="checkbox" name="free_previews" value="1" <?php checked( (int) self::get( 'free_previews', 1 ), 1 ); ?>>
 						<?php echo esc_html__( 'Le lezioni segnate come anteprima si vedono senza acquisto', 'academy-elearning' ); ?></label>
@@ -346,6 +351,7 @@ final class AEL_Settings {
 
 		$settings = array(
 			'teacher_pages'            => empty( $_POST['teacher_pages'] ) ? 0 : 1,
+			'teacher_profiles'         => empty( $_POST['teacher_profiles'] ) ? 0 : 1,
 			'free_previews'            => empty( $_POST['free_previews'] ) ? 0 : 1,
 			'video_sources'            => array_values( array_intersect( array( 'youtube', 'vimeo' ), $video ) ),
 			'delete_data_on_uninstall' => empty( $_POST['delete_data_on_uninstall'] ) ? 0 : 1,

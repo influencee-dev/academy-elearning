@@ -8,14 +8,14 @@
  *
  * Variabili: $lesson, $tracking, $completed, $content, $can, $course, $course_url, $catalog_url,
  * $video_html, $materials, $program, $prev, $next, $is_preview, $actions,
- * $is_visitor, $login_url.
+ * $is_visitor, $login_url, $accent_style (colore del creator, può essere vuoto).
  *
  * @package AcademyElearning
  */
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="ael ael-lesson">
+<div class="ael ael-lesson"<?php echo '' !== $accent_style ? ' style="' . esc_attr( $accent_style ) . '"' : ''; ?>>
 	<?php if ( $course ) : ?>
 		<nav class="ael-breadcrumb" aria-label="<?php echo esc_attr__( 'Percorso', 'academy-elearning' ); ?>">
 			<a href="<?php echo esc_url( $catalog_url ); ?>"><?php echo esc_html__( 'Catalogo', 'academy-elearning' ); ?></a>

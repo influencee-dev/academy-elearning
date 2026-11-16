@@ -5,7 +5,7 @@
  *
  * Variabili: $course, $content, $subtitle, $teacher, $teacher_url, $level_label,
  * $learn, $audience, $preview_html, $program, $has_access, $actions, $categories,
- * $is_visitor, $login_url, $duration.
+ * $is_visitor, $login_url, $duration, $creator (null se le schede docente sono spente).
  *
  * @package AcademyElearning
  */
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 $lesson_count = (int) $program['lesson_count'];
 ?>
-<div class="ael ael-course">
+<div class="ael ael-course"<?php echo ( $creator && '' !== $creator['style'] ) ? ' style="' . esc_attr( $creator['style'] ) . '"' : ''; ?>>
 	<?php if ( '' !== $subtitle ) : ?>
 		<p class="ael-subtitle"><?php echo esc_html( $subtitle ); ?></p>
 	<?php endif; ?>
@@ -112,6 +112,9 @@ $lesson_count = (int) $program['lesson_count'];
 				)
 			);
 			?>
+			<?php if ( $creator ) : ?>
+				<?php echo AEL_Templates::render( 'creator-box', array( 'creator' => $creator ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escape nel template. ?>
+			<?php endif; ?>
 		</aside>
 	</div>
 </div>

@@ -172,11 +172,22 @@ final class AEL_Lesson_View {
 				'prev'        => $prev,
 				'next'        => $next,
 				'is_preview'  => (bool) get_post_meta( $post->ID, '_ael_is_preview', true ),
+				'accent_style' => $this->accent_style( $course ),
 				'actions'     => ( ! $can && $course ) ? AEL_Catalog::actions( $course->ID, $user_id ) : array(),
 				'is_visitor'  => ! $user_id,
 				'login_url'   => wp_login_url( (string) get_permalink( $post ) ),
 			)
 		);
+	}
+
+	/**
+	 * Variabili CSS con il colore del creator del corso (vuote se non c'è).
+	 *
+	 * @param WP_Post|null $course Corso.
+	 */
+	private function accent_style( ?WP_Post $course ): string {
+		$creator = $course ? AEL_Catalog::creator_for_course( $course->ID ) : null;
+		return $creator ? $creator['style'] : '';
 	}
 
 	/**
