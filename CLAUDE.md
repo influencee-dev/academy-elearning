@@ -53,6 +53,9 @@ academy-elearning/
 │   ├── class-access.php         ← UNICA logica che decide chi vede cosa
 │   ├── class-content.php        ← CPT e tassonomie: corsi, lezioni, docenti
 │   ├── class-catalog.php        ← catalogo, scheda corso, pulsante di azione
+│   ├── class-lesson-view.php    ← pagina lezione, video protetto, download materiali
+│   ├── class-video.php          ← codice di incorporamento YouTube/Vimeo
+│   ├── class-templates.php      ← caricamento template (tema prima del plugin)
 │   ├── class-account.php        ← area "I miei corsi", progressi
 │   ├── class-settings.php       ← impostazioni del cliente; pagina interruttori riservata all'agenzia
 │   └── class-rest.php           ← endpoint REST del core

@@ -157,17 +157,22 @@ final class AEL_Content {
 			)
 		);
 
-		// Lezioni: nessuna pagina pubblica finché non c'è il controllo degli accessi
-		// (passi 4 e 6). Così testo e video non possono finire in vista a chi non paga.
+		// Lezioni: hanno un indirizzo, ma non compaiono in ricerche, menu o mappe del sito.
+		// Testo e video li mostra solo AEL_Lesson_View, dopo il controllo di AEL_Access.
 		register_post_type(
 			self::LESSON,
 			array_merge(
 				$common,
 				array(
-					'labels'   => $this->labels( __( 'Lezione', 'academy-elearning' ), __( 'Lezioni', 'academy-elearning' ), true ),
-					'public'   => false,
-					'rewrite'  => false,
-					'supports' => array( 'title', 'editor' ),
+					'labels'              => $this->labels( __( 'Lezione', 'academy-elearning' ), __( 'Lezioni', 'academy-elearning' ), true ),
+					'public'              => false,
+					'publicly_queryable'  => true,
+					'exclude_from_search' => true,
+					'show_in_nav_menus'   => false,
+					'query_var'           => true,
+					'has_archive'         => false,
+					'rewrite'             => array( 'slug' => 'lezioni' ),
+					'supports'            => array( 'title', 'editor' ),
 				)
 			)
 		);
@@ -256,6 +261,17 @@ final class AEL_Content {
 		}
 		update_option( self::FLUSH_OPTION, 1 );
 		return true;
+	}
+
+	/**
+	 * ID degli allegati (materiali) di una lezione, nell'ordine scelto.
+	 *
+	 * @param int $lesson_id Lezione.
+	 * @return int[]
+	 */
+	public static function lesson_materials( int $lesson_id ): array {
+		$ids = get_post_meta( $lesson_id, '_ael_materials', true );
+		return is_array( $ids ) ? array_values( array_filter( array_map( 'intval', $ids ) ) ) : array();
 	}
 
 	/**

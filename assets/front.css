@@ -1,0 +1,350 @@
+/*
+ * Stile di base neutro delle pagine pubbliche. Nessun colore o carattere di una
+ * singola academy: il tema le personalizza ridefinendo queste variabili.
+ */
+.ael {
+	--ael-accent: #1d4ed8;
+	--ael-accent-contrast: #ffffff;
+	--ael-text: inherit;
+	--ael-muted: #6b7280;
+	--ael-border: #e5e7eb;
+	--ael-surface: #ffffff;
+	--ael-surface-alt: #f9fafb;
+	--ael-radius: 8px;
+	--ael-gap: 24px;
+	color: var(--ael-text);
+}
+
+.ael *,
+.ael *::before,
+.ael *::after {
+	box-sizing: border-box;
+}
+
+.ael .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* Pulsanti */
+.ael-button {
+	display: inline-block;
+	padding: 12px 20px;
+	border: 2px solid var(--ael-accent);
+	border-radius: var(--ael-radius);
+	background: transparent;
+	color: var(--ael-accent);
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.ael-button--primary {
+	background: var(--ael-accent);
+	color: var(--ael-accent-contrast);
+}
+
+.ael-button:hover,
+.ael-button:focus-visible {
+	opacity: 0.88;
+}
+
+.ael-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: var(--ael-surface-alt);
+	border: 1px solid var(--ael-border);
+	color: var(--ael-muted);
+	font-size: 0.8em;
+}
+
+.ael-note,
+.ael-empty,
+.ael-duration,
+.ael-lock {
+	color: var(--ael-muted);
+}
+
+/* Scheda corso e lezione: colonna principale + laterale */
+.ael-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--ael-gap);
+}
+
+@media (min-width: 900px) {
+	.ael-layout {
+		grid-template-columns: minmax(0, 1fr) 340px;
+		align-items: start;
+	}
+
+	.ael-side {
+		position: sticky;
+		top: 24px;
+	}
+
+	/* Nella lezione il programma resta a lato ma non copre il video. */
+	.ael-layout--lesson {
+		grid-template-columns: minmax(0, 1fr) 320px;
+	}
+}
+
+.ael-side {
+	padding: 20px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface);
+}
+
+.ael-side > h2 {
+	margin-top: 0;
+	font-size: 1.1em;
+}
+
+.ael-subtitle {
+	font-size: 1.15em;
+	color: var(--ael-muted);
+}
+
+.ael-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 20px;
+	margin: 0 0 var(--ael-gap);
+	padding: 0;
+	list-style: none;
+	color: var(--ael-muted);
+}
+
+.ael-meta-label {
+	font-weight: 600;
+}
+
+.ael-section {
+	margin-top: calc(var(--ael-gap) * 1.5);
+}
+
+.ael-checklist {
+	padding-left: 1.2em;
+}
+
+/* Video: sempre 16:9 e a tutta larghezza */
+.ael-video {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	margin: 0 0 var(--ael-gap);
+	border-radius: var(--ael-radius);
+	background: #000000;
+	overflow: hidden;
+}
+
+.ael-video iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+/* Programma */
+.ael-module {
+	margin: 0 0 16px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface);
+	overflow: hidden;
+}
+
+.ael-module-title {
+	margin: 0;
+	padding: 12px 16px;
+	background: var(--ael-surface-alt);
+	border-bottom: 1px solid var(--ael-border);
+	font-size: 1em;
+}
+
+.ael-lessons {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ael-lesson-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 10px;
+	padding: 10px 16px;
+	border-bottom: 1px solid var(--ael-border);
+}
+
+.ael-lesson-item:last-child {
+	border-bottom: 0;
+}
+
+.ael-lesson-item.is-current {
+	background: var(--ael-surface-alt);
+	font-weight: 600;
+}
+
+.ael-lesson-item.is-locked .ael-lesson-link {
+	color: var(--ael-muted);
+}
+
+.ael-lesson-item .ael-duration {
+	margin-left: auto;
+	font-size: 0.9em;
+}
+
+.ael-lock::before {
+	content: "\1F512\00a0";
+}
+
+/* Lezione */
+.ael-breadcrumb {
+	margin-bottom: var(--ael-gap);
+	color: var(--ael-muted);
+}
+
+.ael-materials {
+	padding-left: 1.2em;
+}
+
+.ael-lesson-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	justify-content: space-between;
+	margin-top: calc(var(--ael-gap) * 1.5);
+}
+
+.ael-locked {
+	padding: calc(var(--ael-gap) * 1.2);
+	border: 1px dashed var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface-alt);
+	text-align: center;
+}
+
+.ael-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.ael-actions .ael-button {
+	width: 100%;
+}
+
+.ael-login {
+	margin: 0;
+	text-align: center;
+	color: var(--ael-muted);
+}
+
+/* Catalogo */
+.ael-filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: var(--ael-gap);
+}
+
+.ael-filters input[type="search"],
+.ael-filters select {
+	min-width: 180px;
+	padding: 10px 12px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	font: inherit;
+}
+
+.ael-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: var(--ael-gap);
+}
+
+.ael-card {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface);
+	overflow: hidden;
+}
+
+.ael-card-media {
+	display: block;
+	aspect-ratio: 16 / 9;
+	background: var(--ael-surface-alt);
+}
+
+.ael-card-media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.ael-card-placeholder {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.ael-card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 16px;
+}
+
+.ael-card-body p {
+	margin: 0;
+}
+
+.ael-card-title {
+	margin: 0;
+	font-size: 1.1em;
+}
+
+.ael-card-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ael-card-cats,
+.ael-card-meta {
+	color: var(--ael-muted);
+	font-size: 0.9em;
+}
+
+.ael-pagination {
+	margin-top: var(--ael-gap);
+}
+
+.ael-pagination .page-numbers {
+	display: inline-block;
+	margin-right: 6px;
+	padding: 6px 12px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	text-decoration: none;
+}
+
+.ael-pagination .page-numbers.current {
+	background: var(--ael-accent);
+	border-color: var(--ael-accent);
+	color: var(--ael-accent-contrast);
+}

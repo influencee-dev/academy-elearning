@@ -63,6 +63,7 @@ final class AEL_Installer {
 			'core-002-progress'   => array( __CLASS__, 'create_progress' ),
 			'core-003-watch-time' => array( __CLASS__, 'create_watch_time' ),
 			'core-004-roles'      => array( 'AEL_Content', 'setup_roles' ),
+			'core-005-pages'      => array( 'AEL_Catalog', 'setup_pages' ),
 		);
 
 		/**
