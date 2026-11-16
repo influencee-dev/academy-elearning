@@ -1,0 +1,60 @@
+/* Panoramica e Studenti: solo amministrazione, stile neutro di WordPress. */
+.ael-admin .ael-box {
+	max-width: 1000px;
+	margin: 16px 0;
+	padding: 4px 20px 16px;
+	border: 1px solid #c3c4c7;
+	background: #fff;
+}
+
+.ael-admin .ael-box h2 {
+	margin-top: 12px;
+}
+
+.ael-admin .ael-grant-form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 12px;
+}
+
+.ael-admin .ael-grant-form label {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ael-admin .ael-search {
+	display: flex;
+	gap: 8px;
+	margin: 16px 0;
+}
+
+.ael-admin .ael-narrow {
+	max-width: 300px;
+}
+
+.ael-admin .ael-stat-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+	gap: 12px;
+	max-width: 1000px;
+	margin: 16px 0;
+}
+
+.ael-admin .ael-stat {
+	padding: 14px 16px;
+	border: 1px solid #c3c4c7;
+	background: #fff;
+}
+
+.ael-admin .ael-stat-value {
+	display: block;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.ael-admin .ael-stat-label {
+	color: #646970;
+}

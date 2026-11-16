@@ -247,6 +247,43 @@ final class AEL_Access {
 	}
 
 	/**
+	 * Una concessione per ID, di qualsiasi stato (per le schermate di amministrazione).
+	 *
+	 * @param int $grant_id ID della concessione.
+	 * @return array<string, mixed>|null
+	 */
+	public static function grant_by_id( int $grant_id ): ?array {
+		global $wpdb;
+
+		$table = $wpdb->prefix . 'ael_grants';
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT id, user_id, course_id, source, source_ref, status, starts_at, ends_at FROM {$table} WHERE id = %d", $grant_id ), ARRAY_A );
+		return is_array( $row ) ? $row : null;
+	}
+
+	/**
+	 * Stato leggibile di una concessione: active, pending, expired o revoked.
+	 * Funzione pura, come grants_cover_course.
+	 *
+	 * @param array<string, mixed> $grant Concessione.
+	 * @param int                  $now   Ora attuale (timestamp UTC).
+	 */
+	public static function grant_state( array $grant, int $now ): string {
+		if ( 'active' !== ( $grant['status'] ?? 'active' ) ) {
+			return 'revoked';
+		}
+		$starts = isset( $grant['starts_at'] ) && '' !== (string) $grant['starts_at'] ? strtotime( $grant['starts_at'] . ' UTC' ) : 0;
+		if ( false !== $starts && $starts > $now ) {
+			return 'pending';
+		}
+		$ends = isset( $grant['ends_at'] ) && '' !== (string) $grant['ends_at'] ? strtotime( $grant['ends_at'] . ' UTC' ) : null;
+		if ( null !== $ends && false !== $ends && $ends < $now ) {
+			return 'expired';
+		}
+		return 'active';
+	}
+
+	/**
 	 * Crea o riattiva una concessione. La stessa (origine, riferimento, utente,
 	 * corso) non si duplica: se esiste viene riattivata e aggiornata, così un
 	 * evento ricevuto due volte non produce effetti doppi.
