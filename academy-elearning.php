@@ -80,4 +80,14 @@ spl_autoload_register(
 
 register_activation_hook( AEL_FILE, array( 'AEL_Plugin', 'activate' ) );
 
+// Dichiara a WooCommerce che il plugin è compatibile con la tabella ordini dedicata (HPOS).
+add_action(
+	'before_woocommerce_init',
+	static function () {
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', AEL_FILE, true );
+		}
+	}
+);
+
 AEL_Plugin::instance()->boot();
