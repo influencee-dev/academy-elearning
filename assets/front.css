@@ -416,3 +416,31 @@
 	height: 100%;
 	background: var(--ael-accent);
 }
+
+/* Progressi */
+.ael-done {
+	display: none;
+	color: var(--ael-accent);
+	font-size: 0.85em;
+	font-weight: 600;
+}
+
+.ael-done::before {
+	content: "\2713\00a0";
+}
+
+.ael-lesson-item.is-done .ael-done {
+	display: inline;
+}
+
+.ael-complete {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	margin-top: var(--ael-gap);
+}
+
+.ael-error-text {
+	color: #991b1b;
+}

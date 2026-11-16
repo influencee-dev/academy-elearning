@@ -146,10 +146,21 @@ final class AEL_Lesson_View {
 			$materials  = $this->materials( (int) $post->ID );
 		}
 
+		// Solo chi è collegato e ha accesso salva i progressi (i visitatori delle anteprime no).
+		$tracking  = $can && $user_id > 0 && null !== $course;
+		$completed = false;
+		if ( $tracking ) {
+			$row       = AEL_Progress::lesson_row( $user_id, (int) $post->ID );
+			$completed = $row && 'completed' === $row['status'];
+			$this->enqueue_player( (int) $post->ID, $completed, $row ? (int) $row['last_position'] : 0 );
+		}
+
 		return AEL_Templates::render(
 			'lesson',
 			array(
 				'lesson'      => $post,
+				'tracking'    => $tracking,
+				'completed'   => $completed,
 				'content'     => $can ? $content : '',
 				'can'         => $can,
 				'course'      => $course,
@@ -164,6 +175,43 @@ final class AEL_Lesson_View {
 				'actions'     => ( ! $can && $course ) ? AEL_Catalog::actions( $course->ID, $user_id ) : array(),
 				'is_visitor'  => ! $user_id,
 				'login_url'   => wp_login_url( (string) get_permalink( $post ) ),
+			)
+		);
+	}
+
+	/**
+	 * Carica lo script che registra posizione, tempo guardato e completamento.
+	 *
+	 * @param int  $lesson_id Lezione.
+	 * @param bool $completed La lezione è già completata.
+	 * @param int  $position  Ultima posizione del video, in secondi.
+	 */
+	private function enqueue_player( int $lesson_id, bool $completed, int $position ): void {
+		wp_enqueue_script(
+			'ael-lesson',
+			AEL_URL . 'assets/lesson.js',
+			array(),
+			AEL_VERSION,
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
+		);
+		wp_localize_script(
+			'ael-lesson',
+			'aelLesson',
+			array(
+				'restUrl'   => esc_url_raw( rest_url( AEL_Rest::NAMESPACE . '/lessons/' . $lesson_id . '/' ) ),
+				'nonce'     => wp_create_nonce( 'wp_rest' ),
+				'completed' => $completed,
+				'position'  => $position,
+				'threshold' => (int) apply_filters( 'ael_completion_threshold', 90 ),
+				'i18n'      => array(
+					'complete'   => __( 'Segna come completata', 'academy-elearning' ),
+					'uncomplete' => __( 'Completata. Annulla', 'academy-elearning' ),
+					'saved'      => __( 'Salvato', 'academy-elearning' ),
+					'error'      => __( 'Non sono riuscito a salvare. Riprova.', 'academy-elearning' ),
+				),
 			)
 		);
 	}

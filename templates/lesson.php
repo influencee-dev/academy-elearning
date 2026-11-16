@@ -6,7 +6,7 @@
  * ATTENZIONE: video e materiali arrivano già vuoti se l'utente non ha accesso.
  * Non costruire mai il video da soli in questo template: usa $video_html.
  *
- * Variabili: $lesson, $content, $can, $course, $course_url, $catalog_url,
+ * Variabili: $lesson, $tracking, $completed, $content, $can, $course, $course_url, $catalog_url,
  * $video_html, $materials, $program, $prev, $next, $is_preview, $actions,
  * $is_visitor, $login_url.
  *
@@ -51,6 +51,15 @@ defined( 'ABSPATH' ) || exit;
 							<?php endforeach; ?>
 						</ul>
 					</section>
+				<?php endif; ?>
+
+				<?php if ( $tracking ) : ?>
+					<p class="ael-complete">
+						<button type="button" class="ael-button ael-button--secondary" data-ael-complete data-completed="<?php echo $completed ? '1' : '0'; ?>">
+							<?php echo esc_html( $completed ? __( 'Completata. Annulla', 'academy-elearning' ) : __( 'Segna come completata', 'academy-elearning' ) ); ?>
+						</button>
+						<span class="ael-status" data-ael-status role="status" aria-live="polite"></span>
+					</p>
 				<?php endif; ?>
 
 				<?php

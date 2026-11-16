@@ -29,6 +29,9 @@ defined( 'ABSPATH' ) || exit;
 					if ( (int) $lesson['id'] === (int) $current ) {
 						$classes .= ' is-current';
 					}
+					if ( ! empty( $lesson['completed'] ) ) {
+						$classes .= ' is-done';
+					}
 					?>
 					<li class="<?php echo esc_attr( $classes ); ?>">
 						<?php if ( $lesson['can'] ) : ?>
@@ -37,6 +40,7 @@ defined( 'ABSPATH' ) || exit;
 							<span class="ael-lesson-link"><?php echo esc_html( $lesson['title'] ); ?></span>
 							<span class="ael-lock"><?php echo esc_html__( 'Riservata', 'academy-elearning' ); ?></span>
 						<?php endif; ?>
+						<span class="ael-done"><?php echo esc_html__( 'Completata', 'academy-elearning' ); ?></span>
 						<?php if ( $lesson['is_preview'] ) : ?>
 							<span class="ael-badge"><?php echo esc_html__( 'Anteprima gratuita', 'academy-elearning' ); ?></span>
 						<?php endif; ?>

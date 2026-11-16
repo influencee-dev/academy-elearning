@@ -47,6 +47,8 @@ final class AEL_Plugin {
 		AEL_Catalog::instance()->boot();
 		AEL_Lesson_View::instance()->boot();
 		AEL_Account::instance()->boot();
+		AEL_Progress::instance()->boot();
+		AEL_Rest::instance()->boot();
 		if ( is_admin() ) {
 			AEL_Admin::instance()->boot();
 		}

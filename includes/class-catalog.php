@@ -236,6 +236,7 @@ final class AEL_Catalog {
 			'minutes'      => 0,
 		);
 		$by_module = array();
+		$done      = ( $with_access && $user_id ) ? AEL_Progress::completed_ids( $user_id, $course_id ) : array();
 		if ( ! empty( $modules ) ) {
 			$lessons = get_posts(
 				array(
@@ -254,6 +255,7 @@ final class AEL_Catalog {
 					'minutes'    => $minutes,
 					'is_preview' => (bool) get_post_meta( $lesson->ID, '_ael_is_preview', true ) && (bool) AEL_Settings::get( 'free_previews', 1 ),
 					'can'        => $with_access && AEL_Access::user_can_access_lesson( $user_id, (int) $lesson->ID ),
+					'completed'  => in_array( (int) $lesson->ID, $done, true ),
 					'url'        => (string) get_permalink( $lesson ),
 				);
 				++$result['lesson_count'];
