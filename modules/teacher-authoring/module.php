@@ -1,6 +1,6 @@
 <?php
 /**
- * Modulo "Creator autori": i docenti accedono con il proprio utente e creano
+ * Modulo "Docenti autori": i docenti accedono con il proprio utente e creano
  * i propri corsi, senza vedere i contenuti degli altri.
  *
  * Questo file dichiara soltanto il modulo: niente hook, niente traduzioni.
@@ -11,7 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 return array(
-	'name'             => 'Creator autori',
+	'name'             => 'Docenti autori',
 	'description'      => 'I docenti entrano con il proprio utente e creano e modificano solo i propri corsi, moduli e lezioni. Non vedono i contenuti degli altri, gli studenti né le vendite. La pubblicazione resta al titolare.',
 	'version'          => '0.1.0',
 	'requires_modules' => array(),

@@ -1,6 +1,6 @@
 <?php
 /**
- * Creator autori: permessi, visibilità e proprietà dei contenuti.
+ * Docenti autori: permessi, visibilità e proprietà dei contenuti.
  *
  * @package AcademyElearning
  */
@@ -8,11 +8,11 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Chi è un "creator": un utente con il ruolo Docente che NON ha la capacità del
+ * Chi è un "docente": un utente con il ruolo Docente che NON ha la capacità del
  * titolare. Il modulo non salva permessi nei ruoli: li concede al volo finché è
  * acceso, quindi spegnerlo li toglie tutti e non lascia nulla da pulire.
  *
- * Un creator può:
+ * Un docente può:
  * - creare e modificare corsi, moduli e lezioni suoi (e quelli che il titolare
  *   ha creato a suo nome, cioè collegati alla sua scheda docente);
  * - modificare la propria scheda docente;
@@ -95,11 +95,11 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/* ------------------------------------------------------------------ */
-	/* Chi è un creator                                                    */
+	/* Chi è un docente                                                    */
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * Tipi di contenuto che un creator può avere "propri".
+	 * Tipi di contenuto che un docente può avere "propri".
 	 *
 	 * @return string[]
 	 */
@@ -108,11 +108,11 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * L'utente è un creator? (ruolo Docente, senza la capacità del titolare).
+	 * L'utente è un docente? (ruolo Docente, senza la capacità del titolare).
 	 *
 	 * @param int $user_id Utente.
 	 */
-	public function is_creator( int $user_id ): bool {
+	public function is_authoring_teacher( int $user_id ): bool {
 		if ( $user_id <= 0 ) {
 			return false;
 		}
@@ -144,7 +144,7 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * Il contenuto è di questo creator?
+	 * Il contenuto è di questo docente?
 	 *
 	 * - Scheda docente: è quella collegata al suo utente.
 	 * - Corso: l'ha creato lui, oppure è collegato alla sua scheda docente.
@@ -185,7 +185,7 @@ final class AEL_Teacher_Authoring {
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * Concede ai creator i permessi di base per scrivere i propri contenuti.
+	 * Concede ai docenti i permessi di base per scrivere i propri contenuti.
 	 * Mancano di proposito: publish_*, edit_others_*, delete_others_*, read_private_*.
 	 *
 	 * @param array   $allcaps Permessi dell'utente.
@@ -218,7 +218,7 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * Decide, per un creator, su quali contenuti può agire: solo i propri.
+	 * Decide, per un docente, su quali contenuti può agire: solo i propri.
 	 *
 	 * @param string[] $caps    Permessi richiesti.
 	 * @param string   $cap     Permesso richiesto.
@@ -231,7 +231,7 @@ final class AEL_Teacher_Authoring {
 			return $caps;
 		}
 		$post = get_post( (int) $args[0] );
-		if ( ! $post || ! in_array( $post->post_type, $this->own_types(), true ) || ! $this->is_creator( (int) $user_id ) ) {
+		if ( ! $post || ! in_array( $post->post_type, $this->own_types(), true ) || ! $this->is_authoring_teacher( (int) $user_id ) ) {
 			return $caps;
 		}
 		$object = get_post_type_object( $post->post_type );
@@ -255,7 +255,7 @@ final class AEL_Teacher_Authoring {
 		}
 
 		/**
-		 * Permette di impedire ai creator di modificare i propri contenuti già pubblicati
+		 * Permette di impedire ai docenti di modificare i propri contenuti già pubblicati
 		 * (di base possono: le correzioni vanno online subito).
 		 *
 		 * @param bool    $allowed Possono modificarli.
@@ -268,13 +268,13 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * Il menu "Academy" è visibile anche ai creator.
+	 * Il menu "Academy" è visibile anche ai docenti.
 	 *
 	 * @param string $cap Permesso richiesto di base.
 	 */
 	public function menu_cap( $cap ) {
 		$object = get_post_type_object( AEL_Content::COURSE );
-		return ( $object && $this->is_creator( get_current_user_id() ) ) ? $object->cap->edit_posts : $cap;
+		return ( $object && $this->is_authoring_teacher( get_current_user_id() ) ) ? $object->cap->edit_posts : $cap;
 	}
 
 	/* ------------------------------------------------------------------ */
@@ -282,7 +282,7 @@ final class AEL_Teacher_Authoring {
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * ID dei contenuti di un tipo che appartengono al creator (in qualsiasi stato).
+	 * ID dei contenuti di un tipo che appartengono al docente (in qualsiasi stato).
 	 *
 	 * @param int    $user_id Utente.
 	 * @param string $type    Tipo di contenuto.
@@ -361,7 +361,7 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * Negli elenchi dell'amministrazione un creator vede solo i propri contenuti
+	 * Negli elenchi dell'amministrazione un docente vede solo i propri contenuti
 	 * e i propri file.
 	 *
 	 * @param WP_Query $query Richiesta.
@@ -371,7 +371,7 @@ final class AEL_Teacher_Authoring {
 			return;
 		}
 		$user_id = get_current_user_id();
-		if ( ! $this->is_creator( $user_id ) ) {
+		if ( ! $this->is_authoring_teacher( $user_id ) ) {
 			return;
 		}
 		$type = $query->get( 'post_type' );
@@ -384,28 +384,28 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * Nella finestra di scelta dei file un creator vede solo i propri.
+	 * Nella finestra di scelta dei file un docente vede solo i propri.
 	 *
 	 * @param array $args Argomenti della ricerca.
 	 * @return array
 	 */
 	public function limit_media_modal( $args ) {
 		$user_id = get_current_user_id();
-		if ( is_array( $args ) && $this->is_creator( $user_id ) ) {
+		if ( is_array( $args ) && $this->is_authoring_teacher( $user_id ) ) {
 			$args['author'] = $user_id;
 		}
 		return $args;
 	}
 
 	/**
-	 * Toglie i filtri "Tutti / Pubblicati / Bozze" dagli elenchi dei creator: i
+	 * Toglie i filtri "Tutti / Pubblicati / Bozze" dagli elenchi dei docenti: i
 	 * numeri comprenderebbero anche i contenuti degli altri.
 	 *
 	 * @param array $views Filtri.
 	 * @return array
 	 */
 	public function hide_views( $views ) {
-		return $this->is_creator( get_current_user_id() ) ? array() : $views;
+		return $this->is_authoring_teacher( get_current_user_id() ) ? array() : $views;
 	}
 
 	/* ------------------------------------------------------------------ */
@@ -413,28 +413,28 @@ final class AEL_Teacher_Authoring {
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * Un creator vede sul sito il proprio corso anche se non è pubblicato.
+	 * Un docente vede sul sito il proprio corso anche se non è pubblicato.
 	 *
 	 * @param bool $allowed   Decisione della base.
 	 * @param int  $user_id   Utente.
 	 * @param int  $course_id Corso.
 	 */
 	public function filter_course_access( $allowed, $user_id, $course_id ) {
-		if ( $allowed || ! $this->is_creator( (int) $user_id ) ) {
+		if ( $allowed || ! $this->is_authoring_teacher( (int) $user_id ) ) {
 			return $allowed;
 		}
 		return $this->owns( (int) $user_id, get_post( (int) $course_id ) );
 	}
 
 	/**
-	 * Un creator vede sul sito la propria lezione anche se non è pubblicata.
+	 * Un docente vede sul sito la propria lezione anche se non è pubblicata.
 	 *
 	 * @param bool $allowed   Decisione della base.
 	 * @param int  $user_id   Utente.
 	 * @param int  $lesson_id Lezione.
 	 */
 	public function filter_lesson_access( $allowed, $user_id, $lesson_id ) {
-		if ( $allowed || ! $this->is_creator( (int) $user_id ) ) {
+		if ( $allowed || ! $this->is_authoring_teacher( (int) $user_id ) ) {
 			return $allowed;
 		}
 		return $this->owns( (int) $user_id, get_post( (int) $lesson_id ) );
@@ -445,14 +445,14 @@ final class AEL_Teacher_Authoring {
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * Un corso creato da un creator è sempre a nome suo.
+	 * Un corso creato da un docente è sempre a nome suo.
 	 *
 	 * @param int     $post_id Corso.
 	 * @param WP_Post $post    Contenuto.
 	 */
 	public function assign_teacher( int $post_id, WP_Post $post ): void {
 		$user_id = get_current_user_id();
-		if ( wp_is_post_revision( $post_id ) || ! $this->is_creator( $user_id ) || ! $this->owns( $user_id, $post ) ) {
+		if ( wp_is_post_revision( $post_id ) || ! $this->is_authoring_teacher( $user_id ) || ! $this->owns( $user_id, $post ) ) {
 			return;
 		}
 		$profile = $this->profile_id( $user_id );
@@ -533,14 +533,14 @@ final class AEL_Teacher_Authoring {
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * Dopo l'accesso un creator va dritto ai suoi corsi.
+	 * Dopo l'accesso un docente va dritto ai suoi corsi.
 	 *
 	 * @param string           $redirect_to Destinazione calcolata.
 	 * @param string           $requested   Destinazione richiesta.
 	 * @param WP_User|WP_Error $user        Utente.
 	 */
 	public function login_redirect( $redirect_to, $requested, $user ) {
-		if ( ! $user instanceof WP_User || ! $this->is_creator( (int) $user->ID ) ) {
+		if ( ! $user instanceof WP_User || ! $this->is_authoring_teacher( (int) $user->ID ) ) {
 			return $redirect_to;
 		}
 		if ( '' === (string) $requested || 0 === strpos( (string) $requested, admin_url() ) ) {
@@ -550,11 +550,11 @@ final class AEL_Teacher_Authoring {
 	}
 
 	/**
-	 * Avvisa il creator se nessuna scheda docente è collegata al suo utente.
+	 * Avvisa il docente se nessuna scheda docente è collegata al suo utente.
 	 */
 	public function profile_notice(): void {
 		$user_id = get_current_user_id();
-		if ( ! $this->is_creator( $user_id ) || $this->profile_id( $user_id ) ) {
+		if ( ! $this->is_authoring_teacher( $user_id ) || $this->profile_id( $user_id ) ) {
 			return;
 		}
 		printf(

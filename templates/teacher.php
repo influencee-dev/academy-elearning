@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
 				<p class="ael-teacher-tagline"><?php echo esc_html( $profile['tagline'] ); ?></p>
 			<?php endif; ?>
 			<?php if ( ! empty( $profile['links'] ) ) : ?>
-				<ul class="ael-creator-links">
+				<ul class="ael-teacher-box-links">
 					<?php foreach ( $profile['links'] as $link ) : ?>
 						<li><a href="<?php echo esc_url( $link['url'] ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $link['label'] ); ?></a></li>
 					<?php endforeach; ?>

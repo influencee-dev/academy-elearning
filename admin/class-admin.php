@@ -62,7 +62,7 @@ final class AEL_Admin {
 			__( 'Academy', 'academy-elearning' ),
 			/**
 			 * Permesso richiesto per vedere il menu "Academy". Di base quello del
-			 * titolare; un modulo (creator autori) può abbassarlo per i suoi utenti.
+			 * titolare; un modulo (docenti autori) può abbassarlo per i suoi utenti.
 			 *
 			 * @param string $cap Permesso.
 			 */

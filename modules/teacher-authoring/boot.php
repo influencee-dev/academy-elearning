@@ -1,6 +1,6 @@
 <?php
 /**
- * Codice del modulo Creator autori. Viene incluso solo se il modulo è acceso.
+ * Codice del modulo Docenti autori. Viene incluso solo se il modulo è acceso.
  *
  * @package AcademyElearning
  */

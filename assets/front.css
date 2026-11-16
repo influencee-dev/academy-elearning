@@ -445,26 +445,26 @@
 	color: #991b1b;
 }
 
-/* Creator e schede docente */
-.ael-creator {
+/* Docente e schede docente */
+.ael-teacher-box {
 	margin-top: var(--ael-gap);
 	padding-top: var(--ael-gap);
 	border-top: 1px solid var(--ael-border);
 }
 
-.ael-creator h2 {
+.ael-teacher-box h2 {
 	margin-top: 0;
 	font-size: 1.1em;
 }
 
-.ael-creator-head,
+.ael-teacher-box-head,
 .ael-teacher-head {
 	display: flex;
 	align-items: center;
 	gap: 16px;
 }
 
-.ael-creator-photo img {
+.ael-teacher-box-photo img {
 	display: block;
 	width: 64px;
 	height: 64px;
@@ -472,18 +472,18 @@
 	object-fit: cover;
 }
 
-.ael-creator-name {
+.ael-teacher-box-name {
 	margin: 0;
 	font-weight: 600;
 }
 
-.ael-creator-tagline,
+.ael-teacher-box-tagline,
 .ael-teacher-tagline {
 	margin: 0;
 	color: var(--ael-muted);
 }
 
-.ael-creator-links {
+.ael-teacher-box-links {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px 16px;
@@ -492,7 +492,7 @@
 	list-style: none;
 }
 
-.ael-creator-links a {
+.ael-teacher-box-links a {
 	color: var(--ael-accent);
 	font-weight: 600;
 }

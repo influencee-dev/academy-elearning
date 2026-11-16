@@ -69,7 +69,7 @@ final class AEL_Content {
 	/**
 	 * Ogni tipo di contenuto ha i suoi permessi (edit_ael_courses, publish_ael_courses...).
 	 * Così WordPress sa distinguere "i miei" da "quelli degli altri" e un modulo
-	 * (creator autori) può dare ad alcuni utenti solo una parte dei permessi.
+	 * (docenti autori) può dare ad alcuni utenti solo una parte dei permessi.
 	 * Chi ha la capacità del titolare (ael_manage_academy) li ha tutti: vedi grant_content_caps().
 	 *
 	 * @param string $singular Nome al singolare, per esempio "ael_course".

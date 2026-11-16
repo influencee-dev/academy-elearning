@@ -181,13 +181,13 @@ final class AEL_Lesson_View {
 	}
 
 	/**
-	 * Variabili CSS con il colore del creator del corso (vuote se non c'è).
+	 * Variabili CSS con il colore del docente del corso (vuote se non c'è).
 	 *
 	 * @param WP_Post|null $course Corso.
 	 */
 	private function accent_style( ?WP_Post $course ): string {
-		$creator = $course ? AEL_Catalog::creator_for_course( $course->ID ) : null;
-		return $creator ? $creator['style'] : '';
+		$teacher_box = $course ? AEL_Catalog::teacher_box_for_course( $course->ID ) : null;
+		return $teacher_box ? $teacher_box['style'] : '';
 	}
 
 	/**

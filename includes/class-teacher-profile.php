@@ -1,6 +1,6 @@
 <?php
 /**
- * Scheda pubblica personalizzabile del docente (creator).
+ * Scheda pubblica personalizzabile del docente (docente).
  *
  * @package AcademyElearning
  */

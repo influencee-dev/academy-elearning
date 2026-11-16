@@ -8,7 +8,7 @@
  *
  * Variabili: $lesson, $tracking, $completed, $content, $can, $course, $course_url, $catalog_url,
  * $video_html, $materials, $program, $prev, $next, $is_preview, $actions,
- * $is_visitor, $login_url, $accent_style (colore del creator, può essere vuoto).
+ * $is_visitor, $login_url, $accent_style (colore del docente, può essere vuoto).
  *
  * @package AcademyElearning
  */

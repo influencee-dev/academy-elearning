@@ -63,7 +63,7 @@ final class AEL_Account {
 	}
 
 	/**
-	 * Permesso di modificare i corsi (ce l'hanno il titolare e i creator autori).
+	 * Permesso di modificare i corsi (ce l'hanno il titolare e i docenti autori).
 	 */
 	private static function author_cap(): string {
 		$object = get_post_type_object( AEL_Content::COURSE );

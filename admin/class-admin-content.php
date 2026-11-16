@@ -104,7 +104,7 @@ final class AEL_Admin_Content {
 		);
 		$teacher  = (int) $this->meta( $post->ID, 'teacher_id' );
 		$level    = (string) $this->meta( $post->ID, 'level' );
-		// Docente e abbonamento li decide il titolare: un creator non li vede né li cambia.
+		// Docente e abbonamento li decide il titolare: un docente non li vede né li cambia.
 		$manager  = current_user_can( AEL_Content::CAP );
 		?>
 		<table class="form-table" role="presentation"><tbody>

@@ -260,7 +260,7 @@ final class AEL_Settings {
 					</td></tr>
 					<tr><th scope="row"><?php echo esc_html__( 'Schede docente personalizzabili', 'academy-elearning' ); ?></th><td>
 						<label><input type="checkbox" name="teacher_profiles" value="1" <?php checked( (int) self::get( 'teacher_profiles', 1 ), 1 ); ?>>
-						<?php echo esc_html__( 'Ogni docente ha frase di presentazione, copertina, colore e link, e compare come "creator" nelle pagine dei suoi corsi', 'academy-elearning' ); ?></label>
+						<?php echo esc_html__( 'Ogni docente ha frase di presentazione, copertina, colore e link, e compare nel riquadro "Il docente" nelle pagine dei suoi corsi', 'academy-elearning' ); ?></label>
 					</td></tr>
 					<tr><th scope="row"><?php echo esc_html__( 'Anteprime gratuite', 'academy-elearning' ); ?></th><td>
 						<label><input type="checkbox" name="free_previews" value="1" <?php checked( (int) self::get( 'free_previews', 1 ), 1 ); ?>>

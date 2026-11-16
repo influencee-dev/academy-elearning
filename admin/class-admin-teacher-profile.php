@@ -96,7 +96,7 @@ final class AEL_Admin_Teacher_Profile {
 		$accent   = AEL_Teacher_Profile::clean_color( (string) get_post_meta( $post->ID, '_ael_accent', true ) );
 		$links    = AEL_Teacher_Profile::clean_links( get_post_meta( $post->ID, '_ael_links', true ) );
 		?>
-		<p class="description"><?php echo esc_html__( 'Come appare la pagina pubblica del docente e il riquadro "Il creator" nelle pagine dei suoi corsi. Nome, foto e descrizione sono quelli del contenuto qui sopra e dell\'immagine in evidenza.', 'academy-elearning' ); ?></p>
+		<p class="description"><?php echo esc_html__( 'Come appare la pagina pubblica del docente e il riquadro "Il docente" nelle pagine dei suoi corsi. Nome, foto e descrizione sono quelli del contenuto qui sopra e dell\'immagine in evidenza.', 'academy-elearning' ); ?></p>
 		<table class="form-table" role="presentation"><tbody>
 			<tr><th><label for="ael_tagline"><?php echo esc_html__( 'Frase di presentazione', 'academy-elearning' ); ?></label></th>
 				<td><input type="text" class="large-text" id="ael_tagline" name="ael_tagline" maxlength="140" value="<?php echo esc_attr( $tagline ); ?>">

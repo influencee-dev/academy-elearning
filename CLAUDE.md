@@ -70,7 +70,7 @@ academy-elearning/
 │   ├── teacher-panel/           ← pannello docente in sola lettura
 │   ├── attribution/             ← provenienza degli acquisti
 │   ├── magic-link/              ← accesso con link via email (opzionale)
-│   └── teacher-authoring/       ← i creator creano i propri corsi, senza vedere quelli altrui
+│   └── teacher-authoring/       ← i docenti creano i propri corsi, senza vedere quelli altrui
 ├── admin/                       ← pagine di amministrazione del core
 ├── templates/                   ← template sovrascrivibili dal tema
 ├── assets/

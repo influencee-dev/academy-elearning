@@ -282,7 +282,7 @@ final class AEL_Admin_Program {
 	private function authorize(): int {
 		check_ajax_referer( self::NONCE_AJAX, 'nonce' );
 		$course_id = isset( $_POST['course'] ) ? absint( wp_unslash( $_POST['course'] ) ) : 0;
-		// Basta poter modificare QUEL corso: il titolare può tutti, un creator solo i suoi.
+		// Basta poter modificare QUEL corso: il titolare può tutti, un docente solo i suoi.
 		if ( AEL_Content::COURSE !== get_post_type( $course_id )
 			|| ! current_user_can( 'edit_post', $course_id ) ) {
 			wp_send_json_error( array( 'message' => __( 'Permesso negato.', 'academy-elearning' ) ), 403 );
@@ -349,7 +349,7 @@ final class AEL_Admin_Program {
 			$next = max( $next, (int) get_post_field( 'menu_order', $sibling_id ) + 1 );
 		}
 
-		// Chi non può pubblicare (un creator) crea in bozza: la pubblicazione resta al titolare.
+		// Chi non può pubblicare (un docente) crea in bozza: la pubblicazione resta al titolare.
 		$type_object = get_post_type_object( $type );
 		$can_publish = $type_object && current_user_can( $type_object->cap->publish_posts );
 
@@ -473,7 +473,7 @@ final class AEL_Admin_Program {
 		$type      = get_post_type( $id );
 		$modules   = $this->module_ids( $course_id );
 
-		// Si può eliminare solo ciò per cui WordPress concede il permesso (un creator non elimina il già pubblicato).
+		// Si può eliminare solo ciò per cui WordPress concede il permesso (un docente non elimina il già pubblicato).
 		$denied = ! $id || ! current_user_can( 'delete_post', $id );
 		if ( ! $denied && AEL_Content::MODULE === $type ) {
 			foreach ( $this->lessons_of( $id ) as $lesson ) {
