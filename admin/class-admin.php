@@ -47,6 +47,7 @@ final class AEL_Admin {
 		// Priorità 9: il menu principale deve esistere prima delle voci dei contenuti.
 		add_action( 'admin_menu', array( $this, 'register_menu' ), 9 );
 		AEL_Admin_Content::instance()->boot();
+		AEL_Admin_Program::instance()->boot();
 	}
 
 	/**

@@ -161,7 +161,7 @@ final class AEL_Admin_Content {
 		</select>
 		<p><label for="ael_menu_order"><strong><?php echo esc_html__( 'Posizione', 'academy-elearning' ); ?></strong></label></p>
 		<input type="number" id="ael_menu_order" name="ael_menu_order" value="<?php echo esc_attr( (string) (int) $post->menu_order ); ?>" min="0" step="1" style="width:100%">
-		<p class="description"><?php echo esc_html__( 'Numero più basso = prima. Il trascinamento arriva più avanti.', 'academy-elearning' ); ?></p>
+		<p class="description"><?php echo esc_html__( 'Numero più basso = prima. Più comodo: riordina trascinando dal riquadro "Programma" del corso.', 'academy-elearning' ); ?></p>
 		<?php
 	}
 
