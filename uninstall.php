@@ -49,6 +49,19 @@ foreach ( get_users( array( 'fields' => 'ID' ) ) as $ael_user_id ) {
 	}
 }
 
+// 3b. Ruolo Docente e permesso del titolare.
+remove_role( 'ael_teacher' );
+$ael_admin_role = get_role( 'administrator' );
+if ( $ael_admin_role ) {
+	$ael_admin_role->remove_cap( 'ael_manage_academy' );
+}
+foreach ( get_users( array( 'fields' => 'ID' ) ) as $ael_user_id ) {
+	$ael_user = get_userdata( (int) $ael_user_id );
+	if ( $ael_user && $ael_user->has_cap( 'ael_manage_academy' ) ) {
+		$ael_user->remove_cap( 'ael_manage_academy' );
+	}
+}
+
 // 4. Opzioni.
 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 $ael_options = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s", $ael_like ) );

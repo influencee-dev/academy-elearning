@@ -59,7 +59,8 @@ if ( ! ael_requirements_met() ) {
 }
 
 /**
- * Autoloader: la classe AEL_Nome_Cosa si trova in includes/class-nome-cosa.php.
+ * Autoloader: la classe AEL_Nome_Cosa si trova in includes/class-nome-cosa.php
+ * oppure, per le schermate di amministrazione, in admin/class-nome-cosa.php.
  */
 spl_autoload_register(
 	static function ( $class_name ) {
@@ -67,9 +68,12 @@ spl_autoload_register(
 			return;
 		}
 		$slug = strtolower( str_replace( '_', '-', substr( $class_name, 4 ) ) );
-		$file = AEL_PATH . 'includes/class-' . $slug . '.php';
-		if ( is_readable( $file ) ) {
-			require_once $file;
+		foreach ( array( 'includes', 'admin' ) as $folder ) {
+			$file = AEL_PATH . $folder . '/class-' . $slug . '.php';
+			if ( is_readable( $file ) ) {
+				require_once $file;
+				return;
+			}
 		}
 	}
 );

@@ -43,6 +43,10 @@ final class AEL_Plugin {
 		add_action( 'init', array( $this, 'load_textdomain' ), 0 );
 		add_action( 'plugins_loaded', array( $this, 'loaded' ), 20 );
 		AEL_Settings::instance()->boot();
+		AEL_Content::instance()->boot();
+		if ( is_admin() ) {
+			AEL_Admin::instance()->boot();
+		}
 	}
 
 	/**

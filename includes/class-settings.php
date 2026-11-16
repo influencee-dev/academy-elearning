@@ -57,7 +57,8 @@ final class AEL_Settings {
 	 */
 	public function boot(): void {
 		add_filter( 'user_has_cap', array( $this, 'filter_caps' ), 10, 4 );
-		add_action( 'admin_menu', array( $this, 'register_menu' ) );
+		// Priorità 11: dopo il menu principale (9) e le voci dei contenuti (10).
+		add_action( 'admin_menu', array( $this, 'register_menu' ), 11 );
 		add_action( 'admin_post_ael_save_config', array( $this, 'handle_save' ) );
 	}
 
@@ -105,6 +106,8 @@ final class AEL_Settings {
 		$user = get_userdata( $user_id );
 		if ( $user ) {
 			$user->add_cap( self::CAP );
+			// Per entrare nel menu Academy serve anche il permesso base del titolare.
+			$user->add_cap( AEL_Content::CAP );
 		}
 	}
 
@@ -122,7 +125,8 @@ final class AEL_Settings {
 	public function filter_caps( $allcaps, $caps, $args, $user ) {
 		if ( defined( 'AEL_AGENCY_USER_IDS' ) && is_array( AEL_AGENCY_USER_IDS ) && $user instanceof WP_User ) {
 			if ( in_array( (int) $user->ID, array_map( 'intval', AEL_AGENCY_USER_IDS ), true ) ) {
-				$allcaps[ self::CAP ] = true;
+				$allcaps[ self::CAP ]             = true;
+				$allcaps[ AEL_Content::CAP ] = true;
 			}
 		}
 		return $allcaps;
@@ -132,14 +136,13 @@ final class AEL_Settings {
 	 * Registra la voce di menu. Compare solo a chi ha la capacità.
 	 */
 	public function register_menu(): void {
-		add_menu_page(
+		add_submenu_page(
+			'ael-academy',
 			__( 'Configurazione Academy', 'academy-elearning' ),
-			__( 'Academy', 'academy-elearning' ),
+			__( 'Configurazione', 'academy-elearning' ),
 			self::CAP,
 			self::PAGE,
-			array( $this, 'render_page' ),
-			'dashicons-welcome-learn-more',
-			58
+			array( $this, 'render_page' )
 		);
 	}
 
