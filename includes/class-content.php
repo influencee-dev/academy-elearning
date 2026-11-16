@@ -73,10 +73,7 @@ final class AEL_Content {
 	private function caps(): array {
 		$cap = self::CAP;
 		return array(
-			'edit_post'              => $cap,
-			'read_post'              => 'read',
-			'delete_post'            => $cap,
-			'edit_posts'             => $cap,
+			'edit_posts'           => $cap,
 			'edit_others_posts'      => $cap,
 			'delete_posts'           => $cap,
 			'publish_posts'          => $cap,
