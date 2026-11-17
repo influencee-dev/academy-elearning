@@ -64,6 +64,7 @@ final class AEL_Teacher_Panel {
 		add_action( 'ael_my_courses_before', array( $this, 'front_link' ), 5 );
 		add_action( 'ael_login_logged_in', array( $this, 'front_link' ) );
 		if ( function_exists( 'WC' ) ) {
+			add_filter( 'woocommerce_prevent_admin_access', array( $this, 'woo_allow_admin' ) );
 			add_filter( 'woocommerce_login_redirect', array( $this, 'woo_login_redirect' ), 30, 2 );
 			add_filter( 'woocommerce_account_menu_items', array( $this, 'woo_menu_item' ), 20 );
 			add_filter( 'woocommerce_get_endpoint_url', array( $this, 'woo_menu_url' ), 10, 2 );
@@ -83,6 +84,17 @@ final class AEL_Teacher_Panel {
 	 */
 	private function show_for_current_user(): bool {
 		return is_user_logged_in() && current_user_can( self::CAP );
+	}
+
+	/**
+	 * WooCommerce rimanda a "Il mio account" chi entra nell'amministrazione senza poter modificare
+	 * articoli: un docente col pannello deve poterci entrare.
+	 *
+	 * @param bool $prevent Blocco deciso da WooCommerce.
+	 * @return bool
+	 */
+	public function woo_allow_admin( $prevent ) {
+		return $this->show_for_current_user() ? false : $prevent;
 	}
 
 	/**

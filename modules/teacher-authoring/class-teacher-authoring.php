@@ -97,6 +97,7 @@ final class AEL_Teacher_Authoring {
 		add_action( 'ael_my_courses_before', array( $this, 'front_link' ), 4 );
 		add_action( 'ael_login_logged_in', array( $this, 'front_link' ) );
 		if ( function_exists( 'WC' ) ) {
+			add_filter( 'woocommerce_prevent_admin_access', array( $this, 'woo_allow_admin' ) );
 			add_filter( 'woocommerce_login_redirect', array( $this, 'woo_login_redirect' ), 20, 2 );
 			add_filter( 'woocommerce_account_menu_items', array( $this, 'woo_menu_item' ), 15 );
 			add_filter( 'woocommerce_get_endpoint_url', array( $this, 'woo_menu_url' ), 10, 2 );
@@ -108,6 +109,17 @@ final class AEL_Teacher_Authoring {
 	 */
 	private function courses_url(): string {
 		return admin_url( 'edit.php?post_type=' . AEL_Content::COURSE );
+	}
+
+	/**
+	 * WooCommerce rimanda a "Il mio account" chi entra nell'amministrazione senza poter modificare
+	 * articoli: un docente autore deve poterci entrare.
+	 *
+	 * @param bool $prevent Blocco deciso da WooCommerce.
+	 * @return bool
+	 */
+	public function woo_allow_admin( $prevent ) {
+		return ( is_user_logged_in() && $this->is_authoring_teacher( get_current_user_id() ) ) ? false : $prevent;
 	}
 
 	/**
