@@ -76,11 +76,15 @@ final class AEL_Content {
 	 * @param string $plural   Nome al plurale, per esempio "ael_courses".
 	 * @return array{capability_type: array<int, string>, map_meta_cap: bool}
 	 */
-	private function cap_type( string $singular, string $plural ): array {
-		return array(
+	private function cap_type( string $singular, string $plural, array $overrides = array() ): array {
+		$args = array(
 			'capability_type' => array( $singular, $plural ),
 			'map_meta_cap'    => true,
 		);
+		if ( ! empty( $overrides ) ) {
+			$args['capabilities'] = $overrides;
+		}
+		return $args;
 	}
 
 	/**
@@ -247,7 +251,8 @@ final class AEL_Content {
 			self::TEACHER,
 			array_merge(
 				$common,
-					$this->cap_type( 'ael_teacher', 'ael_teachers' ),
+					// Creare un nuovo docente è del titolare: modificare la propria scheda (edit_*) non basta.
+					$this->cap_type( 'ael_teacher', 'ael_teachers', array( 'create_posts' => 'create_ael_teachers' ) ),
 				array(
 					'labels'             => $this->labels( __( 'Docente', 'academy-elearning' ), __( 'Docenti', 'academy-elearning' ), false ),
 					'public'             => $teacher_pages,

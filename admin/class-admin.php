@@ -46,6 +46,7 @@ final class AEL_Admin {
 	public function boot(): void {
 		// Priorità 9: il menu principale deve esistere prima delle voci dei contenuti.
 		add_action( 'admin_menu', array( $this, 'register_menu' ), 9 );
+		add_action( 'admin_menu', array( $this, 'register_add_new_pages' ), 20 );
 		AEL_Admin_Content::instance()->boot();
 		AEL_Admin_Program::instance()->boot();
 		AEL_Admin_Students::instance()->boot();
@@ -84,6 +85,30 @@ final class AEL_Admin {
 			self::MENU,
 			array( $this, 'render_overview' )
 		);
+	}
+
+	/**
+	 * Registra (senza mostrarle nel menu) le pagine "Aggiungi nuovo" dei contenuti del plugin.
+	 *
+	 * Senza questa registrazione, WordPress rifiuta "Aggiungi nuovo" a chi ha i permessi sui
+	 * nostri contenuti ma non quelli degli articoli normali del sito (è il caso dei docenti
+	 * autori): per WordPress la pagina "post-new.php" sarebbe quella degli articoli.
+	 */
+	public function register_add_new_pages(): void {
+		foreach ( array( AEL_Content::COURSE, AEL_Content::MODULE, AEL_Content::LESSON, AEL_Content::TEACHER, AEL_Content::COLLECTION ) as $type ) {
+			$object = get_post_type_object( $type );
+			if ( ! $object ) {
+				continue;
+			}
+			// "options.php" è il genitore dei collegamenti di sistema che non compaiono nel menu.
+			add_submenu_page(
+				'options.php',
+				$object->labels->add_new_item,
+				$object->labels->add_new_item,
+				$object->cap->create_posts,
+				'post-new.php?post_type=' . $type
+			);
+		}
 	}
 
 	/**
