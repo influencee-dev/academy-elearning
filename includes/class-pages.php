@@ -22,7 +22,7 @@ final class AEL_Pages {
 	 * @return array<string, array{option: string, title: string, slug: string, content: string}>
 	 */
 	public static function definitions(): array {
-		return array(
+		$defs = array(
 			'catalog'    => array(
 				'option'  => 'ael_page_catalog',
 				'title'   => 'Catalogo',
@@ -42,6 +42,16 @@ final class AEL_Pages {
 				'content' => '[ael_my_courses]',
 			),
 		);
+
+		/**
+		 * Permette ai moduli di aggiungere le proprie pagine (stessa forma delle voci:
+		 * option, title, slug, content). Il modulo poi le crea con una migrazione che
+		 * chiama AEL_Pages::setup().
+		 *
+		 * @param array $defs Pagine di base.
+		 */
+		$filtered = apply_filters( 'ael_pages_definitions', $defs );
+		return is_array( $filtered ) ? $filtered : $defs;
 	}
 
 	/**
