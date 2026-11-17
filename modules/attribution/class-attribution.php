@@ -59,6 +59,142 @@ final class AEL_Attribution {
 		add_action( 'init', array( $this, 'capture' ), 5 );
 		add_filter( 'ael_checkout_attribution', array( $this, 'checkout_data' ) );
 		add_action( 'ael_payment_recorded', array( $this, 'on_payment' ), 20, 1 );
+
+		// Domanda obbligatoria "Come ci hai conosciuto?" nei due checkout.
+		add_filter( 'ael_stripe_checkout_params', array( $this, 'stripe_params' ), 20 );
+		if ( function_exists( 'WC' ) ) {
+			add_filter( 'woocommerce_checkout_fields', array( $this, 'wc_fields' ) );
+			add_action( 'woocommerce_checkout_create_order', array( $this, 'wc_save' ), 20, 2 );
+			add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'wc_admin_order' ) );
+		}
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* "Come ci hai conosciuto?"                                           */
+	/* ------------------------------------------------------------------ */
+
+	/**
+	 * Risposte possibili alla domanda "Come ci hai conosciuto?".
+	 *
+	 * @return string[]
+	 */
+	public static function heard_from_options(): array {
+		/**
+		 * Permette di cambiare le risposte alla domanda "Come ci hai conosciuto?".
+		 *
+		 * @param string[] $options Risposte (testo mostrato e salvato).
+		 */
+		$options = apply_filters(
+			'ael_heard_from_options',
+			array(
+				__( 'Instagram', 'academy-elearning' ),
+				__( 'TikTok', 'academy-elearning' ),
+				__( 'YouTube', 'academy-elearning' ),
+				__( 'Google', 'academy-elearning' ),
+				__( 'Passaparola', 'academy-elearning' ),
+				__( 'Email o newsletter', 'academy-elearning' ),
+				__( 'Altro', 'academy-elearning' ),
+			)
+		);
+		$clean = array();
+		foreach ( is_array( $options ) ? $options : array() as $option ) {
+			$text = mb_substr( trim( sanitize_text_field( (string) $option ) ), 0, 100 );
+			if ( '' !== $text && ! in_array( $text, $clean, true ) ) {
+				$clean[] = $text;
+			}
+		}
+		return array_slice( $clean, 0, 20 );
+	}
+
+	/**
+	 * Aggiunge la domanda (a scelta obbligatoria) al Checkout di Stripe.
+	 *
+	 * @param array $params Parametri della sessione.
+	 * @return array
+	 */
+	public function stripe_params( $params ) {
+		if ( ! is_array( $params ) ) {
+			return $params;
+		}
+		$options = array();
+		foreach ( self::heard_from_options() as $text ) {
+			$options[] = array(
+				'label' => $text,
+				'value' => $text,
+			);
+		}
+		if ( empty( $options ) ) {
+			return $params;
+		}
+		$fields = ( isset( $params['custom_fields'] ) && is_array( $params['custom_fields'] ) ) ? $params['custom_fields'] : array();
+		if ( count( $fields ) >= 3 ) {
+			return $params; // Stripe ammette al massimo 3 campi.
+		}
+		$fields[]                = array(
+			'key'      => 'heard_from',
+			'label'    => array(
+				'type'   => 'custom',
+				'custom' => __( 'Come ci hai conosciuto?', 'academy-elearning' ),
+			),
+			'type'     => 'dropdown',
+			'dropdown' => array( 'options' => $options ),
+		);
+		$params['custom_fields'] = $fields;
+		return $params;
+	}
+
+	/**
+	 * Aggiunge la domanda (obbligatoria) al checkout di WooCommerce, solo quando nel
+	 * carrello c'è un corso (se il modulo Acquisto singolo c'è; altrimenti sempre).
+	 *
+	 * @param array $fields Campi del checkout.
+	 * @return array
+	 */
+	public function wc_fields( $fields ) {
+		if ( ! is_array( $fields ) ) {
+			return $fields;
+		}
+		if ( class_exists( 'AEL_Single_Purchase_Checkout' ) && ! AEL_Single_Purchase_Checkout::cart_has_courses() ) {
+			return $fields;
+		}
+		$options = array( '' => __( 'Scegli…', 'academy-elearning' ) );
+		foreach ( self::heard_from_options() as $text ) {
+			$options[ $text ] = $text;
+		}
+		$fields['order']['ael_heard_from'] = array(
+			'type'     => 'select',
+			'label'    => __( 'Come ci hai conosciuto?', 'academy-elearning' ),
+			'required' => true,
+			'class'    => array( 'form-row-wide' ),
+			'options'  => $options,
+			'priority' => 5,
+		);
+		return $fields;
+	}
+
+	/**
+	 * Salva la risposta con l'ordine, solo se è una di quelle previste.
+	 *
+	 * @param WC_Order $order Ordine.
+	 * @param array    $data  Dati del checkout.
+	 */
+	public function wc_save( $order, $data ): void {
+		$answer = isset( $data['ael_heard_from'] ) ? sanitize_text_field( (string) $data['ael_heard_from'] ) : '';
+		if ( '' !== $answer && in_array( $answer, self::heard_from_options(), true ) ) {
+			$order->update_meta_data( '_ael_heard_from', $answer );
+		}
+	}
+
+	/**
+	 * Mostra la risposta nell'ordine, per il titolare.
+	 *
+	 * @param WC_Order $order Ordine.
+	 */
+	public function wc_admin_order( $order ): void {
+		$answer = (string) $order->get_meta( '_ael_heard_from' );
+		if ( '' !== $answer ) {
+			echo '<p><strong>' . esc_html__( 'Come ci ha conosciuto', 'academy-elearning' ) . ':</strong> ' . esc_html( $answer ) . '</p>';
+		}
 	}
 
 	/**
