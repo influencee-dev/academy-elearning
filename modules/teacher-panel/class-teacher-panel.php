@@ -59,6 +59,92 @@ final class AEL_Teacher_Panel {
 		add_action( 'admin_menu', array( $this, 'register_menu' ), 12 );
 		add_action( 'admin_post_ael_my_sales_export', array( $this, 'handle_export' ) );
 		add_filter( 'login_redirect', array( $this, 'login_redirect' ), 30, 3 );
+
+		// Chi entra dal sito (login di WooCommerce, pagina Accedi, I miei corsi) trova la strada per il pannello.
+		add_action( 'ael_my_courses_before', array( $this, 'front_link' ), 5 );
+		add_action( 'ael_login_logged_in', array( $this, 'front_link' ) );
+		if ( function_exists( 'WC' ) ) {
+			add_filter( 'woocommerce_login_redirect', array( $this, 'woo_login_redirect' ), 30, 2 );
+			add_filter( 'woocommerce_account_menu_items', array( $this, 'woo_menu_item' ), 20 );
+			add_filter( 'woocommerce_get_endpoint_url', array( $this, 'woo_menu_url' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * Indirizzo del pannello nell'amministrazione.
+	 */
+	private function panel_url(): string {
+		return admin_url( 'admin.php?page=' . self::PAGE );
+	}
+
+	/**
+	 * Il docente corrente deve vedere il collegamento al pannello (solo se non scrive corsi: in quel caso
+	 * i collegamenti li mostra il modulo Docenti autori)?
+	 */
+	private function show_for_current_user(): bool {
+		return is_user_logged_in() && current_user_can( self::CAP );
+	}
+
+	/**
+	 * Pulsante "Vai al pannello docente" nelle pagine del sito.
+	 */
+	public function front_link(): void {
+		if ( ! $this->show_for_current_user() ) {
+			return;
+		}
+		echo '<p><a class="ael-button ael-button--secondary" href="' . esc_url( $this->panel_url() ) . '">' . esc_html__( 'Le mie vendite (pannello docente)', 'academy-elearning' ) . '</a></p>';
+	}
+
+	/**
+	 * Dopo l'accesso dal login di WooCommerce, un docente va al suo pannello (se non stava andando altrove).
+	 *
+	 * @param string  $redirect Destinazione di WooCommerce.
+	 * @param WP_User $user     Utente.
+	 * @return string
+	 */
+	public function woo_login_redirect( $redirect, $user ) {
+		if ( ! $user instanceof WP_User || ! in_array( AEL_Content::TEACHER, (array) $user->roles, true ) || user_can( $user, AEL_Content::CAP ) ) {
+			return $redirect;
+		}
+		$course = get_post_type_object( AEL_Content::COURSE );
+		if ( $course && user_can( $user, $course->cap->edit_posts ) ) {
+			return $redirect; // La destinazione la sceglie il modulo Docenti autori.
+		}
+		return ( function_exists( 'wc_get_page_permalink' ) && $redirect === wc_get_page_permalink( 'myaccount' ) ) ? $this->panel_url() : $redirect;
+	}
+
+	/**
+	 * Voce "Pannello docente" nel menu di "Il mio account" di WooCommerce.
+	 *
+	 * @param array $items Voci del menu.
+	 * @return array
+	 */
+	public function woo_menu_item( $items ) {
+		if ( ! is_array( $items ) || ! $this->show_for_current_user() ) {
+			return $items;
+		}
+		$new = array();
+		foreach ( $items as $key => $label ) {
+			if ( 'customer-logout' === $key ) {
+				$new['ael-panel'] = __( 'Le mie vendite', 'academy-elearning' );
+			}
+			$new[ $key ] = $label;
+		}
+		if ( ! isset( $new['ael-panel'] ) ) {
+			$new['ael-panel'] = __( 'Le mie vendite', 'academy-elearning' );
+		}
+		return $new;
+	}
+
+	/**
+	 * La voce del menu porta all'amministrazione, non a una pagina di WooCommerce.
+	 *
+	 * @param string $url      Indirizzo.
+	 * @param string $endpoint Voce.
+	 * @return string
+	 */
+	public function woo_menu_url( $url, $endpoint ) {
+		return 'ael-panel' === $endpoint ? $this->panel_url() : $url;
 	}
 
 	/**

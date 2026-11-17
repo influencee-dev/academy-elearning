@@ -92,6 +92,80 @@ final class AEL_Teacher_Authoring {
 
 		add_filter( 'login_redirect', array( $this, 'login_redirect' ), 20, 3 );
 		add_action( 'admin_notices', array( $this, 'profile_notice' ) );
+
+		// Chi entra dal sito (login di WooCommerce, pagina Accedi, I miei corsi) trova la strada per i suoi corsi.
+		add_action( 'ael_my_courses_before', array( $this, 'front_link' ), 4 );
+		add_action( 'ael_login_logged_in', array( $this, 'front_link' ) );
+		if ( function_exists( 'WC' ) ) {
+			add_filter( 'woocommerce_login_redirect', array( $this, 'woo_login_redirect' ), 20, 2 );
+			add_filter( 'woocommerce_account_menu_items', array( $this, 'woo_menu_item' ), 15 );
+			add_filter( 'woocommerce_get_endpoint_url', array( $this, 'woo_menu_url' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * Indirizzo dell'elenco dei corsi del docente nell'amministrazione.
+	 */
+	private function courses_url(): string {
+		return admin_url( 'edit.php?post_type=' . AEL_Content::COURSE );
+	}
+
+	/**
+	 * Pulsante "I miei corsi (area docente)" nelle pagine del sito.
+	 */
+	public function front_link(): void {
+		if ( ! is_user_logged_in() || ! $this->is_authoring_teacher( get_current_user_id() ) ) {
+			return;
+		}
+		echo '<p><a class="ael-button ael-button--secondary" href="' . esc_url( $this->courses_url() ) . '">' . esc_html__( 'I corsi che creo (area docente)', 'academy-elearning' ) . '</a></p>';
+	}
+
+	/**
+	 * Dopo l'accesso dal login di WooCommerce, un docente autore va ai suoi corsi (se non stava andando altrove).
+	 *
+	 * @param string  $redirect Destinazione di WooCommerce.
+	 * @param WP_User $user     Utente.
+	 * @return string
+	 */
+	public function woo_login_redirect( $redirect, $user ) {
+		if ( ! $user instanceof WP_User || ! $this->is_authoring_teacher( (int) $user->ID ) ) {
+			return $redirect;
+		}
+		return ( function_exists( 'wc_get_page_permalink' ) && $redirect === wc_get_page_permalink( 'myaccount' ) ) ? $this->courses_url() : $redirect;
+	}
+
+	/**
+	 * Voce "Area docente" nel menu di "Il mio account" di WooCommerce.
+	 *
+	 * @param array $items Voci del menu.
+	 * @return array
+	 */
+	public function woo_menu_item( $items ) {
+		if ( ! is_array( $items ) || ! is_user_logged_in() || ! $this->is_authoring_teacher( get_current_user_id() ) ) {
+			return $items;
+		}
+		$new = array();
+		foreach ( $items as $key => $label ) {
+			if ( 'customer-logout' === $key ) {
+				$new['ael-courses'] = __( 'I corsi che creo', 'academy-elearning' );
+			}
+			$new[ $key ] = $label;
+		}
+		if ( ! isset( $new['ael-courses'] ) ) {
+			$new['ael-courses'] = __( 'I corsi che creo', 'academy-elearning' );
+		}
+		return $new;
+	}
+
+	/**
+	 * La voce del menu porta all'amministrazione.
+	 *
+	 * @param string $url      Indirizzo.
+	 * @param string $endpoint Voce.
+	 * @return string
+	 */
+	public function woo_menu_url( $url, $endpoint ) {
+		return 'ael-courses' === $endpoint ? $this->courses_url() : $url;
 	}
 
 	/* ------------------------------------------------------------------ */

@@ -28,6 +28,15 @@ defined( 'ABSPATH' ) || exit;
 			<a class="ael-button ael-button--primary" href="<?php echo esc_url( $courses_url ); ?>"><?php echo esc_html__( 'Vai ai tuoi corsi', 'academy-elearning' ); ?></a>
 			<a class="ael-login" href="<?php echo esc_url( $logout_url ); ?>"><?php echo esc_html__( 'Esci', 'academy-elearning' ); ?></a>
 		</p>
+		<?php
+		/**
+		 * Sotto i pulsanti, quando l'utente è già collegato. I moduli (Pannello docente, Docenti
+		 * autori) ci aggiungono il collegamento alla propria area.
+		 *
+		 * @param WP_User $user Utente.
+		 */
+		do_action( 'ael_login_logged_in', $user );
+		?>
 	<?php else : ?>
 		<?php if ( $failed ) : ?>
 			<p class="ael-error" role="alert"><?php echo esc_html__( 'Email, nome utente o password non corretti. Riprova.', 'academy-elearning' ); ?></p>
