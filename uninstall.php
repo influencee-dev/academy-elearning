@@ -62,9 +62,45 @@ foreach ( get_users( array( 'fields' => 'ID' ) ) as $ael_user_id ) {
 	}
 }
 
-// 4. Opzioni.
+// 3c. Pagine create dal plugin (Catalogo, Accedi, I miei corsi, Abbonati): i loro ID sono nelle opzioni ael_page_*.
 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-$ael_options = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s", $ael_like ) );
+$ael_page_options = $wpdb->get_col( $wpdb->prepare( "SELECT option_value FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'ael_page_' ) . '%' ) );
+foreach ( $ael_page_options as $ael_page_id ) {
+	if ( (int) $ael_page_id > 0 && 'page' === get_post_type( (int) $ael_page_id ) ) {
+		wp_delete_post( (int) $ael_page_id, true );
+	}
+}
+
+// 3d. Prodotti WooCommerce creati per i corsi (hanno il meta _ael_course_id).
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+$ael_product_ids = $wpdb->get_col( "SELECT p.ID FROM {$wpdb->posts} p INNER JOIN {$wpdb->postmeta} m ON m.post_id = p.ID WHERE p.post_type = 'product' AND m.meta_key = '_ael_course_id'" );
+foreach ( $ael_product_ids as $ael_product_id ) {
+	wp_delete_post( (int) $ael_product_id, true );
+}
+
+// 3e. Categorie dei corsi (la tassonomia non è registrata durante la disinstallazione: si lavora sul database).
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+$ael_term_ids = $wpdb->get_col( "SELECT term_id FROM {$wpdb->term_taxonomy} WHERE taxonomy = 'ael_course_category'" );
+if ( ! empty( $ael_term_ids ) ) {
+	$ael_in = implode( ',', array_map( 'intval', $ael_term_ids ) );
+	// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	$wpdb->query( "DELETE tr FROM {$wpdb->term_relationships} tr INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id WHERE tt.taxonomy = 'ael_course_category'" );
+	$wpdb->query( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = 'ael_course_category'" );
+	$wpdb->query( "DELETE FROM {$wpdb->termmeta} WHERE term_id IN ({$ael_in})" );
+	$wpdb->query( "DELETE FROM {$wpdb->terms} WHERE term_id IN ({$ael_in})" );
+	// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+}
+
+// 4. Opzioni e dati temporanei (le chiavi di Stripe stanno nelle opzioni: spariscono con esse).
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+$ael_options = $wpdb->get_col(
+	$wpdb->prepare(
+		"SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s OR option_name LIKE %s",
+		$ael_like,
+		$wpdb->esc_like( '_transient_ael_' ) . '%',
+		$wpdb->esc_like( '_transient_timeout_ael_' ) . '%'
+	)
+);
 foreach ( $ael_options as $ael_option ) {
 	delete_option( $ael_option );
 }

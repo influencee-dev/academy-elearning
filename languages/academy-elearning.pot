@@ -1,0 +1,2085 @@
+# Testi traducibili di Academy E-learning.
+# Lingua di base: italiano. Generato da bin/make-pot.php.
+msgid ""
+msgstr ""
+"Project-Id-Version: Academy E-learning 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: academy-elearning\n"
+
+#: modules/teacher-panel/class-teacher-panel.php:241
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:332
+msgid "%"
+msgstr ""
+
+#. translators: 1: ore, 2: minuti
+#: includes/class-catalog.php:163
+msgid "%1$d h %2$d min"
+msgstr ""
+
+#. translators: 1: numero vendite, 2: lordo, 3: netto, 4: quote da liquidare
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:598
+msgid "%1$d vendite · lordo %2$s · netto %3$s · quote da liquidare %4$s"
+msgstr ""
+
+#. translators: %d: numero di corsi
+#: admin/class-admin-students.php:295
+msgid "%d corso"
+msgid_plural "%d corsi"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: ore
+#: includes/class-catalog.php:160
+msgid "%d h"
+msgstr ""
+
+#. translators: %d: numero di lezioni
+#: templates/course-card.php:20
+#: templates/course.php:42
+msgid "%d lezione"
+msgid_plural "%d lezioni"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: minuti
+#: admin/class-admin-program.php:233
+#: includes/class-catalog.php:154
+msgid "%d min"
+msgstr ""
+
+#. translators: %d: percentuale completata
+#: templates/my-courses.php:71
+msgid "%d%% completato"
+msgstr ""
+
+#: admin/class-admin-content.php:316
+msgid "(senza corso)"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:143
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:261
+msgid "(senza docente)"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:159
+msgid "1. Chi può vedere cosa?"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:228
+msgid "2. Concessione di prova"
+msgstr ""
+
+#: admin/class-admin-content.php:136
+#: templates/course.php:80
+msgid "A chi è rivolto"
+msgstr ""
+
+#: admin/class-admin.php:105
+msgid "Abbonamenti"
+msgstr ""
+
+#: admin/class-admin-content.php:142
+#: admin/class-admin-students.php:348
+#: modules/attribution/class-attribution-admin.php:188
+#: modules/subscription/class-subscription-admin.php:57
+#: modules/subscription/templates/subscription-box.php:26
+msgid "Abbonamento"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:56
+#: modules/subscription/class-subscription-admin.php:128
+msgid "Abbonamento (Stripe)"
+msgstr ""
+
+#: modules/subscription/templates/subscription-box.php:58
+msgid "Abbonati"
+msgstr ""
+
+#. translators: %s: prezzo
+#: modules/subscription/templates/subscription-box.php:58
+msgid "Abbonati a %s"
+msgstr ""
+
+#. translators: %s: prezzo dell'abbonamento, per esempio "19,00 € al mese"
+#: modules/subscription/class-subscription.php:225
+msgid "Abbonati a %s e accedi a tutto"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:226
+msgid "Abbonati e accedi a tutto"
+msgstr ""
+
+#: admin/class-admin.php:61
+#: admin/class-admin.php:62
+#: admin/class-admin.php:117
+msgid "Academy"
+msgstr ""
+
+#. translators: 1: PHP minimo, 2: WordPress minimo
+#: academy-elearning.php:48
+msgid "Academy E-learning richiede PHP %1$s o superiore e WordPress %2$s o superiore. Il plugin non è stato caricato."
+msgstr ""
+
+#: includes/class-account.php:194
+#: modules/magic-link/class-magic-link.php:353
+#: modules/magic-link/class-magic-link.php:356
+#: modules/subscription/templates/subscribe.php:49
+#: templates/actions.php:27
+#: templates/my-courses.php:17
+msgid "Accedi"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-orders.php:347
+msgid "Accedi ai tuoi corsi:"
+msgstr ""
+
+#: templates/my-courses.php:16
+msgid "Accedi per vedere i tuoi corsi."
+msgstr ""
+
+#: includes/class-settings.php:221
+msgid "Acceso"
+msgstr ""
+
+#: admin/class-admin-students.php:374
+msgid "Accessi"
+msgstr ""
+
+#: admin/class-admin-students.php:273
+msgid "Accessi attivi"
+msgstr ""
+
+#: admin/class-admin.php:129
+msgid "Accessi attivi per origine"
+msgstr ""
+
+#: admin/class-admin.php:106
+msgid "Accessi manuali"
+msgstr ""
+
+#: admin/class-admin-students.php:89
+msgid "Accesso concesso."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:182
+#: admin/class-admin-access-debug.php:194
+msgid "Accesso no"
+msgstr ""
+
+#: admin/class-admin-students.php:90
+msgid "Accesso revocato."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:182
+#: admin/class-admin-access-debug.php:194
+msgid "Accesso sì"
+msgstr ""
+
+#: admin/class-admin-content.php:67
+msgid "Account del docente"
+msgstr ""
+
+#. translators: %s: prezzo
+#: modules/single-purchase/class-single-purchase.php:374
+msgid "Acquista a %s"
+msgstr ""
+
+#: admin/class-admin.php:104
+msgid "Acquisti"
+msgstr ""
+
+#: admin/class-admin-students.php:347
+msgid "Acquisto"
+msgstr ""
+
+#: admin/class-admin-program.php:545
+msgid "Aggiungi file"
+msgstr ""
+
+#: admin/class-admin-program.php:208
+msgid "Aggiungi lezione"
+msgstr ""
+
+#: admin/class-admin-program.php:122
+msgid "Aggiungi moduli e lezioni scrivendo il titolo. Trascina per cambiare l'ordine: si salva da solo. Video, durata e materiali di ogni lezione si compilano da \"Modifica\"."
+msgstr ""
+
+#: admin/class-admin-program.php:130
+msgid "Aggiungi modulo"
+msgstr ""
+
+#: includes/class-content.php:169
+msgid "Aggiungi nuova"
+msgstr ""
+
+#: includes/class-content.php:169
+msgid "Aggiungi nuovo"
+msgstr ""
+
+#. translators: %s: nome del contenuto
+#: includes/class-content.php:171
+msgid "Aggiungi: %s"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:148
+#: modules/teacher-panel/class-teacher-panel.php:218
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:257
+msgid "Al"
+msgstr ""
+
+#: templates/lesson.php:76
+msgid "Altre lezioni"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:96
+msgid "Altro"
+msgstr ""
+
+#: admin/class-admin.php:145
+msgid "Ancora nessuna visione registrata."
+msgstr ""
+
+#: admin/class-admin-content.php:560
+msgid "Anteprima"
+msgstr ""
+
+#: admin/class-admin-content.php:204
+#: templates/lesson.php:31
+#: templates/program.php:45
+msgid "Anteprima gratuita"
+msgstr ""
+
+#: includes/class-settings.php:265
+msgid "Anteprime gratuite"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:607
+msgid "Apri il registro"
+msgstr ""
+
+#: admin/class-admin-students.php:352
+msgid "Attivo"
+msgstr ""
+
+#: admin/class-admin-students.php:459
+msgid "Avanzamento"
+msgstr ""
+
+#: admin/class-admin-content.php:103
+#: includes/class-catalog.php:139
+msgid "Avanzato"
+msgstr ""
+
+#: templates/catalog.php:46
+msgid "Azzera filtri"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:167
+msgid "Cancella le chiavi salvate"
+msgstr ""
+
+#: includes/class-settings.php:275
+msgid "Cancella tutti i dati del plugin quando viene eliminato"
+msgstr ""
+
+#: templates/lesson.php:21
+msgid "Catalogo"
+msgstr ""
+
+#: includes/class-content.php:281
+#: templates/catalog.php:25
+msgid "Categoria"
+msgstr ""
+
+#: includes/class-content.php:282
+msgid "Categorie"
+msgstr ""
+
+#: includes/class-content.php:280
+msgid "Categorie dei corsi"
+msgstr ""
+
+#: admin/class-admin-students.php:264
+msgid "Cerca"
+msgstr ""
+
+#: templates/catalog.php:21
+#: templates/catalog.php:22
+msgid "Cerca un corso"
+msgstr ""
+
+#: admin/class-admin-students.php:262
+msgid "Cerca uno studente"
+msgstr ""
+
+#. translators: %s: nome del contenuto al plurale
+#: includes/class-content.php:177
+msgid "Cerca: %s"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:147
+msgid "Chiave non impostata"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:154
+msgid "Chiave segreta"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:218
+msgid "Chiavi cancellate."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-checkout.php:120
+#: modules/subscription/class-subscription.php:528
+msgid "Chiedo l'accesso immediato ai contenuti digitali e prendo atto che, una volta iniziata la fornitura, perdo il diritto di recesso."
+msgstr ""
+
+#. translators: 1: nome dell'utente, 2: indirizzo della pagina dei corsi
+#: modules/subscription/class-subscription-webhook.php:445
+msgid "Ciao %1$s,\n\nnon siamo riusciti a incassare il rinnovo del tuo abbonamento. Puoi aggiornare la carta dalla tua area personale, con il pulsante \"Gestisci abbonamento\":\n%2$s\n\nStripe riproverà automaticamente nei prossimi giorni.\n"
+msgstr ""
+
+#. translators: 1: nome dell'utente, 2: indirizzo del link, 3: minuti di validità
+#: modules/magic-link/class-magic-link.php:297
+msgid "Ciao %1$s,\n\nper accedere apri questo indirizzo:\n%2$s\n\nIl link vale %3$d minuti e si può usare una volta sola. Se non l'hai chiesto tu, ignora questa email: nessuno può entrare senza aprirlo.\n"
+msgstr ""
+
+#. translators: %s: nome dell'utente
+#: templates/my-courses.php:24
+msgid "Ciao %s"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:180
+msgid "Codice promo"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:140
+msgid "Collegamento a Stripe"
+msgstr ""
+
+#. translators: %s: errore di Stripe
+#: modules/subscription/class-subscription-admin.php:276
+msgid "Collegamento non riuscito: %s"
+msgstr ""
+
+#. translators: 1: importo, 2: frequenza
+#: modules/subscription/class-subscription-admin.php:285
+msgid "Collegamento riuscito. Prezzo: %1$s (ogni %2$s)."
+msgstr ""
+
+#: admin/class-admin-content.php:65
+msgid "Collocazione"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:113
+msgid "Colore"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:117
+msgid "Colore di pulsanti ed evidenze nelle pagine di questo docente e dei suoi corsi. Vuoto = il colore dell'academy."
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:99
+msgid "Come appare la pagina pubblica del docente e il riquadro \"Il docente\" nelle pagine dei suoi corsi. Nome, foto e descrizione sono quelli del contenuto qui sopra e dell'immagine in evidenza."
+msgstr ""
+
+#: modules/attribution/class-attribution.php:196
+msgid "Come ci ha conosciuto"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:130
+#: modules/attribution/class-attribution-admin.php:181
+#: modules/attribution/class-attribution.php:137
+#: modules/attribution/class-attribution.php:166
+msgid "Come ci hai conosciuto?"
+msgstr ""
+
+#: templates/my-courses.php:43
+msgid "Come gestore dell'academy vedi tutti i corsi."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:330
+msgid "Commissione"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:202
+msgid "Commissione aggiornata: netto e quota ricalcolati."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:353
+msgid "Commissione in euro"
+msgstr ""
+
+#: templates/program.php:43
+msgid "Completata"
+msgstr ""
+
+#: includes/class-lesson-view.php:222
+#: templates/lesson.php:59
+msgid "Completata. Annulla"
+msgstr ""
+
+#: modules/subscription/templates/subscription-box.php:57
+msgid "Con l'abbonamento accedi a tutto il catalogo."
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:17
+msgid "Con l'abbonamento accedi a tutto il catalogo. Puoi disdire quando vuoi: l'accesso resta fino alla fine del periodo già pagato."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:252
+msgid "Concedi"
+msgstr ""
+
+#: admin/class-admin-students.php:172
+msgid "Concedi accesso"
+msgstr ""
+
+#: admin/class-admin-students.php:255
+#: admin/class-admin-students.php:427
+msgid "Concedi un accesso"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:147
+msgid "Concessione di prova revocata."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:146
+msgid "Concessione di prova salvata."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:201
+msgid "Concessioni dell'utente"
+msgstr ""
+
+#: includes/class-settings.php:143
+msgid "Configurazione"
+msgstr ""
+
+#: includes/class-settings.php:142
+#: includes/class-settings.php:187
+msgid "Configurazione Academy"
+msgstr ""
+
+#: includes/class-settings.php:191
+msgid "Configurazione salvata."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-checkout.php:193
+msgid "Consenso all'accesso immediato ai contenuti digitali"
+msgstr ""
+
+#: admin/class-admin.php:174
+msgid "Contenuti"
+msgstr ""
+
+#: admin/class-admin-program.php:498
+msgid "Contenuto non valido."
+msgstr ""
+
+#: includes/class-catalog.php:372
+#: templates/my-courses.php:80
+msgid "Continua il corso"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:172
+msgid "Controlla"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:105
+msgid "Copertina"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:177
+#: admin/class-admin.php:95
+#: includes/class-content.php:200
+msgid "Corsi"
+msgstr ""
+
+#: admin/class-admin-content.php:68
+msgid "Corsi della raccolta"
+msgstr ""
+
+#: admin/class-admin.php:143
+msgid "Corsi più guardati (30 giorni)"
+msgstr ""
+
+#: admin/class-admin.php:110
+msgid "Corsi pubblicati"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:205
+#: admin/class-admin-access-debug.php:235
+#: admin/class-admin-content.php:161
+#: admin/class-admin-content.php:554
+#: admin/class-admin-students.php:160
+#: admin/class-admin-students.php:380
+#: admin/class-admin-students.php:457
+#: admin/class-admin.php:149
+#: includes/class-content.php:200
+#: modules/attribution/class-attribution-admin.php:177
+#: modules/teacher-panel/class-teacher-panel.php:239
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:326
+msgid "Corso"
+msgstr ""
+
+#. translators: %d: ID del corso
+#: admin/class-admin-students.php:398
+msgid "Corso eliminato (#%d)"
+msgstr ""
+
+#: admin/class-admin-content.php:557
+msgid "Corso › Modulo"
+msgstr ""
+
+#: templates/course.php:69
+msgid "Cosa imparerai"
+msgstr ""
+
+#: admin/class-admin-content.php:133
+msgid "Cosa si impara"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:47
+msgid "Crea account e continua"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:34
+msgid "Crea il tuo account"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:188
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:131
+msgid "Da liquidare"
+msgstr ""
+
+#: admin/class-admin-program.php:117
+msgid "Dai un titolo al corso e salvalo come bozza: poi qui potrai aggiungere moduli e lezioni."
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:146
+#: modules/teacher-panel/class-teacher-panel.php:216
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:255
+msgid "Dal"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:175
+#: modules/teacher-panel/class-teacher-panel.php:238
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:324
+msgid "Data"
+msgstr ""
+
+#: admin/class-admin-students.php:92
+msgid "Dati non validi: controlla il corso scelto."
+msgstr ""
+
+#: admin/class-admin-content.php:64
+msgid "Dettagli del corso"
+msgstr ""
+
+#: includes/class-rest.php:103
+msgid "Devi accedere per salvare i progressi."
+msgstr ""
+
+#: includes/class-settings.php:273
+msgid "Disinstallazione"
+msgstr ""
+
+#: admin/class-admin-content.php:114
+#: admin/class-admin-content.php:551
+#: includes/class-content.php:252
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:281
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:327
+#: templates/catalog.php:35
+#: templates/course.php:25
+msgid "Docente"
+msgstr ""
+
+#: admin/class-admin.php:98
+#: includes/class-content.php:252
+msgid "Docenti"
+msgstr ""
+
+#: templates/course.php:50
+msgid "Durata"
+msgstr ""
+
+#: admin/class-admin-content.php:202
+msgid "Durata (minuti)"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:248
+#: admin/class-admin-students.php:169
+msgid "Durata in giorni (vuoto = senza scadenza)"
+msgstr ""
+
+#: admin/class-admin-program.php:198
+#: admin/class-admin-program.php:250
+msgid "Elimina"
+msgstr ""
+
+#: admin/class-admin-program.php:95
+msgid "Eliminare questa lezione? Va nel cestino."
+msgstr ""
+
+#: admin/class-admin-program.php:96
+msgid "Eliminare questo modulo e tutte le sue lezioni? Vanno nel cestino."
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:40
+msgid "Email"
+msgstr ""
+
+#: admin/class-admin-students.php:155
+msgid "Email dello studente"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:95
+msgid "Email o newsletter"
+msgstr ""
+
+#: includes/class-account.php:191
+msgid "Email o nome utente"
+msgstr ""
+
+#: templates/login.php:33
+msgid "Email, nome utente o password non corretti. Riprova."
+msgstr ""
+
+#: templates/login.php:29
+#: templates/my-courses.php:29
+msgid "Esci"
+msgstr ""
+
+#: admin/class-admin-content.php:144
+msgid "Escludi questo corso dall'abbonamento (si compra solo a parte)"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:187
+msgid "Esiste già un account con questa email: accedi."
+msgstr ""
+
+#: admin/class-admin-students.php:251
+#: modules/attribution/class-attribution-admin.php:135
+#: modules/teacher-panel/class-teacher-panel.php:221
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:231
+msgid "Esporta CSV"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:182
+msgid "Eventi da attivare su Stripe:"
+msgstr ""
+
+#: admin/class-admin-program.php:532
+msgid "File da scaricare insieme alla lezione (PDF, schede, esercizi). Verranno mostrati solo a chi ha accesso alla lezione."
+msgstr ""
+
+#: includes/class-lesson-view.php:271
+#: includes/class-lesson-view.php:278
+msgid "File non trovato."
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:150
+#: modules/teacher-panel/class-teacher-panel.php:220
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:272
+#: templates/catalog.php:44
+msgid "Filtra"
+msgstr ""
+
+#: admin/class-admin-students.php:384
+msgid "Fine"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:209
+msgid "Fine (UTC)"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:128
+msgid "Fino a 6 link: sito, social, canale. Si accettano solo indirizzi che iniziano con http o https."
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:101
+msgid "Frase di presentazione"
+msgstr ""
+
+#: modules/subscription/templates/subscription-box.php:66
+msgid "Gestisci abbonamento"
+msgstr ""
+
+#: admin/class-admin-students.php:417
+msgid "Gestito dai pagamenti"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:163
+msgid "Giorni di tolleranza"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:165
+msgid "Giorni in più di accesso a un abbonamento attivo se il rinnovo tarda ad arrivare (0-14)."
+msgstr ""
+
+#: modules/attribution/class-attribution.php:93
+msgid "Google"
+msgstr ""
+
+#: modules/subscription/templates/subscription-box.php:18
+msgid "Grazie! Il tuo abbonamento è attivo."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase.php:264
+msgid "Hai già accesso a questo corso."
+msgstr ""
+
+#: modules/subscription/class-subscription.php:191
+#: modules/subscription/templates/subscribe.php:30
+msgid "Hai già un abbonamento attivo."
+msgstr ""
+
+#: templates/actions.php:26
+msgid "Hai già un accesso?"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:49
+msgid "Hai già un account?"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:136
+msgid "Hai inserito una chiave LIVE su un sito di sviluppo: il plugin non la usa. In sviluppo servono solo chiavi di test (sk_test_...)."
+msgstr ""
+
+#: templates/teacher.php:42
+msgid "I suoi corsi"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:160
+msgid "ID del prezzo"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:329
+msgid "IVA"
+msgstr ""
+
+#: admin/class-admin-content.php:218
+msgid "Il collegamento all'account lo gestisce il titolare dell'academy."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:279
+msgid "Il collegamento funziona, ma questo prezzo non è ricorrente: serve un prezzo mensile."
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:140
+msgid "Il cookie di provenienza non si sta salvando: manca il collegamento con il consenso cookie del sito. Chi configura l'academy deve collegarlo con il filtro ael_has_tracking_consent. Finché non c'è consenso, qui compaiono solo i dati inviati dai moduli di pagamento (codice promozionale e \"Come ci hai conosciuto?\")."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-orders.php:328
+msgid "Il corso si sbloccherà appena il pagamento sarà confermato. Lo troverai in \"I miei corsi\"."
+msgstr ""
+
+#: templates/teacher-box.php:18
+msgid "Il docente"
+msgstr ""
+
+#. translators: 1: modulo, 2: motivo
+#: includes/class-settings.php:201
+msgid "Il modulo \"%1$s\" non è stato acceso: %2$s."
+msgstr ""
+
+#. translators: %s: nome del sito
+#: modules/subscription/class-subscription-webhook.php:440
+msgid "Il pagamento del tuo abbonamento a %s non è andato a buon fine"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:63
+msgid "Il pagamento si completa su Stripe, in modo sicuro."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:162
+msgid "Il prezzo mensile creato nel Catalogo prodotti di Stripe."
+msgstr ""
+
+#: templates/actions.php:19
+msgid "Il programma del corso è in preparazione."
+msgstr ""
+
+#: templates/program.php:16
+msgid "Il programma è in preparazione."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:236
+msgid "Il segreto del webhook non ha il formato giusto (whsec_...): non è stato cambiato."
+msgstr ""
+
+#: templates/course-card.php:48
+msgid "Il tuo corso"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-orders.php:350
+msgid "Il tuo corso è pronto."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-orders.php:325
+msgid "Il tuo corso è sbloccato."
+msgstr ""
+
+#. translators: %s: nome del sito
+#: modules/magic-link/class-magic-link.php:292
+msgid "Il tuo link di accesso a %s"
+msgstr ""
+
+#: admin/class-admin-content.php:446
+msgid "Il video non è stato riconosciuto: controlla l'indirizzo e la sorgente scelta."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:258
+msgid "Impostazioni salvate."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:184
+msgid "In prova, su un sito locale, Stripe non può raggiungere l'indirizzo: si usa la Stripe CLI con \"stripe listen --forward-to\" seguito da questo indirizzo."
+msgstr ""
+
+#: admin/class-admin-content.php:201
+msgid "Incolla l'indirizzo del video (o il suo ID). Per YouTube usa i video \"non in elenco\"."
+msgstr ""
+
+#: admin/class-admin-content.php:140
+msgid "Indirizzo del video mostrato a tutti nella scheda del corso."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:156
+msgid "Inizia con sk_test_ (prova) o sk_live_ (reale). Lascia vuoto per non cambiarla."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:159
+msgid "Inizia con whsec_. Lo dà Stripe quando crei il webhook (o il comando \"stripe listen\" in prova). Lascia vuoto per non cambiarlo."
+msgstr ""
+
+#: includes/class-catalog.php:372
+#: templates/my-courses.php:80
+msgid "Inizia il corso"
+msgstr ""
+
+#: admin/class-admin-students.php:383
+msgid "Inizio"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:90
+msgid "Instagram"
+msgstr ""
+
+#: admin/class-admin-content.php:102
+#: includes/class-catalog.php:138
+msgid "Intermedio"
+msgstr ""
+
+#: modules/magic-link/class-magic-link.php:242
+msgid "Inviami il link"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:242
+msgid "L'ID del prezzo non ha il formato giusto (price_...): non è stato cambiato."
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:27
+msgid "L'abbonamento non è ancora disponibile."
+msgstr ""
+
+#: templates/actions.php:21
+msgid "L'accesso a questo corso è riservato agli iscritti."
+msgstr ""
+
+#: modules/subscription/class-subscription-stripe.php:97
+msgid "La chiave segreta di Stripe non è impostata."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:228
+msgid "La chiave segreta non ha il formato giusto (sk_test_... o sk_live_...): non è stata cambiata."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:370
+msgid "La commissione è quella comunicata dal gateway; se non è nota vale 0 e si corregge qui."
+msgstr ""
+
+#. translators: %s: ID della migrazione
+#: includes/class-settings.php:294
+msgid "La migrazione \"%s\" non è riuscita. Le successive non sono state eseguite."
+msgstr ""
+
+#: modules/subscription/class-subscription.php:189
+msgid "La password deve avere almeno 8 caratteri."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:250
+msgid "La percentuale si salva con ogni vendita: cambiarla qui non modifica le vendite già registrate."
+msgstr ""
+
+#: modules/magic-link/class-magic-link.php:239
+msgid "La tua email"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:173
+msgid "La tua scheda docente non è ancora collegata al tuo utente. Chiedi al titolare dell'academy di collegarla."
+msgstr ""
+
+#: modules/teacher-authoring/class-teacher-authoring.php:562
+msgid "La tua scheda docente non è ancora collegata al tuo utente: i tuoi corsi non mostreranno il tuo nome. Chiedi al titolare dell'academy di collegarla."
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:274
+msgid "La tua scheda docente non è collegata."
+msgstr ""
+
+#: includes/class-settings.php:276
+msgid "Lascia spento se non sei sicuro: spegnere un modulo non cancella mai i suoi dati."
+msgstr ""
+
+#: includes/class-settings.php:267
+msgid "Le lezioni segnate come anteprima si vedono senza acquisto"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:108
+#: modules/teacher-panel/class-teacher-panel.php:109
+#: modules/teacher-panel/class-teacher-panel.php:170
+msgid "Le mie vendite"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:165
+#: includes/class-content.php:232
+msgid "Lezione"
+msgstr ""
+
+#: includes/class-rest.php:107
+msgid "Lezione non trovata."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:191
+msgid "Lezione scelta"
+msgstr ""
+
+#: admin/class-admin.php:97
+#: includes/class-content.php:232
+msgid "Lezioni"
+msgstr ""
+
+#: admin/class-admin-students.php:274
+#: admin/class-admin-students.php:458
+msgid "Lezioni completate"
+msgstr ""
+
+#: admin/class-admin.php:112
+msgid "Lezioni completate (30 giorni)"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:120
+msgid "Link"
+msgstr ""
+
+#: modules/magic-link/class-magic-link.php:331
+msgid "Link non valido"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:189
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:132
+msgid "Liquidata"
+msgstr ""
+
+#: admin/class-admin-content.php:127
+#: admin/class-admin-content.php:552
+#: templates/course.php:34
+msgid "Livello"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:283
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:328
+msgid "Lordo"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:272
+msgid "Manca l'ID del prezzo."
+msgstr ""
+
+#: admin/class-admin-students.php:349
+msgid "Manuale"
+msgstr ""
+
+#: templates/lesson.php:44
+msgid "Materiali"
+msgstr ""
+
+#: admin/class-admin-program.php:62
+msgid "Materiali della lezione"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:145
+msgid "Modalità: LIVE (pagamenti reali)"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:144
+msgid "Modalità: TEST (nessun pagamento reale)"
+msgstr ""
+
+#: admin/class-admin-program.php:196
+#: admin/class-admin-program.php:248
+msgid "Modifica"
+msgstr ""
+
+#: admin/class-admin-students.php:365
+msgid "Modifica profilo"
+msgstr ""
+
+#. translators: %s: nome del contenuto
+#: includes/class-content.php:173
+msgid "Modifica: %s"
+msgstr ""
+
+#: admin/class-admin.php:96
+#: includes/class-content.php:216
+#: includes/class-settings.php:215
+msgid "Moduli"
+msgstr ""
+
+#: admin/class-admin-content.php:161
+#: includes/class-content.php:216
+#: includes/class-settings.php:222
+msgid "Modulo"
+msgstr ""
+
+#: modules/esempio-di-prova/boot.php:18
+msgid "Modulo di prova acceso: i suoi file sono stati caricati."
+msgstr ""
+
+#: admin/class-admin-program.php:331
+msgid "Modulo non valido."
+msgstr ""
+
+#: admin/class-admin.php:131
+msgid "Nessun accesso attivo."
+msgstr ""
+
+#: admin/class-admin-students.php:376
+msgid "Nessun accesso concesso."
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:171
+msgid "Nessun acquisto con dati di provenienza nel periodo."
+msgstr ""
+
+#: templates/collection.php:19
+msgid "Nessun corso in questa raccolta per ora."
+msgstr ""
+
+#: templates/teacher.php:44
+msgid "Nessun corso pubblicato per ora."
+msgstr ""
+
+#: templates/catalog.php:52
+msgid "Nessun corso trovato."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:186
+msgid "Nessun corso."
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:158
+msgid "Nessun dato"
+msgstr ""
+
+#: includes/class-content.php:179
+msgid "Nessun elemento nel cestino."
+msgstr ""
+
+#: includes/class-content.php:178
+msgid "Nessun elemento trovato."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:191
+msgid "Nessun evento ricevuto finora."
+msgstr ""
+
+#: includes/class-settings.php:217
+msgid "Nessun modulo disponibile."
+msgstr ""
+
+#: admin/class-admin-students.php:453
+msgid "Nessun progresso registrato."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:148
+msgid "Nessuna concessione di prova da revocare per questa combinazione."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:222
+msgid "Nessuna concessione."
+msgstr ""
+
+#: admin/class-admin-program.php:97
+msgid "Nessuna lezione. Aggiungila qui sotto."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:204
+msgid "Nessuna vendita da liquidare con questi filtri."
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:234
+msgid "Nessuna vendita nel periodo."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:277
+msgid "Nessuna vendita registrata con questi filtri."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:320
+msgid "Nessuna vendita."
+msgstr ""
+
+#: admin/class-admin-students.php:268
+msgid "Nessuno studente trovato."
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:207
+#: modules/teacher-panel/class-teacher-panel.php:240
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:284
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:331
+msgid "Netto"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:124
+msgid "Nome (es. Instagram)"
+msgstr ""
+
+#: admin/class-admin-students.php:263
+msgid "Nome o email"
+msgstr ""
+
+#: admin/class-admin-students.php:353
+msgid "Non ancora iniziato"
+msgstr ""
+
+#: admin/class-admin-content.php:257
+msgid "Non ci sono ancora corsi."
+msgstr ""
+
+#: admin/class-admin-content.php:123
+msgid "Non ci sono ancora docenti: creane uno da Academy → Docenti."
+msgstr ""
+
+#: admin/class-admin-students.php:268
+msgid "Non ci sono ancora studenti con un accesso o dei progressi."
+msgstr ""
+
+#: includes/class-rest.php:110
+msgid "Non hai accesso a questa lezione."
+msgstr ""
+
+#: includes/class-lesson-view.php:268
+msgid "Non hai accesso a questo file."
+msgstr ""
+
+#: templates/my-courses.php:47
+msgid "Non hai ancora nessun corso."
+msgstr ""
+
+#: modules/subscription/class-subscription.php:193
+msgid "Non hai ancora un abbonamento da gestire."
+msgstr ""
+
+#: admin/class-admin-students.php:515
+#: admin/class-admin-students.php:547
+#: admin/class-admin-students.php:577
+#: includes/class-settings.php:336
+#: modules/attribution/class-attribution-admin.php:233
+#: modules/subscription/class-subscription-admin.php:212
+#: modules/subscription/class-subscription-admin.php:266
+#: modules/teacher-panel/class-teacher-panel.php:268
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:92
+msgid "Non hai i permessi per fare questa operazione."
+msgstr ""
+
+#: admin/class-admin-students.php:203
+#: admin/class-admin.php:91
+#: includes/class-settings.php:173
+#: modules/attribution/class-attribution-admin.php:105
+#: modules/subscription/class-subscription-admin.php:115
+#: modules/teacher-panel/class-teacher-panel.php:164
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:179
+msgid "Non hai i permessi per vedere questa pagina."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:74
+msgid "Non hai il permesso di farlo."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:110
+msgid "Non hai il permesso di vedere questa pagina."
+msgstr ""
+
+#: admin/class-admin-students.php:91
+msgid "Non ho trovato nessun utente con quell'email. Crea prima l'utente da Utenti → Aggiungi."
+msgstr ""
+
+#: includes/class-lesson-view.php:224
+msgid "Non sono riuscito a salvare. Riprova."
+msgstr ""
+
+#: modules/subscription/class-subscription.php:192
+msgid "Non è stato possibile avviare il pagamento. Riprova tra poco."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:149
+msgid "Non è stato possibile completare l'operazione."
+msgstr ""
+
+#: admin/class-admin-content.php:170
+msgid "Numero più basso = prima. Più comodo: riordina trascinando dal riquadro \"Programma\" del corso."
+msgstr ""
+
+#: includes/class-content.php:163
+msgid "Nuova"
+msgstr ""
+
+#: includes/class-content.php:163
+msgid "Nuovo"
+msgstr ""
+
+#: includes/class-settings.php:263
+msgid "Ogni docente ha frase di presentazione, copertina, colore e link, e compare nel riquadro \"Il docente\" nelle pagine dei suoi corsi"
+msgstr ""
+
+#: includes/class-settings.php:259
+msgid "Ogni docente ha una pagina pubblica con i suoi corsi"
+msgstr ""
+
+#: modules/magic-link/class-magic-link.php:221
+msgid "Oppure accedi con un link via email"
+msgstr ""
+
+#: includes/class-settings.php:255
+msgid "Opzioni del core"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:176
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:325
+msgid "Ordine"
+msgstr ""
+
+#: admin/class-admin-program.php:421
+#: admin/class-admin-program.php:430
+msgid "Ordine non valido."
+msgstr ""
+
+#: admin/class-admin-program.php:92
+msgid "Ordine salvato."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-orders.php:164
+msgid "Ordine senza account cliente: nessun accesso al corso concesso. Collega l'ordine a un utente e rimettilo su \"Completato\"."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:206
+#: admin/class-admin-access-debug.php:242
+#: admin/class-admin-students.php:381
+msgid "Origine"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:20
+msgid "Pagamento annullato: non ti è stato addebitato nulla."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:129
+msgid "Pagina riservata all'agenzia. Le chiavi si salvano nelle impostazioni del sito e non si mostrano mai per intero."
+msgstr ""
+
+#: templates/catalog.php:60
+msgid "Pagine del catalogo"
+msgstr ""
+
+#: includes/class-settings.php:257
+msgid "Pagine docente"
+msgstr ""
+
+#: admin/class-admin.php:78
+#: admin/class-admin.php:79
+msgid "Panoramica"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:94
+msgid "Passaparola"
+msgstr ""
+
+#: includes/class-account.php:192
+msgid "Password"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:44
+msgid "Password (almeno 8 caratteri)"
+msgstr ""
+
+#: templates/login.php:38
+msgid "Password dimenticata?"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-checkout.php:150
+msgid "Per completare l'acquisto devi spuntare la casella sull'accesso immediato ai contenuti digitali."
+msgstr ""
+
+#: modules/subscription/class-subscription.php:186
+msgid "Per continuare devi spuntare la casella sull'accesso immediato ai contenuti digitali."
+msgstr ""
+
+#: admin/class-admin-students.php:256
+msgid "Per dare un corso in omaggio o con una scadenza. Lo studente deve già avere un utente: si crea da Utenti → Aggiungi."
+msgstr ""
+
+#: templates/lesson.php:87
+msgid "Per vederla serve l'accesso al corso."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:245
+msgid "Percentuale (%)"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:516
+msgid "Percentuale del docente (%)"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:525
+msgid "Percentuale per questo corso (%)"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:239
+msgid "Percentuale predefinita"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:201
+msgid "Percentuale predefinita salvata."
+msgstr ""
+
+#: templates/lesson.php:20
+msgid "Percorso"
+msgstr ""
+
+#: admin/class-admin-program.php:288
+#: admin/class-admin-program.php:487
+msgid "Permesso negato."
+msgstr ""
+
+#: admin/class-admin-content.php:168
+#: admin/class-admin-content.php:555
+#: admin/class-admin-content.php:558
+msgid "Posizione"
+msgstr ""
+
+#. translators: %s: titolo del corso
+#: admin/class-admin-content.php:265
+msgid "Posizione di %s"
+msgstr ""
+
+#: includes/class-catalog.php:748
+msgid "Precedente"
+msgstr ""
+
+#. translators: %s: simbolo della valuta
+#: modules/single-purchase/class-single-purchase.php:296
+msgid "Prezzo (%s)"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:178
+msgid "Primo contatto"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:129
+msgid "Primo contatto: sorgente"
+msgstr ""
+
+#: admin/class-admin-content.php:101
+#: includes/class-catalog.php:137
+msgid "Principiante"
+msgstr ""
+
+#. translators: 1: stato del prodotto, 2: ID del prodotto
+#: modules/single-purchase/class-single-purchase.php:305
+msgid "Prodotto WooCommerce #%2$d (%1$s)."
+msgstr ""
+
+#: templates/course.php:90
+msgid "Programma"
+msgstr ""
+
+#: admin/class-admin-program.php:61
+#: templates/lesson.php:105
+msgid "Programma del corso"
+msgstr ""
+
+#: admin/class-admin-students.php:432
+msgid "Progressi"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:61
+#: admin/class-admin-access-debug.php:62
+#: admin/class-admin-access-debug.php:153
+msgid "Prova accessi"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:55
+msgid "Provenienza"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:54
+#: modules/attribution/class-attribution-admin.php:134
+msgid "Provenienza degli acquisti"
+msgstr ""
+
+#: admin/class-admin-program.php:93
+msgid "Qualcosa non ha funzionato. Ricarica la pagina e riprova."
+msgstr ""
+
+#: templates/lesson.php:86
+msgid "Questa lezione è riservata"
+msgstr ""
+
+#: includes/class-settings.php:188
+msgid "Questa pagina è solo per l'agenzia. Il cliente non la vede: riceve l'academy già configurata."
+msgstr ""
+
+#: admin/class-admin-students.php:93
+msgid "Questo accesso arriva da un pagamento e non si revoca da qui."
+msgstr ""
+
+#: modules/magic-link/class-magic-link.php:330
+msgid "Questo link non è valido o è scaduto. Richiedine uno nuovo dalla pagina di accesso."
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:242
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:333
+msgid "Quota"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:208
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:285
+msgid "Quota da liquidare"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:506
+msgid "Quota del docente"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:507
+msgid "Quota del docente su questo corso"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:240
+msgid "Quota del docente sull'importo netto (senza IVA e commissioni). Si può cambiare per ogni docente e, come eccezione, per ogni corso, dalle loro schede. Chi non ha una percentuale propria usa questa."
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:209
+msgid "Quota già liquidata"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:286
+msgid "Quota liquidata"
+msgstr ""
+
+#: includes/class-content.php:267
+msgid "Raccolta"
+msgstr ""
+
+#: admin/class-admin.php:99
+#: includes/class-content.php:267
+msgid "Raccolte"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:318
+msgid "Registro vendite"
+msgstr ""
+
+#: admin/class-admin-students.php:414
+msgid "Revoca"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:253
+msgid "Revoca (stessa combinazione)"
+msgstr ""
+
+#: admin/class-admin-students.php:410
+msgid "Revocare questo accesso?"
+msgstr ""
+
+#: admin/class-admin-students.php:355
+msgid "Revocato"
+msgstr ""
+
+#: admin/class-admin-program.php:335
+#: admin/class-admin-program.php:396
+msgid "Richiesta non valida."
+msgstr ""
+
+#: includes/class-account.php:193
+msgid "Ricordami"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:275
+msgid "Riepilogo per docente"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:207
+msgid "Riferimento"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:166
+msgid "Rimozione"
+msgstr ""
+
+#: admin/class-admin-program.php:100
+#: admin/class-admin-program.php:540
+#: admin/class-admin-teacher-profile.php:110
+msgid "Rimuovi"
+msgstr ""
+
+#: templates/program.php:41
+msgid "Riservata"
+msgstr ""
+
+#: modules/subscription/class-subscription-stripe.php:133
+msgid "Risposta non valida da Stripe."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:169
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:248
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:354
+msgid "Salva"
+msgstr ""
+
+#: includes/class-settings.php:280
+msgid "Salva configurazione"
+msgstr ""
+
+#: admin/class-admin-program.php:91
+msgid "Salvataggio…"
+msgstr ""
+
+#: includes/class-lesson-view.php:223
+msgid "Salvato"
+msgstr ""
+
+#: admin/class-admin-students.php:354
+msgid "Scaduto"
+msgstr ""
+
+#: admin/class-admin-program.php:98
+msgid "Scegli i materiali"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:109
+msgid "Scegli immagine"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:79
+msgid "Scegli la copertina"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:160
+msgid "Scegli…"
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:57
+msgid "Scheda pubblica"
+msgstr ""
+
+#: includes/class-settings.php:261
+msgid "Schede docente personalizzabili"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:188
+msgid "Scrivi un indirizzo email valido."
+msgstr ""
+
+#: admin/class-admin-program.php:94
+#: admin/class-admin-program.php:322
+msgid "Scrivi un titolo."
+msgstr ""
+
+#: admin/class-admin-content.php:255
+msgid "Scrivi una posizione (1, 2, 3...) accanto ai corsi da includere. Lascia vuoto per escluderli."
+msgstr ""
+
+#. translators: %d: minuti di validità del link
+#: modules/magic-link/class-magic-link.php:228
+msgid "Se l'indirizzo è registrato, ti abbiamo inviato un link. Vale %d minuti e si usa una volta sola."
+msgstr ""
+
+#: includes/class-lesson-view.php:221
+#: templates/lesson.php:59
+msgid "Segna come completata"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:308
+msgid "Segna come liquidate"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:302
+msgid "Segnare come liquidate tutte le vendite da liquidare di questo docente con i filtri attuali? Il pagamento al docente resta da fare fuori dal plugin."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:157
+msgid "Segreto del webhook"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:185
+msgid "Segreto del webhook: impostato."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:185
+msgid "Segreto del webhook: mancante (il webhook rifiuta ogni richiesta)."
+msgstr ""
+
+#. translators: %s: nome dell'utente
+#: templates/login.php:21
+msgid "Sei collegato come %s."
+msgstr ""
+
+#: admin/class-admin-students.php:406
+msgid "Senza scadenza"
+msgstr ""
+
+#: admin/class-admin-content.php:240
+msgid "Serve per il pannello del docente, più avanti. Facoltativo."
+msgstr ""
+
+#: templates/my-courses.php:48
+msgid "Sfoglia il catalogo"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:212
+msgid "Sola lettura. Le quote sono calcolate sull'importo netto (senza IVA e commissioni). Il pagamento delle quote avviene fuori dalla piattaforma."
+msgstr ""
+
+#: admin/class-admin-content.php:190
+msgid "Sorgente"
+msgstr ""
+
+#: includes/class-settings.php:269
+msgid "Sorgenti video"
+msgstr ""
+
+#: admin/class-admin-content.php:111
+msgid "Sottotitolo"
+msgstr ""
+
+#. translators: %s: email con la parte iniziale nascosta
+#: modules/magic-link/class-magic-link.php:343
+msgid "Stai per accedere come %s."
+msgstr ""
+
+#: admin/class-admin-access-debug.php:208
+#: admin/class-admin-students.php:382
+#: includes/class-settings.php:316
+#: modules/teacher-panel/class-teacher-panel.php:243
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:334
+msgid "Stato"
+msgstr ""
+
+#: includes/class-settings.php:283
+msgid "Stato del database"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:190
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:133
+msgid "Stornata"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:287
+msgid "Stornate"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:180
+msgid "Stripe comunica al sito pagamenti, rinnovi e disdette a questo indirizzo:"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:154
+msgid "Strumento per l'agenzia, visibile solo con WP_DEBUG acceso. Non è parte di ciò che vede il cliente."
+msgstr ""
+
+#: admin/class-admin-students.php:272
+#: admin/class-admin-students.php:338
+msgid "Studente"
+msgstr ""
+
+#: admin/class-admin-students.php:58
+#: admin/class-admin-students.php:59
+#: admin/class-admin-students.php:250
+#: admin/class-admin.php:150
+msgid "Studenti"
+msgstr ""
+
+#: admin/class-admin.php:111
+msgid "Studenti con accesso"
+msgstr ""
+
+#: includes/class-catalog.php:749
+msgid "Successiva"
+msgstr ""
+
+#: admin/class-admin-content.php:606
+msgid "Sì"
+msgstr ""
+
+#: includes/class-settings.php:315
+msgid "Tabella"
+msgstr ""
+
+#: admin/class-admin-students.php:275
+#: admin/class-admin-students.php:460
+#: admin/class-admin.php:151
+msgid "Tempo guardato"
+msgstr ""
+
+#: admin/class-admin.php:113
+msgid "Tempo guardato (30 giorni)"
+msgstr ""
+
+#: admin/class-admin-students.php:479
+msgid "Tempo guardato per giorno"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:91
+msgid "TikTok"
+msgstr ""
+
+#: admin/class-admin-program.php:129
+msgid "Titolo del nuovo modulo"
+msgstr ""
+
+#: admin/class-admin-program.php:207
+msgid "Titolo della nuova lezione"
+msgstr ""
+
+#: admin/class-admin-students.php:340
+msgid "Torna all'elenco"
+msgstr ""
+
+#: admin/class-admin-program.php:191
+msgid "Trascina per spostare il modulo"
+msgstr ""
+
+#: admin/class-admin-program.php:242
+msgid "Trascina per spostare la lezione"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:190
+msgid "Troppi tentativi: riprova tra un po'."
+msgstr ""
+
+#: templates/catalog.php:27
+msgid "Tutte le categorie"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:267
+msgid "Tutti gli stati"
+msgstr ""
+
+#: admin/class-admin-students.php:363
+msgid "Tutti gli studenti"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:260
+#: templates/catalog.php:37
+msgid "Tutti i docenti"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:214
+#: admin/class-admin-access-debug.php:237
+#: admin/class-admin-students.php:162
+#: admin/class-admin-students.php:290
+#: admin/class-admin-students.php:393
+msgid "Tutto il catalogo"
+msgstr ""
+
+#: admin/class-admin-students.php:276
+#: admin/class-admin-students.php:461
+msgid "Ultima attività"
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:189
+msgid "Ultimi eventi ricevuti"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:179
+msgid "Ultimo contatto"
+msgstr ""
+
+#: modules/attribution/class-attribution-admin.php:128
+msgid "Ultimo contatto: sorgente"
+msgstr ""
+
+#: admin/class-admin-content.php:135
+msgid "Un punto per riga."
+msgstr ""
+
+#: modules/subscription/class-subscription-stripe.php:100
+msgid "Una chiave live non si usa su un sito di sviluppo."
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:103
+msgid "Una riga breve sotto il nome (massimo 140 caratteri)."
+msgstr ""
+
+#: admin/class-admin-teacher-profile.php:80
+msgid "Usa questa immagine"
+msgstr ""
+
+#: admin/class-admin-program.php:99
+msgid "Usa questi file"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:163
+#: admin/class-admin-access-debug.php:233
+msgid "Utente"
+msgstr ""
+
+#: admin/class-admin-content.php:231
+msgid "Utente collegato"
+msgstr ""
+
+#: admin/class-admin-students.php:339
+msgid "Utente non trovato."
+msgstr ""
+
+#: admin/class-admin.php:139
+msgid "Vai agli studenti"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-orders.php:326
+#: modules/single-purchase/class-single-purchase-orders.php:350
+#: modules/subscription/templates/subscribe.php:31
+#: templates/login.php:28
+msgid "Vai ai tuoi corsi"
+msgstr ""
+
+#: modules/subscription/templates/subscribe.php:61
+msgid "Vai al pagamento"
+msgstr ""
+
+#: modules/magic-link/class-magic-link.php:330
+msgid "Vai alla pagina di accesso"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase.php:282
+msgid "Vendita del corso"
+msgstr ""
+
+#: modules/teacher-panel/class-teacher-panel.php:206
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:282
+msgid "Vendite"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:64
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:65
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:230
+msgid "Vendite e quote"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:592
+msgid "Vendite e quote (30 giorni)"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:203
+msgid "Vendite segnate come liquidate."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:174
+msgid "Verifica il collegamento"
+msgstr ""
+
+#: includes/class-settings.php:223
+msgid "Versione"
+msgstr ""
+
+#. translators: 1: versione del plugin all'ultima migrazione, 2: numero di migrazioni eseguite
+#: includes/class-settings.php:306
+msgid "Versione dati: %1$s. Migrazioni eseguite: %2$d."
+msgstr ""
+
+#: admin/class-admin-content.php:199
+#: admin/class-admin-content.php:559
+#: includes/class-video.php:135
+msgid "Video"
+msgstr ""
+
+#: admin/class-admin-content.php:138
+msgid "Video di anteprima"
+msgstr ""
+
+#: admin/class-admin-content.php:66
+msgid "Video e opzioni"
+msgstr ""
+
+#: admin/class-admin-content.php:206
+msgid "Visibile a tutti, anche senza acquisto (se le anteprime sono attive)"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:196
+msgid "Visitatore non collegato:"
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:516
+msgid "Vuoto = percentuale predefinita."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:525
+msgid "Vuoto = quella del docente (o la predefinita). Serve solo per le eccezioni."
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase.php:298
+msgid "Vuoto o 0 = non in vendita. Il corso si compra solo quando è pubblicato."
+msgstr ""
+
+#: modules/subscription/class-subscription-admin.php:179
+msgid "Webhook"
+msgstr ""
+
+#: modules/attribution/class-attribution.php:92
+msgid "YouTube"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:112
+msgid "al giorno"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:109
+msgid "al mese"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:110
+msgid "all'anno"
+msgstr ""
+
+#: modules/subscription/class-subscription.php:111
+msgid "alla settimana"
+msgstr ""
+
+#: admin/class-admin-program.php:236
+msgid "anteprima gratuita"
+msgstr ""
+
+#. translators: %s: data
+#: modules/subscription/templates/subscription-box.php:48
+msgid "attivo. Si rinnova il %s."
+msgstr ""
+
+#. translators: %s: data
+#: modules/single-purchase/class-single-purchase-checkout.php:193
+msgid "dato il %s (UTC)"
+msgstr ""
+
+#. translators: %s: data
+#: modules/subscription/templates/subscription-box.php:40
+msgid "disdetto. Hai accesso a tutto il catalogo fino al %s."
+msgstr ""
+
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:363
+msgid "già liquidata: da recuperare"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase.php:306
+msgid "in vendita"
+msgstr ""
+
+#: includes/class-settings.php:322
+msgid "manca"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:244
+msgid "manual (manuale)"
+msgstr ""
+
+#: includes/class-stats.php:37
+msgid "meno di 1 min"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:197
+msgid "no"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase.php:306
+msgid "non in vendita"
+msgstr ""
+
+#: modules/single-purchase/class-single-purchase-checkout.php:138
+msgid "obbligatorio"
+msgstr ""
+
+#. translators: %s: data
+#: modules/subscription/templates/subscription-box.php:32
+msgid "pagamento non riuscito. Hai accesso fino al %s: aggiorna la carta per continuare."
+msgstr ""
+
+#: includes/class-settings.php:322
+msgid "presente"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:245
+msgid "purchase (acquisto)"
+msgstr ""
+
+#. translators: %s: data di registrazione
+#: admin/class-admin-students.php:370
+msgid "registrato il %s"
+msgstr ""
+
+#. translators: %s: elenco di moduli
+#: includes/class-settings.php:159
+msgid "richiede i moduli: %s"
+msgstr ""
+
+#. translators: %s: elenco di plugin
+#: includes/class-settings.php:163
+msgid "richiede il plugin attivo: %s"
+msgstr ""
+
+#. translators: %s: importo rimborsato
+#: modules/teacher-revenue/class-teacher-revenue-admin.php:345
+msgid "rimborsati %s"
+msgstr ""
+
+#: admin/class-admin-program.php:227
+msgid "senza video"
+msgstr ""
+
+#: includes/class-settings.php:241
+msgid "solo prova"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:246
+msgid "subscription (abbonamento)"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:197
+msgid "sì (anteprima gratuita)"
+msgstr ""
+
+#: admin/class-admin-content.php:192
+msgid "— Nessun video —"
+msgstr ""
+
+#: admin/class-admin-access-debug.php:167
+msgid "— Nessuna —"
+msgstr ""
+
+#: admin/class-admin-content.php:233
+msgid "— Nessuno —"
+msgstr ""
+
+#: admin/class-admin-content.php:100
+msgid "— Non indicato —"
+msgstr ""
+
+#: admin/class-admin-content.php:117
+#: admin/class-admin-content.php:163
+msgid "— Scegli —"
+msgstr ""
+

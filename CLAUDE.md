@@ -76,6 +76,7 @@ academy-elearning/
 ├── templates/                   ← template sovrascrivibili dal tema
 ├── assets/
 ├── languages/
+├── bin/                         ← script di sviluppo: zip di rilascio e traduzioni (non vanno nello zip)
 ├── docs/
 ├── CHANGELOG.md
 └── CLAUDE.md
