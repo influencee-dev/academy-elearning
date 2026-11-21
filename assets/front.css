@@ -662,3 +662,55 @@
 .ael-format-portrait .ael-card-media {
 	aspect-ratio: 4 / 5;
 }
+
+/* Foto profilo */
+.ael-avatar-box {
+	margin: 0 0 var(--ael-gap);
+	padding: 20px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface-alt);
+}
+
+.ael-avatar-title {
+	margin: 0 0 12px;
+	font-size: 1.1em;
+}
+
+.ael-avatar-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 20px;
+}
+
+.ael-avatar-preview img {
+	display: block;
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.ael-avatar-form {
+	flex: 1 1 260px;
+}
+
+.ael-avatar-help,
+.ael-avatar-message {
+	margin: 0 0 8px;
+	color: var(--ael-muted);
+	font-size: 0.9em;
+}
+
+.ael-avatar-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0;
+}
+
+.ael-avatar-buttons .ael-button {
+	cursor: pointer;
+	padding: 8px 16px;
+}

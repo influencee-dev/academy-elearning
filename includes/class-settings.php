@@ -79,6 +79,7 @@ final class AEL_Settings {
 				'teacher_pages'            => 1,
 				'teacher_profiles'         => 1,
 				'free_previews'            => 1,
+				'user_avatars'             => 1,
 				'content_format'           => 'landscape',
 				'video_sources'            => array( 'youtube', 'vimeo' ),
 				'delete_data_on_uninstall' => 0,
@@ -267,6 +268,10 @@ final class AEL_Settings {
 						<label><input type="checkbox" name="free_previews" value="1" <?php checked( (int) self::get( 'free_previews', 1 ), 1 ); ?>>
 						<?php echo esc_html__( 'Le lezioni segnate come anteprima si vedono senza acquisto', 'academy-elearning' ); ?></label>
 					</td></tr>
+					<tr><th scope="row"><?php echo esc_html__( 'Foto profilo', 'academy-elearning' ); ?></th><td>
+						<label><input type="checkbox" name="user_avatars" value="1" <?php checked( (int) self::get( 'user_avatars', 1 ), 1 ); ?>>
+						<?php echo esc_html__( 'Gli utenti possono caricare la propria foto profilo da "I miei corsi" e dall\'account', 'academy-elearning' ); ?></label>
+					</td></tr>
 					<tr><th scope="row"><?php echo esc_html__( 'Formato dei contenuti', 'academy-elearning' ); ?></th><td>
 						<label><input type="radio" name="content_format" value="landscape" <?php checked( 'portrait' !== self::get( 'content_format', 'landscape' ) ); ?>>
 						<?php echo esc_html__( 'Orizzontale (16:9)', 'academy-elearning' ); ?></label><br>
@@ -360,6 +365,7 @@ final class AEL_Settings {
 			'teacher_pages'            => empty( $_POST['teacher_pages'] ) ? 0 : 1,
 			'teacher_profiles'         => empty( $_POST['teacher_profiles'] ) ? 0 : 1,
 			'free_previews'            => empty( $_POST['free_previews'] ) ? 0 : 1,
+			'user_avatars'             => empty( $_POST['user_avatars'] ) ? 0 : 1,
 			'content_format'           => ( isset( $_POST['content_format'] ) && 'portrait' === sanitize_key( wp_unslash( $_POST['content_format'] ) ) ) ? 'portrait' : 'landscape',
 			'video_sources'            => array_values( array_intersect( array( 'youtube', 'vimeo' ), $video ) ),
 			'delete_data_on_uninstall' => empty( $_POST['delete_data_on_uninstall'] ) ? 0 : 1,
