@@ -96,3 +96,9 @@ Solo **corsi singoli**, con docenti singoli che ricevono una quota. Moduli acces
 - Il lettore video riprende dall'ultima posizione anche a lezione completata; la scheda corso mostra la barra dei progressi.
 - Tema Influencee: verde acido su numeri, prezzi, badge e riquadro docente; intestazione con pulsante "Accedi" come
   influencee.it. Repository del tema da collegare (`influencee-dev/academy-theme-influencee`).
+
+## Tutorial per i docenti (21/11/2026)
+
+Uno solo per tutte le academy: guida scritta `docs/GUIDA-DOCENTI.md` (con PDF `docs/tutorial-docenti/Guida-docenti.pdf`) e video
+(sorgente in `docs/tutorial-docenti/video/`, testo per la voce in `VOCE.md`). Come rifarli se il plugin cambia: `docs/tutorial-docenti/README.md`.
+Sul sito di prova esiste un docente di esempio ("Elena Esempio", utente `docente.esempio`) usato per le schermate.

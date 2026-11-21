@@ -123,16 +123,16 @@ final class AEL_Admin_Teacher_Profile {
 				<td>
 					<?php for ( $i = 0; $i < AEL_Teacher_Profile::MAX_CHANNELS; $i++ ) : ?>
 						<?php $channel = $channels[ $i ] ?? array(); ?>
-						<p>
-							<select name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][platform]">
+						<p style="display:flex;gap:6px;align-items:center;margin:0 0 6px">
+							<select style="width:115px;flex:0 0 auto" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][platform]">
 								<?php foreach ( AEL_Teacher_Profile::platforms() as $key => $label ) : ?>
 									<option value="<?php echo esc_attr( (string) $key ); ?>" <?php selected( $channel['platform'] ?? 'instagram', $key ); ?>><?php echo esc_html( $label ); ?></option>
 								<?php endforeach; ?>
 							</select>
-							<input type="text" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][handle]" placeholder="<?php echo esc_attr__( '@profilo', 'academy-elearning' ); ?>" value="<?php echo esc_attr( $channel['handle'] ?? '' ); ?>" class="regular-text" style="width:150px">
-							<input type="url" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][url]" placeholder="https://" value="<?php echo esc_attr( $channel['url'] ?? '' ); ?>" class="regular-text" style="width:220px">
-							<input type="text" inputmode="numeric" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][followers]" placeholder="<?php echo esc_attr__( 'Follower', 'academy-elearning' ); ?>" value="<?php echo esc_attr( isset( $channel['followers'] ) && $channel['followers'] > 0 ? (string) $channel['followers'] : '' ); ?>" class="small-text" style="width:100px">
-							<input type="text" inputmode="decimal" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][engagement]" placeholder="<?php echo esc_attr__( 'Engagement %', 'academy-elearning' ); ?>" value="<?php echo esc_attr( isset( $channel['engagement'] ) && $channel['engagement'] > 0 ? (string) $channel['engagement'] : '' ); ?>" class="small-text" style="width:110px">
+							<input type="text" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][handle]" placeholder="<?php echo esc_attr__( '@profilo', 'academy-elearning' ); ?>" value="<?php echo esc_attr( $channel['handle'] ?? '' ); ?>" class="regular-text" style="width:130px;flex:0 0 auto">
+							<input type="url" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][url]" placeholder="https://" value="<?php echo esc_attr( $channel['url'] ?? '' ); ?>" class="regular-text" style="flex:1 1 150px;min-width:0">
+							<input type="text" inputmode="numeric" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][followers]" placeholder="<?php echo esc_attr__( 'Follower', 'academy-elearning' ); ?>" value="<?php echo esc_attr( isset( $channel['followers'] ) && $channel['followers'] > 0 ? (string) $channel['followers'] : '' ); ?>" class="small-text" style="width:90px;flex:0 0 auto">
+							<input type="text" inputmode="decimal" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][engagement]" placeholder="<?php echo esc_attr__( 'Engagement %', 'academy-elearning' ); ?>" value="<?php echo esc_attr( isset( $channel['engagement'] ) && $channel['engagement'] > 0 ? (string) $channel['engagement'] : '' ); ?>" class="small-text" style="width:100px;flex:0 0 auto">
 						</p>
 					<?php endfor; ?>
 					<p><label for="ael_stats_date"><?php echo esc_html__( 'Numeri aggiornati a', 'academy-elearning' ); ?></label>

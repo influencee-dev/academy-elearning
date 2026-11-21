@@ -1,0 +1,1 @@
+{"name":"capture-tutorial-docenti","private":true,"version":"1.0.0","description":"Schermate della guida per i docenti (solo sviluppo, non va nello zip)","dependencies":{"marked":"^18.2.1","puppeteer-core":"^25.18.1"}}
