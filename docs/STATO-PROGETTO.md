@@ -102,3 +102,9 @@ Solo **corsi singoli**, con docenti singoli che ricevono una quota. Moduli acces
 Uno solo per tutte le academy: guida scritta `docs/GUIDA-DOCENTI.md` (con PDF `docs/tutorial-docenti/Guida-docenti.pdf`) e video
 (sorgente in `docs/tutorial-docenti/video/`, testo per la voce in `VOCE.md`). Come rifarli se il plugin cambia: `docs/tutorial-docenti/README.md`.
 Sul sito di prova esiste un docente di esempio ("Elena Esempio", utente `docente.esempio`) usato per le schermate.
+
+## Scadenza di lunedì 23/11/2026 (decisione del 21/11)
+
+L'academy di Influencee deve essere terminata e messa online lunedì 23/11; sabato e domenica non si lavora. I pagamenti passano dallo
+Stripe di Partidea (plugin ufficiale WooCommerce Stripe Payment Gateway, chiavi live solo nelle sue impostazioni). Il piano di lunedì,
+con chi fa cosa (io, tu, altri), è nel doc "Piano di lunedì: Academy Influencee"; i passaggi tecnici sono in `docs/MESSA-ONLINE.md`.
