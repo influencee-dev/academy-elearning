@@ -59,10 +59,24 @@ final class AEL_Catalog {
 		// Priorità 20: dopo blocchi, paragrafi e shortcode, così $content è già pronto.
 		add_filter( 'the_content', array( $this, 'filter_content' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
+		add_filter( 'body_class', array( __CLASS__, 'body_class' ) );
 		add_action( 'ael_program_changed', array( __CLASS__, 'flush_cache' ) );
 		// Se le concessioni cambiano durante la richiesta, l'accesso nel programma va ricalcolato.
 		add_action( 'ael_grant_saved', array( __CLASS__, 'flush_cache' ) );
 		add_action( 'ael_grant_revoked', array( __CLASS__, 'flush_cache' ) );
+	}
+
+	/**
+	 * Aggiunge alla pagina la classe del formato dei contenuti (verticale o orizzontale),
+	 * così lo stile cambia senza toccare i template.
+	 *
+	 * @param string[] $classes Classi del body.
+	 * @return string[]
+	 */
+	public static function body_class( $classes ): array {
+		$classes   = (array) $classes;
+		$classes[] = 'portrait' === AEL_Settings::get( 'content_format', 'landscape' ) ? 'ael-format-portrait' : 'ael-format-landscape';
+		return $classes;
 	}
 
 	/**
@@ -527,7 +541,7 @@ final class AEL_Catalog {
 				'courses' => $query->posts,
 				'cards'   => $this->cards( $query->posts ),
 				'profile' => AEL_Teacher_Profile::get( $teacher->ID ),
-				'photo'   => get_the_post_thumbnail( $teacher, 'medium' ),
+				'photo'   => get_the_post_thumbnail( $teacher, 'large' ),
 			)
 		);
 	}

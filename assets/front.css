@@ -527,3 +527,138 @@
 	margin: 0;
 	font-weight: 700;
 }
+
+/* Pagina del docente: foto, numeri e canali */
+.ael-teacher-head {
+	align-items: flex-start;
+	gap: calc(var(--ael-gap) * 1.5);
+	flex-wrap: wrap;
+}
+
+.ael-teacher-photo {
+	flex: 0 0 280px;
+	max-width: 100%;
+}
+
+.ael-teacher-photo img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 5;
+	border-radius: var(--ael-radius);
+	object-fit: cover;
+}
+
+.ael-teacher-info {
+	flex: 1 1 320px;
+	min-width: 0;
+}
+
+.ael-teacher-info .ael-teacher-tagline {
+	font-size: 1.2em;
+	margin-bottom: 16px;
+}
+
+.ael-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 0 0 var(--ael-gap);
+	padding: 0;
+	list-style: none;
+}
+
+.ael-stats li {
+	display: flex;
+	flex-direction: column;
+	min-width: 120px;
+	padding: 14px 18px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface-alt);
+}
+
+.ael-stat-num {
+	font-size: 1.8em;
+	font-weight: 800;
+	line-height: 1.1;
+}
+
+.ael-stat-label {
+	color: var(--ael-muted);
+	font-size: 0.85em;
+}
+
+.ael-stats--compact {
+	margin: 12px 0 0;
+}
+
+.ael-stats--compact li {
+	min-width: 0;
+	flex: 1 1 0;
+	padding: 10px 12px;
+}
+
+.ael-stats--compact .ael-stat-num {
+	font-size: 1.3em;
+}
+
+.ael-channels {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ael-channel {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 16px 18px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface);
+}
+
+.ael-channel-platform {
+	color: var(--ael-muted);
+	font-size: 0.8em;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.ael-channel-handle {
+	font-weight: 700;
+	overflow-wrap: anywhere;
+}
+
+.ael-channel-numbers {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 14px;
+	color: var(--ael-muted);
+	font-size: 0.9em;
+}
+
+.ael-channel-numbers strong {
+	color: var(--ael-text, inherit);
+}
+
+.ael-stats-date {
+	margin: 12px 0 0;
+	color: var(--ael-muted);
+	font-size: 0.85em;
+}
+
+/* Formato verticale (9:16), attivato dalla Configurazione */
+.ael-format-portrait .ael-video {
+	width: min(100%, 400px, calc(75vh * 9 / 16));
+	aspect-ratio: 9 / 16;
+	margin-inline: auto;
+}
+
+.ael-format-portrait .ael-card-media {
+	aspect-ratio: 4 / 5;
+}

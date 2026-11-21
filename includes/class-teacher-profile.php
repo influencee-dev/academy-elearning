@@ -22,6 +22,113 @@ final class AEL_Teacher_Profile {
 	public const MAX_LINKS = 6;
 
 	/**
+	 * Quanti canali social al massimo.
+	 */
+	public const MAX_CHANNELS = 6;
+
+	/**
+	 * Piattaforme disponibili (chiave => nome).
+	 *
+	 * @return array<string, string>
+	 */
+	public static function platforms(): array {
+		/**
+		 * Piattaforme social tra cui scegliere per i canali di un docente.
+		 *
+		 * @param array $platforms chiave => nome.
+		 */
+		return (array) apply_filters(
+			'ael_teacher_platforms',
+			array(
+				'instagram' => 'Instagram',
+				'tiktok'    => 'TikTok',
+				'youtube'   => 'YouTube',
+				'facebook'  => 'Facebook',
+				'linkedin'  => 'LinkedIn',
+				'twitch'    => 'Twitch',
+				'x'         => 'X',
+				'altro'     => __( 'Altro', 'academy-elearning' ),
+			)
+		);
+	}
+
+	/**
+	 * Canali social ripuliti: piattaforma nota, nome del profilo, indirizzo
+	 * http/https, follower (intero) ed engagement rate (da 0 a 100). Si scarta
+	 * la riga senza profilo e senza indirizzo.
+	 *
+	 * @param mixed $raw Dati grezzi (array di array).
+	 * @return array<int, array{platform: string, handle: string, url: string, followers: int, engagement: float}>
+	 */
+	public static function clean_channels( $raw ): array {
+		$out       = array();
+		$platforms = self::platforms();
+		if ( ! is_array( $raw ) ) {
+			return $out;
+		}
+		foreach ( $raw as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
+			}
+			$platform = sanitize_key( (string) ( $item['platform'] ?? '' ) );
+			if ( ! isset( $platforms[ $platform ] ) ) {
+				$platform = 'altro';
+			}
+			$handle = sanitize_text_field( (string) ( $item['handle'] ?? '' ) );
+			$url    = esc_url_raw( trim( (string) ( $item['url'] ?? '' ) ), array( 'http', 'https' ) );
+			if ( '' === $handle && '' === $url ) {
+				continue;
+			}
+			$followers  = max( 0, (int) preg_replace( '/\D+/', '', (string) ( $item['followers'] ?? '' ) ) );
+			$engagement = (float) str_replace( ',', '.', (string) preg_replace( '/[^0-9,.]/', '', (string) ( $item['engagement'] ?? '' ) ) );
+			$out[]      = array(
+				'platform'   => $platform,
+				'handle'     => mb_substr( $handle, 0, 60 ),
+				'url'        => $url,
+				'followers'  => min( $followers, 2000000000 ),
+				'engagement' => round( max( 0.0, min( 100.0, $engagement ) ), 2 ),
+			);
+			if ( count( $out ) >= self::MAX_CHANNELS ) {
+				break;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Numero in forma breve: 950, 12,5K, 1,2M.
+	 *
+	 * @param int $number Numero.
+	 */
+	public static function format_count( int $number ): string {
+		if ( $number >= 1000000 ) {
+			return self::trim_decimal( number_format_i18n( round( $number / 1000000, 1 ), 1 ) ) . 'M';
+		}
+		if ( $number >= 10000 ) {
+			return self::trim_decimal( number_format_i18n( round( $number / 1000, 1 ), 1 ) ) . 'K';
+		}
+		return number_format_i18n( $number );
+	}
+
+	/**
+	 * Toglie il decimale se è zero (183,0 diventa 183).
+	 *
+	 * @param string $formatted Numero già formattato con un decimale.
+	 */
+	private static function trim_decimal( string $formatted ): string {
+		return (string) preg_replace( '/[.,]0$/', '', $formatted );
+	}
+
+	/**
+	 * Percentuale in forma leggibile (es. 4,8%).
+	 *
+	 * @param float $rate Valore da 0 a 100.
+	 */
+	public static function format_rate( float $rate ): string {
+		return number_format_i18n( $rate, 1 ) . '%';
+	}
+
+	/**
 	 * La personalizzazione è accesa?
 	 */
 	public static function enabled(): bool {
@@ -123,6 +230,10 @@ final class AEL_Teacher_Profile {
 			'accent'    => '',
 			'style'     => '',
 			'links'     => array(),
+			'channels'        => array(),
+			'total_followers' => 0,
+			'engagement'      => 0.0,
+			'stats_date'      => '',
 		);
 		if ( ! self::enabled() || AEL_Content::TEACHER !== get_post_type( $teacher_id ) ) {
 			return $empty;
@@ -132,12 +243,29 @@ final class AEL_Teacher_Profile {
 		$cover_url = ( $cover_id && 'attachment' === get_post_type( $cover_id ) ) ? (string) wp_get_attachment_image_url( $cover_id, 'large' ) : '';
 		$accent    = self::clean_color( (string) get_post_meta( $teacher_id, '_ael_accent', true ) );
 
+		$channels = self::clean_channels( get_post_meta( $teacher_id, '_ael_channels', true ) );
+		$total    = 0;
+		$weighted = 0.0;
+		$weight   = 0;
+		foreach ( $channels as $channel ) {
+			$total += $channel['followers'];
+			if ( $channel['engagement'] > 0 && $channel['followers'] > 0 ) {
+				$weighted += $channel['engagement'] * $channel['followers'];
+				$weight   += $channel['followers'];
+			}
+		}
+
 		return array(
-			'tagline'   => (string) get_post_meta( $teacher_id, '_ael_tagline', true ),
-			'cover_url' => $cover_url,
-			'accent'    => $accent,
-			'style'     => self::style_for( $accent ),
-			'links'     => self::clean_links( get_post_meta( $teacher_id, '_ael_links', true ) ),
+			'tagline'         => (string) get_post_meta( $teacher_id, '_ael_tagline', true ),
+			'cover_url'       => $cover_url,
+			'accent'          => $accent,
+			'style'           => self::style_for( $accent ),
+			'links'           => self::clean_links( get_post_meta( $teacher_id, '_ael_links', true ) ),
+			'channels'        => $channels,
+			'total_followers' => $total,
+			// Engagement medio dei canali, pesato sui follower.
+			'engagement'      => $weight > 0 ? round( $weighted / $weight, 1 ) : 0.0,
+			'stats_date'      => (string) get_post_meta( $teacher_id, '_ael_stats_date', true ),
 		);
 	}
 }

@@ -95,6 +95,8 @@ final class AEL_Admin_Teacher_Profile {
 		$cover    = ( $cover_id && 'attachment' === get_post_type( $cover_id ) ) ? (string) wp_get_attachment_image_url( $cover_id, 'medium' ) : '';
 		$accent   = AEL_Teacher_Profile::clean_color( (string) get_post_meta( $post->ID, '_ael_accent', true ) );
 		$links    = AEL_Teacher_Profile::clean_links( get_post_meta( $post->ID, '_ael_links', true ) );
+		$channels = AEL_Teacher_Profile::clean_channels( get_post_meta( $post->ID, '_ael_channels', true ) );
+		$stats_date = (string) get_post_meta( $post->ID, '_ael_stats_date', true );
 		?>
 		<p class="description"><?php echo esc_html__( 'Come appare la pagina pubblica del docente e il riquadro "Il docente" nelle pagine dei suoi corsi. Nome, foto e descrizione sono quelli del contenuto qui sopra e dell\'immagine in evidenza.', 'academy-elearning' ); ?></p>
 		<table class="form-table" role="presentation"><tbody>
@@ -115,6 +117,27 @@ final class AEL_Admin_Teacher_Profile {
 					<input type="color" id="ael_accent_picker" value="<?php echo esc_attr( '' !== $accent ? $accent : '#1d4ed8' ); ?>">
 					<input type="text" id="ael_accent" name="ael_accent" class="small-text" maxlength="7" placeholder="#RRGGBB" value="<?php echo esc_attr( $accent ); ?>">
 					<p class="description"><?php echo esc_html__( 'Colore di pulsanti ed evidenze nelle pagine di questo docente e dei suoi corsi. Vuoto = il colore dell\'academy.', 'academy-elearning' ); ?></p>
+				</td></tr>
+
+			<tr><th><?php echo esc_html__( 'Canali e numeri', 'academy-elearning' ); ?></th>
+				<td>
+					<?php for ( $i = 0; $i < AEL_Teacher_Profile::MAX_CHANNELS; $i++ ) : ?>
+						<?php $channel = $channels[ $i ] ?? array(); ?>
+						<p>
+							<select name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][platform]">
+								<?php foreach ( AEL_Teacher_Profile::platforms() as $key => $label ) : ?>
+									<option value="<?php echo esc_attr( (string) $key ); ?>" <?php selected( $channel['platform'] ?? 'instagram', $key ); ?>><?php echo esc_html( $label ); ?></option>
+								<?php endforeach; ?>
+							</select>
+							<input type="text" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][handle]" placeholder="<?php echo esc_attr__( '@profilo', 'academy-elearning' ); ?>" value="<?php echo esc_attr( $channel['handle'] ?? '' ); ?>" class="regular-text" style="width:150px">
+							<input type="url" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][url]" placeholder="https://" value="<?php echo esc_attr( $channel['url'] ?? '' ); ?>" class="regular-text" style="width:220px">
+							<input type="text" inputmode="numeric" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][followers]" placeholder="<?php echo esc_attr__( 'Follower', 'academy-elearning' ); ?>" value="<?php echo esc_attr( isset( $channel['followers'] ) && $channel['followers'] > 0 ? (string) $channel['followers'] : '' ); ?>" class="small-text" style="width:100px">
+							<input type="text" inputmode="decimal" name="ael_channels[<?php echo esc_attr( (string) $i ); ?>][engagement]" placeholder="<?php echo esc_attr__( 'Engagement %', 'academy-elearning' ); ?>" value="<?php echo esc_attr( isset( $channel['engagement'] ) && $channel['engagement'] > 0 ? (string) $channel['engagement'] : '' ); ?>" class="small-text" style="width:110px">
+						</p>
+					<?php endfor; ?>
+					<p><label for="ael_stats_date"><?php echo esc_html__( 'Numeri aggiornati a', 'academy-elearning' ); ?></label>
+						<input type="text" id="ael_stats_date" name="ael_stats_date" maxlength="40" placeholder="<?php echo esc_attr__( 'es. novembre 2026', 'academy-elearning' ); ?>" value="<?php echo esc_attr( $stats_date ); ?>"></p>
+					<p class="description"><?php echo esc_html__( 'Fino a 6 canali. I numeri si scrivono a mano: follower (es. 125000) ed engagement rate in percentuale (es. 4,8). Nella pagina del docente compaiono i follower totali e l\'engagement medio, calcolato sui follower di ogni canale.', 'academy-elearning' ); ?></p>
 				</td></tr>
 
 			<tr><th><?php echo esc_html__( 'Link', 'academy-elearning' ); ?></th>
@@ -162,5 +185,13 @@ final class AEL_Admin_Teacher_Profile {
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$raw_links = isset( $_POST['ael_links'] ) && is_array( $_POST['ael_links'] ) ? wp_unslash( $_POST['ael_links'] ) : array();
 		update_post_meta( $post_id, '_ael_links', AEL_Teacher_Profile::clean_links( $raw_links ) );
+
+		// Ogni canale è ripulito da clean_channels() (piattaforma nota, indirizzi http/https, numeri).
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$raw_channels = isset( $_POST['ael_channels'] ) && is_array( $_POST['ael_channels'] ) ? wp_unslash( $_POST['ael_channels'] ) : array();
+		update_post_meta( $post_id, '_ael_channels', AEL_Teacher_Profile::clean_channels( $raw_channels ) );
+
+		$stats_date = isset( $_POST['ael_stats_date'] ) ? sanitize_text_field( wp_unslash( $_POST['ael_stats_date'] ) ) : '';
+		update_post_meta( $post_id, '_ael_stats_date', mb_substr( $stats_date, 0, 40 ) );
 	}
 }

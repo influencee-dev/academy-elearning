@@ -86,3 +86,13 @@ Da decidere: tema a blocchi (come Twenty Twenty-Five) o classico, e nome del rep
 Solo **corsi singoli**, con docenti singoli che ricevono una quota. Moduli accesi: `single-purchase`,
 `teacher-revenue`, `teacher-panel`, `teacher-authoring`, `attribution`, `magic-link`. Modulo `subscription` **spento**
 (il tema non ha menu, pulsanti né sezioni sull'abbonamento). Lo spegnimento sul sito di prova è del 21/11.
+
+## Novità del 21/11/2026 (valgono per tutte le academy)
+
+- **Formato dei contenuti** (Configurazione → Opzioni del core): orizzontale 16:9 oppure verticale 9:16. Influencee usa il
+  verticale (lo ha impostato l'agenzia sul sito di prova).
+- **Schede docente con i numeri**: canali social con follower ed engagement rate, data di aggiornamento, foto grande.
+  I numeri si scrivono a mano nella scheda del docente (Academy → Docenti → Canali e numeri).
+- Il lettore video riprende dall'ultima posizione anche a lezione completata; la scheda corso mostra la barra dei progressi.
+- Tema Influencee: verde acido su numeri, prezzi, badge e riquadro docente; intestazione con pulsante "Accedi" come
+  influencee.it. Repository del tema da collegare (`influencee-dev/academy-theme-influencee`).

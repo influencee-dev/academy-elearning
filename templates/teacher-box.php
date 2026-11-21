@@ -33,6 +33,16 @@ $bio     = wp_trim_words( wp_strip_all_tags( (string) $teacher_box['teacher']->p
 			<?php endif; ?>
 		</div>
 	</div>
+	<?php if ( $profile['total_followers'] > 0 || $profile['engagement'] > 0 ) : ?>
+		<ul class="ael-stats ael-stats--compact">
+			<?php if ( $profile['total_followers'] > 0 ) : ?>
+				<li><span class="ael-stat-num"><?php echo esc_html( AEL_Teacher_Profile::format_count( (int) $profile['total_followers'] ) ); ?></span><span class="ael-stat-label"><?php echo esc_html__( 'Follower', 'academy-elearning' ); ?></span></li>
+			<?php endif; ?>
+			<?php if ( $profile['engagement'] > 0 ) : ?>
+				<li><span class="ael-stat-num"><?php echo esc_html( AEL_Teacher_Profile::format_rate( (float) $profile['engagement'] ) ); ?></span><span class="ael-stat-label"><?php echo esc_html__( 'Engagement', 'academy-elearning' ); ?></span></li>
+			<?php endif; ?>
+		</ul>
+	<?php endif; ?>
 	<?php if ( '' !== $bio ) : ?>
 		<p class="ael-teacher-box-bio"><?php echo esc_html( $bio ); ?></p>
 	<?php endif; ?>
