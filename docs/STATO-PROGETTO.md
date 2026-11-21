@@ -25,7 +25,8 @@ non è stato toccato). Versione nel codice: 0.1.0 (si porta a 1.0.0 alla chiusur
 
 ## Cosa resta da fare
 
-1. **Parte estetica per Specialty (entro il 30/11)**: tema dell'academy in un repository separato (vedi sotto).
+1. **Parte estetica: prima l'academy di Influencee (entro il 30/11)**: tema dell'academy in un repository separato
+   (vedi sotto). Decisione del 21/11/2026: Specialty è rimandata, si parte da Influencee.
 2. **Collaudo finale**: giro completo con `docs/PROVE-MANUALI.md`, meglio su un sito pulito con lo zip.
 3. **Chiusura**: versione 1.0.0 (`academy-elearning.php`, `AEL_VERSION`, intestazione del CHANGELOG), rifare lo zip
    con `bin\build-zip.ps1`, togliere il consenso cookie di prova dal sito locale, unire `feature/core-base` a `main`
@@ -33,7 +34,16 @@ non è stato toccato). Versione nel codice: 0.1.0 (si porta a 1.0.0 alla chiusur
 4. **Installazione reale** su Specialty: guida in `docs/GUIDA-AGENZIA.md` (chiavi Stripe del cliente, WooCommerce,
    consenso cookie collegato al loro banner, webhook vero).
 
-## Tema di Specialty (da fare)
+## Tema dell'academy di Influencee (da fare per primo; Specialty dopo)
+
+Brand di Influencee: fondo bianco, nero `#0A0A0A`, magenta `#E6007E`, verde acido `#C7F000` (solo su nero), grigi
+`#F6F6F6` / `#E4E4E4` / `#6B6B6B`, font Manrope, angoli arrotondati, etichette a pillola, una parola d'accento
+per titolo. Logo: solo i file ufficiali (mai su magenta, mai ricolorato). Tema figlio di Twenty Twenty-Five, nome
+`academy-influencee`.
+
+Le indicazioni qui sotto valgono per qualsiasi academy (anche Specialty, più avanti).
+
+## Tema di un'academy (regole generali)
 
 Regola di progetto: la grafica sta in un **tema separato per ogni academy**, in un repository a parte; il plugin non
 contiene mai nulla di una singola academy. Il plugin offre:

@@ -6,7 +6,7 @@ Questo file contiene le regole fisse del progetto. Rileggilo all'inizio di ogni 
 
 Un plugin WordPress che trasforma un sito in una piattaforma di corsi online (academy). Si installa su un WordPress dedicato, su un sottodominio del tipo `academy.[dominio]`.
 
-Il plugin è **uno solo** e serve più academy (la nostra e quelle dei clienti, la prima è Specialty). Noi (l'agenzia) lo configuriamo in WordPress prima della consegna, accendendo le funzioni previste dal pacchetto di quel cliente, e lo vestiamo con un tema proprio dell'academy. Il cliente riceve l'academy finita: non decide quali funzioni attivare. Il codice del plugin non contiene mai nulla di specifico di una singola academy.
+Il plugin è **uno solo** e serve più academy (la nostra e quelle dei clienti, la prima è quella di Influencee, poi Specialty). Noi (l'agenzia) lo configuriamo in WordPress prima della consegna, accendendo le funzioni previste dal pacchetto di quel cliente, e lo vestiamo con un tema proprio dell'academy. Il cliente riceve l'academy finita: non decide quali funzioni attivare. Il codice del plugin non contiene mai nulla di specifico di una singola academy.
 
 Documenti di riferimento, nella cartella `docs/`:
 
