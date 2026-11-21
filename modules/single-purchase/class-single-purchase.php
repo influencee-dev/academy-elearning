@@ -62,10 +62,52 @@ final class AEL_Single_Purchase {
 		add_action( 'template_redirect', array( $this, 'redirect_product_page' ) );
 		add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'block_if_owned' ), 10, 2 );
 
+		// Qui si vendono corsi, non c'è un negozio: "Torna al negozio" e la pagina negozio portano al catalogo.
+		add_filter( 'woocommerce_return_to_shop_redirect', array( $this, 'catalog_redirect' ) );
+		add_filter( 'woocommerce_continue_shopping_redirect', array( $this, 'catalog_redirect' ) );
+		add_filter( 'woocommerce_return_to_shop_text', array( $this, 'return_text' ) );
+		add_filter( 'woocommerce_get_shop_page_permalink', array( $this, 'catalog_redirect' ) );
+		add_action( 'template_redirect', array( $this, 'redirect_shop_page' ), 9 );
+		// I corsi non sono file da scaricare: la voce "Download" dell'account non serve.
+		add_filter(
+			'woocommerce_account_menu_items',
+			static function ( $items ) {
+				if ( is_array( $items ) ) {
+					unset( $items['downloads'] );
+				}
+				return $items;
+			},
+			30
+		);
+
 		// Prezzo e pulsante nelle pagine del corso.
 		add_filter( 'ael_course_actions', array( $this, 'add_buy_action' ), 20, 4 );
 		add_action( 'ael_course_side_top', array( $this, 'print_price' ) );
 		add_action( 'ael_course_card_footer', array( $this, 'print_price_small' ) );
+	}
+
+	/**
+	 * Indirizzo del catalogo corsi, al posto della pagina negozio di WooCommerce.
+	 */
+	public function catalog_redirect(): string {
+		return AEL_Catalog::catalog_url();
+	}
+
+	/**
+	 * Testo del pulsante "Torna al negozio" nel carrello vuoto.
+	 */
+	public function return_text(): string {
+		return __( 'Torna al catalogo', 'academy-elearning' );
+	}
+
+	/**
+	 * Chi apre la pagina negozio (o l'archivio prodotti) va al catalogo corsi.
+	 */
+	public function redirect_shop_page(): void {
+		if ( function_exists( 'is_shop' ) && ( is_shop() || is_post_type_archive( 'product' ) ) ) {
+			wp_safe_redirect( AEL_Catalog::catalog_url(), 302 );
+			exit;
+		}
 	}
 
 	/* ------------------------------------------------------------------ */
