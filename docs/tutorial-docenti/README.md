@@ -35,3 +35,14 @@ Se una schermata cambia (un nome, un pulsante), si rifanno schermate, PDF e vide
 - Controlla che il testo del video e della guida corrisponda a quello che il plugin fa in quel momento (per esempio: il docente non
   imposta il prezzo e non pubblica da solo).
 - Il video non ha la voce: ha le didascalie. Se si aggiunge la voce, il testo è in `VOCE.md`.
+
+## Demo in un solo file HTML (per mostrare l'academy a chi non ha accesso al sito)
+
+`capture/build-demo.mjs` salva le pagine vere del sito di prova (home, catalogo, corso, docente, iscrizione, accesso, carrello,
+pagamento, I miei corsi, account) in un unico file HTML che si apre da qualsiasi browser, anche da telefono e senza internet.
+Le pagine sono collegate, il menu a tre righe funziona, l'iscrizione, l'accesso e l'acquisto sono simulati e nessun dato viene inviato.
+
+```
+COOKIES_STUDENT=<cookie-studente.json> node build-demo.mjs ../../../Academy-Influencee-demo.html
+```
+(LocalWP acceso, con il docente e il corso di esempio e almeno un corso nel carrello.)
