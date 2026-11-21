@@ -5,7 +5,8 @@
  *
  * Variabili: $course, $content, $subtitle, $teacher, $teacher_url, $level_label,
  * $learn, $audience, $preview_html, $program, $has_access, $actions, $categories,
- * $is_visitor, $login_url, $duration, $teacher_box (null se le schede docente sono spente).
+ * $is_visitor, $login_url, $duration, $progress (percentuale 0-100 per chi ha accesso, altrimenti null),
+ * $teacher_box (null se le schede docente sono spente).
  *
  * @package AcademyElearning
  */
@@ -101,6 +102,22 @@ $lesson_count = (int) $program['lesson_count'];
 			 */
 			do_action( 'ael_course_side_top', $course->ID );
 			?>
+			<?php if ( isset( $progress ) && null !== $progress ) : ?>
+				<div class="ael-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<?php echo esc_attr( (string) $progress ); ?>">
+					<span class="ael-progress-bar" style="width:<?php echo esc_attr( (string) $progress ); ?>%"></span>
+				</div>
+				<p class="ael-card-meta">
+					<?php
+					echo esc_html(
+						sprintf(
+							/* translators: %d: percentuale completata */
+							__( '%d%% completato', 'academy-elearning' ),
+							(int) $progress
+						)
+					);
+					?>
+				</p>
+			<?php endif; ?>
 			<?php
 			echo AEL_Templates::render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escape nel template.
 				'actions',

@@ -488,6 +488,7 @@ final class AEL_Catalog {
 				'program'      => $program,
 				'has_access'   => AEL_Access::user_can_access_course( $user_id, $course->ID ),
 				'actions'      => self::actions( $course->ID, $user_id ),
+				'progress'     => ( $user_id && AEL_Access::user_can_access_course( $user_id, $course->ID ) ) ? AEL_Account::progress( $course->ID, $user_id ) : null,
 				'categories'   => $cats,
 				'is_visitor'   => ! $user_id,
 				'login_url'    => wp_login_url( (string) get_permalink( $course ) ),

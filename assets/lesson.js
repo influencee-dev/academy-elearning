@@ -135,9 +135,10 @@
 
 		function create() {
 			player = new window.YT.Player(iframe, {
+				host: 'https://www.youtube-nocookie.com',
 				events: {
 					onReady: function () {
-						if (!state.completed && cfg.position > 5) {
+						if (cfg.position > 5) {
 							player.seekTo(cfg.position, true);
 						}
 					},
@@ -182,7 +183,7 @@
 				duration = d;
 			});
 			player.ready().then(function () {
-				if (!state.completed && cfg.position > 5) {
+				if (cfg.position > 5) {
 					player.setCurrentTime(cfg.position).catch(function () {});
 				}
 			});
