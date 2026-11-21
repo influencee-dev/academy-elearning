@@ -80,3 +80,9 @@ Da decidere: tema a blocchi (come Twenty Twenty-Five) o classico, e nome del rep
 - Mai lavorare su `main`: si lavora su rami `feature/...` e si unisce a fine prova.
 - Gli interruttori dei moduli e delle opzioni del core li decide solo l'agenzia (capacità `ael_manage_modules`).
 - I docenti si chiamano "docenti" (anche quelli di Specialty), non "creator".
+
+## Configurazione dell'academy di Influencee (decisione del 21/11/2026)
+
+Solo **corsi singoli**, con docenti singoli che ricevono una quota. Moduli accesi: `single-purchase`,
+`teacher-revenue`, `teacher-panel`, `teacher-authoring`, `attribution`, `magic-link`. Modulo `subscription` **spento**
+(il tema non ha menu, pulsanti né sezioni sull'abbonamento). Lo spegnimento sul sito di prova è del 21/11.
