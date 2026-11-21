@@ -714,3 +714,45 @@
 	cursor: pointer;
 	padding: 8px 16px;
 }
+
+/* Iscrizione */
+.ael-register-box {
+	max-width: 520px;
+}
+
+.ael-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin: 0 0 16px;
+}
+
+.ael-field label {
+	font-weight: 600;
+}
+
+.ael-field input[type="text"],
+.ael-field input[type="email"],
+.ael-field input[type="password"] {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid var(--ael-border);
+	border-radius: var(--ael-radius);
+	background: var(--ael-surface);
+	font: inherit;
+}
+
+.ael-consent label {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	font-weight: 400;
+}
+
+.ael-consent input {
+	margin-top: 4px;
+}
+
+.ael-register-form .ael-button {
+	cursor: pointer;
+}

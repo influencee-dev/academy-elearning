@@ -66,7 +66,7 @@ Da **Academy → Configurazione**:
 
 1. **Banner dei cookie**: collega il consenso del banner del cliente al filtro `ael_has_tracking_consent` (finché non è collegato, la
    provenienza degli acquisti non registra nulla). Togli il file di prova `ael-test-consent.php` da `wp-content/mu-plugins/` se c'è.
-2. **Privacy e condizioni**: pagina privacy, termini di vendita e informativa sul recesso (il pagamento chiede già il consenso
+2. **Privacy e condizioni**: pagina privacy (da indicare in **Impostazioni → Privacy**, così compare nel modulo di iscrizione), termini di vendita e informativa sul recesso (il pagamento chiede già il consenso
    all'accesso immediato ai contenuti digitali).
 3. **Email**: installa un plugin di invio email (SMTP) con il mittente dell'academy, poi prova un "password dimenticata" e un
    link di accesso via email. In locale le email passano da Mailpit e non partono davvero.
