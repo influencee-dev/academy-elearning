@@ -68,8 +68,14 @@ Da **Academy → Configurazione**:
    provenienza degli acquisti non registra nulla). Togli il file di prova `ael-test-consent.php` da `wp-content/mu-plugins/` se c'è.
 2. **Privacy e condizioni**: pagina privacy (da indicare in **Impostazioni → Privacy**, così compare nel modulo di iscrizione), termini di vendita e informativa sul recesso (il pagamento chiede già il consenso
    all'accesso immediato ai contenuti digitali).
-3. **Email**: installa un plugin di invio email (SMTP) con il mittente dell'academy, poi prova un "password dimenticata" e un
-   link di accesso via email. In locale le email passano da Mailpit e non partono davvero.
+3. **Email di amministrazione**: **Impostazioni → Generali → Indirizzo email di amministrazione**, scrivi un indirizzo reale
+   dell'academy (per Influencee `info@influencee.it`). Serve davvero: le email di WooCommerce (ordine ricevuto, nuovo account)
+   scrivono al cliente "se hai bisogno di aiuto contattaci qui: <quell'indirizzo>", e le notifiche di nuovo ordine arrivano lì.
+   Un'installazione nuova ha un indirizzo provvisorio (in prova `dev-email@wpengine.local`): se resta, il cliente vede un indirizzo
+   finto nella mail. WordPress chiede di confermare il cambio con un link mandato al nuovo indirizzo: aprilo.
+4. **Email di invio**: installa un plugin di invio email (SMTP) con il mittente dell'academy, poi prova un "password dimenticata" e un
+   link di accesso via email, e controlla che la mail d'ordine mostri logo Influencee e l'indirizzo giusto. In locale le email
+   passano da Mailpit e non partono davvero.
 
 ## 8. Accessi: chi può fare cosa
 
