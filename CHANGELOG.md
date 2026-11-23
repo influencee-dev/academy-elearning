@@ -2,6 +2,12 @@
 
 Tutte le modifiche rilevanti del plugin, dalla più recente. Versioni secondo semantic versioning.
 
+## [1.1.0] - 2026-11-23
+Nuovo modulo **Accesso per assistenti AI (MCP)** (`modules/mcp-abilities`, spento di base). Con WordPress 6.9 o successivo e il plugin ufficiale MCP Adapter, Claude può leggere e modificare corsi, moduli, lezioni e schede docente dal sito, con i permessi dell'utente collegato.
+- Comandi (abilities `academy-elearning/...`): `list-courses`, `get-course`, `save-course` (compreso prezzo, docente ed esclusione dall'abbonamento, solo per agenzia e titolare), `save-module`, `save-lesson` (video YouTube/Vimeo controllato), `trash-program-item` (solo cestino, solo moduli e lezioni), `list-teachers`, `save-teacher` (canali e numeri), `academy-summary` (numeri in sola lettura).
+- Nessun comando su pagamenti, rimborsi, chiavi, utenti o interruttori dei moduli. Chi non può pubblicare salva in bozza. Il core non è stato modificato.
+- Provato su LocalWP con chiamate reali come amministratore e come studente (permessi negati).
+
 ## [1.0.0] - 2026-11-23
 Prima versione di rilascio. Tutto quello che segue è stato costruito e provato su LocalWP prima della consegna dell'academy di Influencee.
 - Passo 0: scheletro del plugin. File di avvio con controllo dei requisiti (PHP 8.1, WordPress 6.4), caricamento automatico delle classi, classe `AEL_Plugin`, caricamento delle traduzioni e primo hook `ael_loaded`. Ancora nessuna funzione visibile.

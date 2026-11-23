@@ -2,7 +2,7 @@
 # Lingua di base: italiano. Generato da bin/make-pot.php.
 msgid ""
 msgstr ""
-"Project-Id-Version: Academy E-learning 1.0.0\n"
+"Project-Id-Version: Academy E-learning 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,7 @@ msgstr ""
 #: admin/class-admin.php:65
 #: admin/class-admin.php:66
 #: admin/class-admin.php:145
+#: modules/mcp-abilities/class-mcp-abilities.php:68
 msgid "Academy"
 msgstr ""
 
@@ -505,6 +506,10 @@ msgstr ""
 msgid "Contenuti"
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:986
+msgid "Contenuto non trovato."
+msgstr ""
+
 #: admin/class-admin-program.php:498
 msgid "Contenuto non valido."
 msgstr ""
@@ -538,6 +543,10 @@ msgstr ""
 
 #: admin/class-admin.php:138
 msgid "Corsi pubblicati"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:69
+msgid "Corsi, moduli, lezioni e docenti dell'academy."
 msgstr ""
 
 #: admin/class-admin-access-debug.php:205
@@ -582,6 +591,22 @@ msgstr ""
 
 #: modules/subscription/templates/subscribe.php:34
 msgid "Crea il tuo account"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:254
+msgid "Crea o modifica la scheda di un docente"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:119
+msgid "Crea o modifica un corso"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:176
+msgid "Crea o modifica un modulo"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:194
+msgid "Crea o modifica una lezione"
 msgstr ""
 
 #: modules/teacher-panel/class-teacher-panel.php:286
@@ -631,6 +656,10 @@ msgstr ""
 msgid "Docente"
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:631
+msgid "Docente, abbonamento e prezzo non sono stati cambiati: possono farlo solo l'agenzia o il titolare."
+msgstr ""
+
 #: admin/class-admin.php:126
 #: includes/class-content.php:257
 msgid "Docenti"
@@ -651,6 +680,22 @@ msgstr ""
 #: admin/class-admin-access-debug.php:248
 #: admin/class-admin-students.php:169
 msgid "Durata in giorni (vuoto = senza scadenza)"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:80
+msgid "Elenca i corsi"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:81
+msgid "Elenca i corsi dell'academy con stato, docente, livello, prezzo e numero di lezioni."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:240
+msgid "Elenca i docenti"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:241
+msgid "Elenca le schede docente con frase di presentazione e canali social."
 msgstr ""
 
 #: admin/class-admin-program.php:198
@@ -887,6 +932,10 @@ msgstr ""
 msgid "Il collegamento all'account lo gestisce il titolare dell'academy."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:951
+msgid "Il collegamento all'utente non è stato cambiato: può farlo solo l'agenzia o il titolare."
+msgstr ""
+
 #: modules/subscription/class-subscription-admin.php:279
 msgid "Il collegamento funziona, ma questo prezzo non è ricorrente: serve un prezzo mensile."
 msgstr ""
@@ -925,6 +974,10 @@ msgstr ""
 msgid "Il prezzo mensile creato nel Catalogo prodotti di Stripe."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:650
+msgid "Il prezzo non è stato cambiato: serve il modulo Acquisto singolo con WooCommerce."
+msgstr ""
+
 #: templates/actions.php:19
 msgid "Il programma del corso è in preparazione."
 msgstr ""
@@ -955,6 +1008,7 @@ msgid "Il tuo link di accesso a %s"
 msgstr ""
 
 #: admin/class-admin-content.php:446
+#: modules/mcp-abilities/class-mcp-abilities.php:789
 msgid "Il video non è stato riconosciuto: controlla l'indirizzo e la sorgente scelta."
 msgstr ""
 
@@ -1054,6 +1108,10 @@ msgstr ""
 msgid "La percentuale si salva con ogni vendita: cambiarla qui non modifica le vendite già registrate."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:785
+msgid "La sorgente del video non è tra quelle attive in Academy → Configurazione."
+msgstr ""
+
 #: modules/magic-link/class-magic-link.php:239
 msgid "La tua email"
 msgstr ""
@@ -1088,6 +1146,10 @@ msgstr ""
 
 #: modules/teacher-panel/class-teacher-panel.php:107
 msgid "Le mie vendite (pannello docente)"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:100
+msgid "Legge un corso"
 msgstr ""
 
 #: admin/class-admin-access-debug.php:165
@@ -1143,6 +1205,14 @@ msgstr ""
 
 #: modules/subscription/class-subscription-admin.php:272
 msgid "Manca l'ID del prezzo."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:224
+msgid "Manda nel cestino un modulo (con le sue lezioni) o una lezione. Si recupera dal cestino dell'amministrazione."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:223
+msgid "Manda nel cestino un modulo o una lezione"
 msgstr ""
 
 #: admin/class-admin-students.php:349
@@ -1360,8 +1430,16 @@ msgstr ""
 msgid "Non hai i permessi per vedere questa pagina."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:858
+msgid "Non hai il permesso di eliminare questo contenuto."
+msgstr ""
+
 #: admin/class-admin-access-debug.php:74
 msgid "Non hai il permesso di farlo."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:989
+msgid "Non hai il permesso di modificare questo contenuto."
 msgstr ""
 
 #: admin/class-admin-access-debug.php:110
@@ -1374,6 +1452,10 @@ msgstr ""
 
 #: admin/class-admin-students.php:91
 msgid "Non ho trovato nessun utente con quell'email. Crea prima l'utente da Utenti → Aggiungi."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:1009
+msgid "Non puoi pubblicare: il contenuto resta in bozza e lo pubblica il titolare."
 msgstr ""
 
 #: includes/class-registration.php:224
@@ -1396,6 +1478,10 @@ msgstr ""
 msgid "Non è stato possibile completare l'operazione."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:879
+msgid "Non è stato possibile spostare nel cestino."
+msgstr ""
+
 #: admin/class-admin-teacher-profile.php:138
 msgid "Numeri aggiornati a"
 msgstr ""
@@ -1403,6 +1489,10 @@ msgstr ""
 #. translators: %s: data di aggiornamento dei numeri
 #: templates/teacher.php:93
 msgid "Numeri aggiornati a %s"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:302
+msgid "Numeri in sola lettura: studenti con accesso attivo, accessi per origine, lezioni completate e ore guardate negli ultimi 30 giorni, corsi più visti."
 msgstr ""
 
 #: admin/class-admin-content.php:170
@@ -1505,6 +1595,22 @@ msgstr ""
 
 #: modules/subscription/class-subscription.php:186
 msgid "Per continuare devi spuntare la casella sull'accesso immediato ai contenuti digitali."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:601
+msgid "Per creare un corso serve il titolo."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:924
+msgid "Per creare un docente serve il nome."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:701
+msgid "Per creare un modulo serve il titolo."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:806
+msgid "Per creare una lezione serve il titolo."
 msgstr ""
 
 #: admin/class-admin-students.php:256
@@ -1634,6 +1740,10 @@ msgstr ""
 msgid "Questo link non è valido o è scaduto. Richiedine uno nuovo dalla pagina di accesso."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:855
+msgid "Qui si possono eliminare solo moduli e lezioni."
+msgstr ""
+
 #: modules/teacher-panel/class-teacher-panel.php:340
 #: modules/teacher-revenue/class-teacher-revenue-admin.php:333
 msgid "Quota"
@@ -1677,6 +1787,10 @@ msgstr ""
 msgid "Registro vendite"
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:101
+msgid "Restituisce tutti i campi di un corso e il suo programma (moduli e lezioni con i loro ID)."
+msgstr ""
+
 #: admin/class-admin-students.php:414
 msgid "Revoca"
 msgstr ""
@@ -1700,6 +1814,10 @@ msgstr ""
 
 #: includes/class-account.php:193
 msgid "Ricordami"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:301
+msgid "Riepilogo dei numeri dell'academy"
 msgstr ""
 
 #: modules/teacher-revenue/class-teacher-revenue-admin.php:275
@@ -1836,8 +1954,28 @@ msgstr ""
 msgid "Sei collegato come %s."
 msgstr ""
 
+#: modules/mcp-abilities/class-mcp-abilities.php:120
+msgid "Senza \"id\" crea un corso nuovo, con \"id\" modifica quello esistente (si cambiano solo i campi indicati). Il prezzo, il docente e l'esclusione dall'abbonamento li cambia solo l'agenzia o il titolare. Chi non può pubblicare salva in bozza."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:177
+msgid "Senza \"id\" crea un modulo in un corso (\"course_id\" obbligatorio), con \"id\" lo modifica. \"position\" è la posizione nel corso (1 = primo)."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:195
+msgid "Senza \"id\" crea una lezione in un modulo (\"module_id\" obbligatorio), con \"id\" la modifica. Il video si indica con \"video_source\" (youtube, vimeo) e \"video_ref\" (l'indirizzo o l'ID). Con \"module_id\" su una lezione esistente la si sposta."
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:255
+msgid "Senza \"id\" crea una scheda, con \"id\" la modifica. \"channels\" è l'elenco dei canali social (platform, handle, url, followers, engagement in %). Il collegamento all'utente WordPress lo cambia solo l'agenzia o il titolare."
+msgstr ""
+
 #: admin/class-admin-students.php:406
 msgid "Senza scadenza"
+msgstr ""
+
+#: modules/mcp-abilities/class-mcp-abilities.php:774
+msgid "Serve il modulo in cui mettere la lezione."
 msgstr ""
 
 #: admin/class-admin-content.php:240
