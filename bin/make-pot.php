@@ -162,7 +162,7 @@ function ael_po_quote( string $text ): string {
 }
 
 ksort( $entries );
-$version = '0.1.0';
+$version = '1.0.0';
 if ( preg_match( '/^\s*\*\s*Version:\s*(\S+)/m', (string) file_get_contents( $root . '/academy-elearning.php' ), $m ) ) {
 	$version = $m[1];
 }

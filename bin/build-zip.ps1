@@ -42,16 +42,26 @@ $excludeFiles = @('CLAUDE.md', 'README.md', '.gitignore', '.gitattributes', 'adm
 $included = 0
 $zip = [System.IO.Compression.ZipFile]::Open($zipPath, [System.IO.Compression.ZipArchiveMode]::Create)
 try {
-	Get-ChildItem -Path $root -Recurse -File -Force | ForEach-Object {
-		$relative = $_.FullName.Substring($root.Length).TrimStart('\', '/').Replace('\', '/')
-		foreach ($dir in $excludeDirs) {
-			if ($relative -eq $dir -or $relative.StartsWith("$dir/")) { return }
+	# Si scende nelle cartelle una per volta e si saltano subito quelle escluse (docs/ contiene
+	# strumenti con percorsi lunghissimi che Windows non riesce a leggere).
+	function Add-Folder([string] $folder) {
+		foreach ($item in Get-ChildItem -LiteralPath $folder -Force) {
+			$relative = $item.FullName.Substring($root.Length).TrimStart('\', '/').Replace('\', '/')
+			if ($item.PSIsContainer) {
+				$skip = $false
+				foreach ($dir in $excludeDirs) {
+					if ($relative -eq $dir -or $relative.StartsWith("$dir/")) { $skip = $true }
+				}
+				if (-not $skip) { Add-Folder $item.FullName }
+				continue
+			}
+			if ($excludeFiles -contains $relative) { continue }
+			if ($item.Extension -eq '.zip' -or $item.Name -eq '.gitkeep') { continue }
+			[void][System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $item.FullName, "$slug/$relative", [System.IO.Compression.CompressionLevel]::Optimal)
+			$script:included++
 		}
-		if ($excludeFiles -contains $relative) { return }
-		if ($_.Extension -eq '.zip' -or $_.Name -eq '.gitkeep') { return }
-		[void][System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, "$slug/$relative", [System.IO.Compression.CompressionLevel]::Optimal)
-		$script:included++
 	}
+	Add-Folder $root
 }
 finally {
 	$zip.Dispose()

@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 return array(
 	'name'             => 'Ricavi docente',
 	'description'      => 'Registra ogni vendita di corso e calcola la quota del docente sull\'importo netto (senza IVA e commissioni), con percentuale per docente e per corso. Riepilogo per periodo, esportazione CSV, storno automatico sui rimborsi. Nessun pagamento automatico: la liquidazione avviene fuori.',
-	'version'          => '0.1.0',
+	'version'          => '1.0.0',
 	'requires_modules' => array(),
 	'requires_plugins' => array(),
 	'boot'             => 'boot.php',

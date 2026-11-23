@@ -1,0 +1,13 @@
+import puppeteer from 'puppeteer-core';
+import fs from 'node:fs';
+const S = process.argv[2];
+const url = fs.readFileSync(S + '/order.url', 'utf8').trim().split('\n').pop();
+const stud = JSON.parse(fs.readFileSync(S + '/cookies-student.json', 'utf8'));
+const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new' });
+const p = await b.newPage();
+await p.setViewport({ width: 1280, height: 800 });
+await p.goto('http://academy-test.local/pagina-che-non-esiste/', { waitUntil: 'networkidle2' }); await p.screenshot({ path: S + '/n404.jpg', type: 'jpeg', quality: 60 });
+await p.goto('http://academy-test.local/wp-login.php?action=lostpassword', { waitUntil: 'networkidle2' }); await p.screenshot({ path: S + '/nlogin.jpg', type: 'jpeg', quality: 60 });
+await p.goto(url, { waitUntil: 'networkidle2' }); await p.screenshot({ path: S + '/nrecv.jpg', type: 'jpeg', quality: 60, fullPage: true });
+console.log(url);
+await b.close();

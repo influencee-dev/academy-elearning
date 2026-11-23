@@ -21,7 +21,7 @@ priorità, si fa tutto. Giorni lavorativi esclusi: 18, 19, 20 novembre e i weeke
 | Disinstallazione completa, traduzioni (.pot), script dello zip, guide | Fatto |
 
 Codice: ramo **`feature/core-base`** su `https://github.com/influencee-dev/academy-elearning` (pubblicato; `main`
-non è stato toccato). Versione nel codice: 0.1.0 (si porta a 1.0.0 alla chiusura).
+non è stato toccato). Versione nel codice: 1.0.0 (dal 23/11/2026).
 
 ## Cosa resta da fare
 

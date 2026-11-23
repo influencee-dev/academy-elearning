@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Academy E-learning
  * Description:       Trasforma un sito WordPress in una piattaforma di corsi online: contenuti, catalogo, accessi e quote docenti, con funzioni attivabili a moduli.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Text Domain:       academy-elearning
@@ -13,7 +13,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AEL_VERSION', '0.1.0' );
+define( 'AEL_VERSION', '1.0.0' );
 define( 'AEL_MIN_PHP', '8.1' );
 define( 'AEL_MIN_WP', '6.4' );
 define( 'AEL_FILE', __FILE__ );

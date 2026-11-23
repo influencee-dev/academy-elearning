@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 return array(
 	'name'             => 'Docenti autori',
 	'description'      => 'I docenti entrano con il proprio utente e creano e modificano solo i propri corsi, moduli e lezioni. Non vedono i contenuti degli altri, gli studenti né le vendite. La pubblicazione resta al titolare.',
-	'version'          => '0.1.0',
+	'version'          => '1.0.0',
 	'requires_modules' => array(),
 	'requires_plugins' => array(),
 	'boot'             => 'boot.php',
