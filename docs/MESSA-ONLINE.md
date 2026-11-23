@@ -42,8 +42,8 @@ Prima di iniziare tieni a portata di mano:
 
 Da **Academy → Configurazione**:
 
-1. Accendi solo i moduli del pacchetto del cliente. Per Influencee: Acquisto singolo, Quote docenti, Pannello docente, Docenti
-   autori, Provenienza, Link via email. **Abbonamento spento.**
+1. Accendi solo i moduli del pacchetto del cliente. Per Influencee: Acquisto singolo, Ricavi docente, Pannello docente, Docenti
+   autori, Attribuzione, Magic link. **Abbonamento spento.**
 2. In "Opzioni del core": **Formato dei contenuti = Verticale (9:16)** per Influencee (corsi in video verticale).
 3. Lascia accese le pagine docente e le schede docente personalizzabili.
 
