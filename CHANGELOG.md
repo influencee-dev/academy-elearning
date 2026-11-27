@@ -2,6 +2,14 @@
 
 Tutte le modifiche rilevanti del plugin, dalla più recente. Versioni secondo semantic versioning.
 
+## [1.1.0] - 2026-11-27
+Sezioni dell'abbonamento: oltre ai corsi, l'academy può avere Guide, Quiz e una Chat con i formatori. Ogni sezione è un modulo nuovo, spento di base, acceso solo dall'agenzia; ognuna ha la sua pagina nel menu e il suo aspetto, deciso dal tema.
+- Core (ritocchi minimi, solo aggiunte): `AEL_Access::user_has_catalog_access()` dice se un utente ha accesso a tutto il catalogo (abbonamento o concessione manuale sul catalogo; chi gestisce l'academy sempre sì), con il filtro `ael_user_has_catalog_access`. Nuovo template `section-gate.php` ("riservato a chi ha l'abbonamento") e nuovo foglio di stile `assets/sections.css` con solo stili neutri.
+- Modulo `guides` ("Guide", spento di base): tipo di contenuto Guida con temi e PDF allegati (selezione dalla libreria media). Pagina "Guide" con ricerca e filtro per tema. Chi non è abbonato vede titolo ed estratto, mai il testo né i file; i file si scaricano da un indirizzo protetto (come i materiali delle lezioni); il testo non esce nemmeno da elenchi o feed.
+- Modulo `quiz` ("Quiz", spento di base): tipo di contenuto Quiz con domande a risposta multipla, spiegazioni, soglia per superarlo e corso collegato (facoltativo). Tabella nuova `ael_quiz_attempts`. La correzione avviene sul server: le risposte giuste si vedono solo dopo l'invio; chi non è abbonato non vede nemmeno le domande. Storico dei tentativi, riprova, pulsante nei corsi collegati (hook `ael_after_lesson_content`). Nuovo hook `ael_quiz_completed`.
+- Modulo `teacher-chat` ("Chat con i formatori", spento di base): conversazioni private tra un abbonato e un formatore (la scheda docente collegata a un utente). Tabelle nuove `ael_chat_threads` e `ael_chat_messages`. I messaggi li vedono solo i due interessati: nessuna eccezione per altri formatori né per il titolare, e nessuna schermata di amministrazione li mostra. Le email di avviso non contengono il testo. Pagina Academy → "Chat: privacy" (solo agenzia): giorni di conservazione (cancellazione notturna) e testo dell'informativa. Esportazione e cancellazione dei dati dagli strumenti privacy di WordPress. Freno: 15 messaggi ogni 10 minuti per utente. Nuovo hook `ael_chat_message_sent` (senza il testo).
+- Spegnere un modulo nasconde la sezione e non cancella nulla: tabelle, tentativi e messaggi restano.
+
 ## [1.0.0] - 2026-11-23
 Prima versione di rilascio. Tutto quello che segue è stato costruito e provato su LocalWP prima della consegna dell'academy di Influencee.
 - Passo 0: scheletro del plugin. File di avvio con controllo dei requisiti (PHP 8.1, WordPress 6.4), caricamento automatico delle classi, classe `AEL_Plugin`, caricamento delle traduzioni e primo hook `ael_loaded`. Ancora nessuna funzione visibile.

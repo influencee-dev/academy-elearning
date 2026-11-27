@@ -84,6 +84,41 @@ final class AEL_Access {
 	}
 
 	/**
+	 * L'utente ha accesso a tutto il catalogo (abbonamento o concessione manuale sul catalogo)?
+	 *
+	 * Serve alle sezioni riservate agli abbonati (guide, quiz, chat). La decisione resta qui:
+	 * i moduli chiedono, non decidono. Chi gestisce l'academy ha sempre accesso.
+	 *
+	 * @param int $user_id Utente (0 = visitatore).
+	 */
+	public static function user_has_catalog_access( int $user_id ): bool {
+		$allowed = false;
+
+		if ( $user_id ) {
+			if ( user_can( $user_id, AEL_Content::CAP ) ) {
+				$allowed = true;
+			} else {
+				// Solo concessioni che coprono tutto il catalogo (course_id 0), attive e non scadute.
+				$now = time();
+				foreach ( self::grants_of( $user_id ) as $grant ) {
+					if ( 0 === (int) ( $grant['course_id'] ?? 0 ) && self::grants_cover_course( array( $grant ), 0, false, $now ) ) {
+						$allowed = true;
+						break;
+					}
+				}
+			}
+		}
+
+		/**
+		 * Permette ai moduli di cambiare chi conta come abbonato.
+		 *
+		 * @param bool $allowed Decisione della base.
+		 * @param int  $user_id Utente (0 = visitatore).
+		 */
+		return (bool) apply_filters( 'ael_user_has_catalog_access', $allowed, $user_id );
+	}
+
+	/**
 	 * L'utente può vedere il corso (contenuto delle lezioni incluso)?
 	 *
 	 * @param int $user_id   Utente (0 = visitatore).
